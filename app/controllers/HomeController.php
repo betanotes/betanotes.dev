@@ -22,7 +22,12 @@ class HomeController extends BaseController {
 
 	public function dashboard()
 	{
-		$user = User::all();
+		$user = User::find(1);
 		return View::make('/users/dashboard')->with('user', $user);
+	}
+
+	public function navbar() 
+	{
+		return View::make('/users/dashnav');
 	}
 }
