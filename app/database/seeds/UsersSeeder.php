@@ -10,6 +10,7 @@ class UsersSeeder extends Seeder
 		$user->password = Hash::make("iamastick");
 		$user->affiliation = "2 Dimensional University";
 		$user->break_type = "Hanging out";
+		$user->image_url = "/img/stick.png";
 		$user->save();
 	}
 }
