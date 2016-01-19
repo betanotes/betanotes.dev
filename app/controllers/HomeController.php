@@ -23,7 +23,8 @@ class HomeController extends BaseController {
 	public function dashboard()
 	{
 		$user = Auth::user();
-		return View::make('/users/dashboard')->with('user', $user);
+		$userlists = DB::table('studylists')->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
+		return View::make('/users/dashboard')->with('user', $user)->with('userlists', $userlists);
 	}
 
 	public function navbar() 

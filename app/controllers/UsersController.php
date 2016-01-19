@@ -29,7 +29,7 @@ class UsersController extends BaseController {
 
 		if(Auth::attempt($userdata)) {
 			Session::flash('successMessage', 'Welome back!');
-			return Redirect::intended('/users');
+			return Redirect::intended('/dashboard');
 		} else {
 			return Redirect::back();
 		}
@@ -84,5 +84,45 @@ class UsersController extends BaseController {
 			return Redirect::back()->withInput();
 		}
 	}
+	public function showedit()
+	{
+		return View::make('/users/editprofile');
+	}
+
+	public function update()
+	{
+		if(Auth::check()) {
+			$usertoupdate = Auth::user();
+			$usertoupdate->firstname = (Input::has('firstname') ? Input::get('firstname') : Auth::user()->firstname);
+			$usertoupdate->lastname = (Input::has('lastname') ? Input::get('lastname') : Auth::user()->lastname);
+			$usertoupdate->break_type = (Input::has('break_type') ? Input::get('break_type') : Auth::user()->break_type);
+			$usertoupdate->affiliation = (Input::has('affiliation') ? Input::get('affiliation') : Auth::user()->affiliation);
+			$usertoupdate->password = (Input::has('password') ? Input::get('password') : Auth::user()->password);
+
+			$usertoupdate->image_url = (Input::has('image_url') ? Input::file('image_url') : Auth::user()->image_url);
+			if($usertoupdate->image_url == Input::file('image_url')) {
+				$imagename = Input::file('image_url');
+				$originalname = $imagename->getClientOriginalName();
+				$imagepath = 'public/img/uploads/';
+				$imagename->move($imagepath, $originalname);
+				$newuser->image_url = $imagepath . $originalname;
+			}
+
+			$checkdbforemail = DB::table('users')->where('email', Input::get('email'))->pluck('email');
+			if($checkdbforemail == null || $checkdbforemail == Auth::user()->email) {
+				if($checkdbforemail != Auth::user()->email) {
+					$usertoupdate->email = Input::get('email');
+				}
+				
+				$usertoupdate->save();
+				Session::flash('successMessage', 'Profile successfully updated');
+				return Redirect::action('HomeController@dashboard');
+			} else {
+				Session::flash('errorMessage', 'This email is already in use!');
+				return Redirect::back()->withInput();
+			}
+		}
+	}
 }
+
 ?>
