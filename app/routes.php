@@ -17,4 +17,16 @@ Route::get('/dashboard', 'HomeController@dashboard');
 
 Route::get('/navbar', 'HomeController@navbar');
 
-Route::resource('lists', 'ListsController');
+Route::resource('studylists', 'StudylistsController');
+
+Route::resource('notes', 'NotesController');
+
+Route::get('/users', 'UsersController@index');
+
+Route::get('/login', 'UsersController@showlogin');
+
+Route::post('/login', 'UsersController@dologin');
+
+Route::get('/signup', 'UsersController@showsignup');
+
+Route::post('/signup', 'UsersController@store');
