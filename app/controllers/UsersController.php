@@ -35,6 +35,18 @@ class UsersController extends BaseController {
 		}
 	}
 
+	public function logout()
+	{
+		if(Auth::check()) {
+			Auth::logout();
+			Session::flash('successMessage', 'Goodbye!');
+			return Redirect::action('UsersController@showlogin');
+		} else {
+			Session::flash('errorMessage', 'You are not logged in yet!');
+			return Redirect::action('UsersController@showlogin');
+		}
+	}
+
 	public function showsignup()
 	{
 		return View::make('/users/signup');

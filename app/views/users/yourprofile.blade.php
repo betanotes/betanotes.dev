@@ -33,6 +33,7 @@
 			
 		</div>
 	</div>
+	<a href="{{{action('UsersController@logout')}}}"><button class="btn btn-danger">Log Out</button></a>
 </div>
 </body>
 </html>

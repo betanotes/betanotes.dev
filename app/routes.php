@@ -30,3 +30,5 @@ Route::post('/login', 'UsersController@dologin');
 Route::get('/signup', 'UsersController@showsignup');
 
 Route::post('/signup', 'UsersController@store');
+
+Route::get('/logout', 'UsersController@logout');
