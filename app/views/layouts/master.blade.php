@@ -7,7 +7,7 @@
         <title>Beta Notes</title>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         {{-- <link rel="stylesheet" href="/css/navbar-footer.css"> --}}
-        <link rel="stylesheet" href="/css/flashcards.css">
+        <link rel="stylesheet" href="/css/lists.css">
         <link rel="stylesheet" href="/css/notes.css">
         <link rel="stylesheet" href="/css/users.css">
         @yield('top-script')
@@ -29,7 +29,7 @@
         {{-- script tags for jQuery and Bootstrap --}}
         <script src="/js/jquery-1.11.3.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/flashcards.js"></script>
+        <script src="/js/lists.js"></script>
         <script src="/js/notes.js"></script>
         <script src="/js/users.js"></script>
         @yield('bottom-script')
