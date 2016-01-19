@@ -20,4 +20,9 @@ class HomeController extends BaseController {
 		return View::make('main');
 	}
 
+	public function dashboard()
+	{
+		$user = User::all();
+		return View::make('/users/dashboard')->with('user', $user);
+	}
 }
