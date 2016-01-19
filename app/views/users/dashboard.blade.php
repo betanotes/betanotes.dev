@@ -8,15 +8,15 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-14 text-center dashboardnavbar">
-			<div class="col-lg-3 navlink">
+			<a href="{{{action('UsersController@index')}}}"><div class="col-lg-3 navlink">
 				Profile
-			</div>
+			</div></a>
 			<div class="col-lg-3 navlink">
 				Notes
 			</div>
-			<div class="col-lg-3 navlink">
+			<a href="{{{action('StudylistsController@index')}}}"><div class="col-lg-3 navlink">
 				Lists
-			</div>
+			</div></a>
 			<div class="col-lg-3 navlink">
 				Quizzes
 			</div>
@@ -54,10 +54,11 @@
 				</ul>
 			</div>
 			<div class="col-lg-4 dashboardcolumn">
+				@foreach($userlists as $lists)
 				<ul>
-					<li><h5>Biology Quiz #1</h5></li>
-					<li><h5>Biology Quiz #2</h5></li>
+					<li><h5>{{{$lists->title}}} ({{{$lists->public_or_private}}})</h5></li>
 				</ul>
+				@endforeach
 			</div>
 		</div>
 	</div>

@@ -33,6 +33,7 @@
 			
 		</div>
 	</div>
+	<a href="{{{action('HomeController@dashboard')}}}"><button class="btn btn-primary">Back to Dashboard</button></a>
 	<a href="{{{action('UsersController@logout')}}}"><button class="btn btn-danger">Log Out</button></a>
 </div>
 </body>
