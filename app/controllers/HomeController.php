@@ -22,7 +22,7 @@ class HomeController extends BaseController {
 
 	public function dashboard()
 	{
-		$user = User::find(1);
+		$user = Auth::user();
 		return View::make('/users/dashboard')->with('user', $user);
 	}
 
