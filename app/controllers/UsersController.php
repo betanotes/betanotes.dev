@@ -6,7 +6,9 @@ class UsersController extends BaseController {
 	{
 		if(Auth::check()) {
 			$user = Auth::user();
-			return View::make('/users/yourprofile')->with('user', $user);
+			$usernotes = DB::table('notes')->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
+			$usersheets = DB::table('sheets')->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
+			return View::make('/users/yourprofile')->with('user', $user)->with('usernotes', $usernotes)->with('usersheets', $usersheets);
 		}
 	}
 
@@ -54,6 +56,7 @@ class UsersController extends BaseController {
 
 	public function store()
 	{
+		$validator = Validator::make(Input::all(), User::$rules);
 		$newuser = new User();
 		$newuser->firstname = Input::get('firstname');
 		$newuser->lastname = Input::get('lastname');
@@ -62,14 +65,19 @@ class UsersController extends BaseController {
 		$newuser->break_type = Input::get('break_type');
 		$newuser->affiliation = Input::get('affiliation');
 
+	if(Input::file('image_url') != null) {
 		$imagename = Input::file('image_url');
 		$originalname = $imagename->getClientOriginalName();
 		$imagepath = 'public/img/uploads/';
 		$imagename->move($imagepath, $originalname);
 		$newuser->image_url = $imagepath . $originalname;
+	}
 
 		$checkdbforemail = DB::table('users')->where('email', Input::get('email'))->pluck('email');
-
+		if($validator->fails()) {
+			Session::flash('errorMessage', 'Sorry, one or more of your inputs did not meet our requirements');
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
 		if($checkdbforemail == null) {
 			if(Input::get('password') == Input::get('confirm')) {
 				$newuser->save();
@@ -91,6 +99,7 @@ class UsersController extends BaseController {
 
 	public function update()
 	{
+		$validator = Validator::make(Input::all(), User::$editrules);
 		if(Auth::check()) {
 			$usertoupdate = Auth::user();
 			$usertoupdate->firstname = (Input::has('firstname') ? Input::get('firstname') : Auth::user()->firstname);
@@ -109,17 +118,22 @@ class UsersController extends BaseController {
 			}
 
 			$checkdbforemail = DB::table('users')->where('email', Input::get('email'))->pluck('email');
-			if($checkdbforemail == null || $checkdbforemail == Auth::user()->email) {
-				if($checkdbforemail != Auth::user()->email) {
-					$usertoupdate->email = Input::get('email');
-				}
-				
-				$usertoupdate->save();
-				Session::flash('successMessage', 'Profile successfully updated');
-				return Redirect::action('HomeController@dashboard');
+			if($validator->fails()) {
+				Session::flash('errormessage', 'Sorry, some of your inputs did not meet our requirements');
+				return Redirect::back()->withInput()->withErrors($validator);
 			} else {
-				Session::flash('errorMessage', 'This email is already in use!');
-				return Redirect::back()->withInput();
+				if($checkdbforemail == null || $checkdbforemail == Auth::user()->email) {
+					if($checkdbforemail != Auth::user()->email) {
+						$usertoupdate->email = Input::get('email');
+					}
+					
+					$usertoupdate->save();
+					Session::flash('successMessage', 'Profile successfully updated');
+					return Redirect::action('HomeController@dashboard');
+				} else {
+					Session::flash('errorMessage', 'This email is already in use!');
+					return Redirect::back()->withInput();
+				}
 			}
 		}
 	}

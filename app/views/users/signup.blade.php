@@ -1,13 +1,18 @@
 @extends('layouts.master')
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Sign Up!</title>
-</head>
-<body>
+@section('content')
+@if($errors != '') 
+	<div class="error" role="alert">
+		<div class="error">{{{$errors->first('firstname', ':message')}}}</div>
+		<div>{{{$errors->first('lastname', ':message')}}}</div>
+		<div>{{{$errors->first('email', ':message')}}}</div>
+		<div>{{{$errors->first('affiliation', ':message')}}}</div>
+		<div>{{{$errors->first('break_type', ':message')}}}</div>
+		<div>{{{$errors->first('password', ':message')}}}</div>
+	</div>
+@endif
 <div class="container">
 	<div class="row">
-		<div class="col-lg-12 text-center">
+		<div class="col-lg-6 col-lg-offset-3 text-center">
 			<h3>Enter the following information to sign up!</h3>
 			{{Form::open(array('class' => "form-horizontal", 'method' => 'POST', 'action' => 'UsersController@store', 'files' => 'true'))}}
 				<div class="form-group">
@@ -47,5 +52,6 @@
 		</div>
 	</div>
 </div>
+@stop
 </body>
 </html>
