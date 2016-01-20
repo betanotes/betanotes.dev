@@ -2,9 +2,9 @@
 
 use Carbon\Carbon;
 
-class Studylist extends Eloquent
+class Sheet extends Eloquent
 {
-    protected $table = 'studylists';
+    protected $table = 'sheets';
 
     public static $rules = array(
     	'title' => 'required|max:100',
@@ -16,9 +16,9 @@ class Studylist extends Eloquent
         return $this->belongsTo('User');
     }
 
-    public function studyquestions()
+    public function lines()
     {
-        return $this->hasMany('Studyquestion');
+        return $this->hasMany('Line');
     }
 
     public function setTitleAttribute($value)
@@ -29,9 +29,9 @@ class Studylist extends Eloquent
 
     public function isUniqueSlug($slug)
     {
-        $studylists = Studylist::all();
-        foreach($studylists as $studylist) {
-            if ($studylist->slug == $slug) {
+        $sheets = Sheet::all();
+        foreach($sheets as $sheet) {
+            if ($sheet->slug == $slug) {
                 return false;
             }
         } 

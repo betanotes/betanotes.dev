@@ -1,6 +1,6 @@
 <?php
 
-class StudyquestionsController extends \BaseController {
+class LinesController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
