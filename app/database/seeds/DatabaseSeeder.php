@@ -11,15 +11,15 @@ class DatabaseSeeder extends Seeder {
 	{
 		Eloquent::unguard();
 
-		DB::table('studyquestions')->delete();
+		DB::table('lines')->delete();
 		DB::table('notes')->delete();
-		DB::table('studylists')->delete();
+		DB::table('sheets')->delete();
 		DB::table('users')->delete();
 
 		$this->call('UsersSeeder');
-		$this->call('StudylistTableSeeder');
+		$this->call('SheetsTableSeeder');
 		$this->call('NotesTableSeeder');
-		$this->call('StudyquestionsTableSeeder');
+		$this->call('LinesTableSeeder');
 	}
 
 }

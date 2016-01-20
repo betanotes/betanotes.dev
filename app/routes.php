@@ -17,7 +17,7 @@ Route::get('/dashboard', 'HomeController@dashboard');
 
 Route::get('/navbar', 'HomeController@navbar');
 
-Route::resource('studylists', 'StudylistsController');
+Route::resource('sheets', 'SheetsController');
 
 Route::resource('notes', 'NotesController');
 
