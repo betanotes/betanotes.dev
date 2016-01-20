@@ -9,7 +9,8 @@ class LinesController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$lines = Line::with('sheets')->orderBy('id', 'desc')->paginate(4);
+        return View::make('sheets.index')->with('lines', $sheets);
 	}
 
 
