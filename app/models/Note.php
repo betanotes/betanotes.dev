@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 class Note extends Eloquent
 {
     protected $table = 'notes';

@@ -1,1 +1,3 @@
-notes.js
+@section('top-script')
+
+@stop

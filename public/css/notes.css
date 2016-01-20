@@ -1,1 +1,7 @@
-notes.css
+@extends('layouts.master')
+
+@section('top-script')
+
+<link rel="stylesheet" href="ckeditordata/contents.css">
+<link rel="stylesheet" href="ckeditordata/ckeditor/css/ckeditor.css">
+@stop
