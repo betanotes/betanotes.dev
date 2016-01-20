@@ -1,0 +1,40 @@
+/* CSS for the navbar partial and the footer partial. */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    width: 100%;
+    background-color: #ffffff;
+    /* Margin bottom by footer height */
+    margin-bottom: 80px;
+}
+/*.navbtns > .btn-default {
+    border: 1px solid #ffffff;
+}
+.navbtns > .btn-default:hover {
+    border: 1px solid #4cbfe6;
+    background-color: #ffffff;
+    color: #4cbfe6;
+}
+.navbtns > .btn-default:active {
+    border: 1px solid #198cb3;
+    background-color: #e6e6e6;
+    color: #198cb3;
+}*/
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 80px;
+    background-color: #ddd;
+}
+.container .text-muted {
+    margin-top: 30px;
+    color: #3f547f;
+}
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
