@@ -1,0 +1,13 @@
+/* Start CSS for Sheets index.blade.php. */
+.table>tbody>tr>td {
+    vertical-align: middle;
+}
+/* End CSS for Sheets index.blade.php. */
+/* Start CSS for Sheets show.blade.php. */
+.infobox {
+	display: none;
+}
+.responseslide {
+	display: none;
+}
+/* End CSS for Sheets show.blade.php. */

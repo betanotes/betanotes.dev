@@ -70,15 +70,14 @@ class SheetsController extends \BaseController {
      */
     public function show($id)
     {
-        // $sheet = Sheet::where('id', $id)->orWhere('slug', $id)->first();
+        $sheet = Sheet::with('lines')->where('id', $id)->orWhere('slug', $id)->first();
 
-        // if (!$sheet) {
-        //     Session::flash('errorMessage', 'This sheet does not exist.');
-        //     return Redirect::route('sheets.index');
-        // }
+        if (!$sheet) {
+            Session::flash('errorMessage', 'This sheet does not exist.');
+            return Redirect::route('sheets.index');
+        }
 
-        // return View::make('sheets.show')->with('sheet', $sheet);
-        return View::make('sheets.show');
+        return View::make('sheets.show')->with('sheet', $sheet);
     }
 
 

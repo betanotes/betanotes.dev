@@ -1,58 +1,45 @@
 @extends('layouts.master')
 
 @section('content')
-	
-	<div class="container pushdown">
-		<div class="row">
+    
+    <div class="container">
+        <div class="row">
 
-			<div class="col-md-8 col-md-offset-2">
-				@foreach($posts as $post)
-					<div class="row">
-						<div class="col-sm-4 text-center">
-							<div class="imgholder" style="background:url(/{{{ $post->image_url }}}) center center no-repeat;background-size:cover;">
-							</div> <!-- end imgholder -->
-						</div> <!-- end col-sm-4 -->
+            {{-- <p>Welcome, {{{ Auth::user()->firstname }}}</p> --}}
+            <div class="col-md-8 col-md-offset-2">
+                <h2 class="text-center">Sheets Index</h2>
 
-						<div class="col-sm-8">	
-							<div class="datebox">
-								<h2 class="date">{{{ $post->created_at->setTimezone('America/Chicago')->format('M d') }}}</h2>
-                                <div class="ribbonholder">
-                                    <div class="ribbonmain">
-	                                    <div class="ribbonend">
-		                                    <div class="ribbontriangle"></div>
-	                                    </div> <!-- end ribbonend -->
-                                    </div> <!-- end ribbonmain -->
-                                </div> <!-- end ribbonholder -->
-                                    	<a class="title" href="{{{ action('PostsController@show', $post->slug) }}}">{{{ Str::limit($post->title, 16) }}}</a>
-							</div> <!-- end datebox -->
-							
-							<p class="bodybox">{{{ Str::limit($post->body, 145) }}}</p>
-							
-							<div class="row">
-								<div class="col-xs-4 text-left">
-									<span class="greyout">Posted by {{{ $post->user->first_name }}}</span>
-								</div> <!-- end col-xs-4 -->
-								@if (Auth::check())	
-									<div class="col-xs-4 text-center">
-		                                <a class="greyout btn-default" href="{{{ action('PostsController@edit', $post->id) }}}">Edit this post</a>
-									</div> <!-- end col-xs-4 -->
-									<div class="col-xs-4 text-right">
-		                                {{ Form::model($post, array('action' => array('PostsController@destroy', $post->id), 'method' => 'DELETE', 'class' => 'deleteform')) }}
-			                                    <button class="btn btn-danger deletebtn" type="submit">Delete</button>
-		                                {{ Form::close() }}
-									</div> <!-- end col-xs-4 -->
-								@endif
-							</div> <!-- end row -->  
-						</div> <!-- end col-sm-8 -->
-					</div> <!-- end row -->
-					<div class="postline"></div>
-				@endforeach
-				<div class="text-center">
-	                {{ $posts->links() }}
-				</div>
-			</div> <!-- end col-md-8 -->
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>date created</th>
+                            <th>title</th>
+                            <th>privacy setting</th>
+                            <th>edit</th>
+                            <th>delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($sheets as $sheet)
+                            <tr>
+                                <td>{{{ $sheet->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
+                                <td><a href="{{{ action('SheetsController@show', $sheet->slug) }}}">{{{ Str::limit($sheet->title, 30) }}}</a></td>
+                                <td>{{{ $sheet->public_or_private }}}</td>
+                                <td><a class="btn btn-default" role="button" href="{{{ action('SheetsController@edit', $sheet->slug) }}}">Edit this Sheet</a></td>
+                                <td>{{ Form::model($sheet, array('action' => array('SheetsController@destroy', $sheet->id), 'method' => 'DELETE', 'class' => 'deleteform')) }}
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                {{ Form::close() }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
 
-		</div> <!-- end row -->	
-	</div> <!-- end container -->
+                <div class="text-center">
+                    {{ $sheets->links() }}
+                </div>
+            </div> <!-- end col-md-8 -->
+
+        </div> <!-- end row -->
+    </div> <!-- end container -->
 
 @stop
