@@ -5,8 +5,8 @@
     <div class="container pushdown">
         <div class="row">
             <div class="col-md-3 text-center">
-                <h4>Sheet Info</h4>
-                <ul class="list-group">
+                <h4 id="infotitle">Sheet Info</h4>
+                <ul class="list-group infobox">
                     <li class="list-group-item">Posted by {{{ $sheet->user->firstname }}}</li>
                     <li class="list-group-item">Sheet set to {{{ $sheet->public_or_private}}}</li>
                     <li class="list-group-item">Created at {{{ $sheet->created_at->setTimezone('America/Chicago')->format('n-j-Y g:i a') }}}</li>
@@ -21,10 +21,10 @@
                 @foreach($sheet->lines as $line)
                     <div class="row">
                         <div class="col-xs-6 text-right">
-                            <p>{{{ $line->clue }}}</p>
+                            <p class="clueclick">{{{ $line->clue }}}</p>
                         </div>
                         <div class="col-xs-6 text-left">
-                            <p>{{{ $line->response }}}</p>
+                            <p class="responseslide">{{{ $line->response }}}</p>
                         </div>
                     </div>
                 @endforeach
