@@ -1,10 +1,5 @@
 @extends('layouts.master')
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Edit your profile</title>
-</head>
-<body>
+@section('content')
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12 text-center">
@@ -47,5 +42,6 @@
 		{{Form::close()}}
 	</div>
 </div>
+@stop
 </body>
 </html>

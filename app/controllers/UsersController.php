@@ -6,7 +6,9 @@ class UsersController extends BaseController {
 	{
 		if(Auth::check()) {
 			$user = Auth::user();
-			return View::make('/users/yourprofile')->with('user', $user);
+			$usernotes = DB::table('notes')->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
+			$usersheets = DB::table('sheets')->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
+			return View::make('/users/yourprofile')->with('user', $user)->with('usernotes', $usernotes)->with('usersheets', $usersheets);
 		}
 	}
 

@@ -1,28 +1,6 @@
 @extends('layouts.master')
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Dashboard</title>
-</head>
-<body>
-<div class="container">
-	<div class="row">
-		<div class="col-lg-14 text-center dashboardnavbar">
-			<a href="{{{action('UsersController@index')}}}"><div class="col-lg-3 navlink">
-				Profile
-			</div></a>
-			<div class="col-lg-3 navlink">
-				Notes
-			</div>
-			<a href="{{{action('StudylistsController@index')}}}"><div class="col-lg-3 navlink">
-				Lists
-			</div></a>
-			<div class="col-lg-3 navlink">
-				Quizzes
-			</div>
-		</div>
-	</div>
-</div>
+@section('content')
+
 <h1 class="text-center">Hello, {{{$user->firstname}}}!</h1>
 <div class="container dashboard">
 	<div class="row">
@@ -48,10 +26,11 @@
 				</ul>
 			</div>
 			<div class="col-lg-4 dashboardcolumn">
+				@foreach($usernotes as $note)
 				<ul>
-					<li><h5>Biology Notes #1</h5></li>
-					<li><h5>Biology Notes #2</h5></li>
+					<li><h5>{{{$note->title}}} ({{{$note->public_or_private}}})</h5></li>
 				</ul>
+				@endforeach
 			</div>
 			<div class="col-lg-4 dashboardcolumn">
 				@foreach($userlists as $lists)
@@ -63,6 +42,7 @@
 		</div>
 	</div>
 </div>
+@stop
 
 </body>
 </html>
