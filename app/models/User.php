@@ -16,6 +16,23 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $table = 'users';
 
+	public static $rules = array(
+		'firstname' => 'required',
+		'lastname' => 'required',
+		'email' => 'required|email',
+		'password' => 'required',
+		'affiliation' => 'required',
+		'break_type' => 'required',
+	);
+
+	public static $editrules = array(
+		'firstname' => 'required',
+		'lastname' => 'required',
+		'email' => 'required|email',
+		'affiliation' => 'required',
+		'break_type' => 'required',
+	);
+
 	public function notes()
 	{
 		return $this->hasMany('Note');

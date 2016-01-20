@@ -27,17 +27,18 @@
 	</div>
 </div>
 
+@if(Auth::check())
 {{-- Lower Navbar --}}
 <div class="container">
 	<div class="row">
 		<div class="col-lg-14 text-center dashboardnavbar">
-			<a href="{{{action('UsersController@index')}}}"><div class="col-lg-3 navlink">
+			<a href="{{{action('UsersController@index')}}}"><div class="col-lg-3 navlink"<?php if(Request::url() == "http://betanotes.dev/users") {?>style="background-color: #ff8000"<?php }?>>
 				Profile
 			</div></a>
 			<div class="col-lg-3 navlink">
 				Notes
 			</div>
-			<a href="{{{action('SheetsController@index')}}}"><div class="col-lg-3 navlink">
+			<a href="{{{action('SheetsController@index')}}}"><div class="col-lg-3 navlink"<?php if(Request::url() == "http://betanotes.dev/sheets") {?>style="background-color: #ff8000"<?php }?>>
 				Lists
 			</div></a>
 			<div class="col-lg-3 navlink lastnavlink">
@@ -46,3 +47,4 @@
 		</div>
 	</div>
 </div>
+@endif

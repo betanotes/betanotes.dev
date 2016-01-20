@@ -1,14 +1,17 @@
 @extends('layouts.master')
+<?php
+$page = 'profile';
+?>
 @section('content')
 <body class="profilepagebody">
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="col-lg-6">
-				<img class="profilepic" src="{{{$user->image_url}}}">
+				<img class="profilepic hidden-sm hidden-xs" src="{{{$user->image_url}}}">
 			</div>
 			<div class="col-lg-6 text-center">
-				<ul class="profilehead">
+				<ul class="profilehead hidden-sm hidden-xs">
 					<h2><li>{{{$user->firstname}}} {{{$user->lastname}}}</li></h2>
 					<h2><li>{{{$user->affiliation}}}</li></h2>
 				</ul>
@@ -35,7 +38,7 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-12 text-center">
-			<h1 class="profileheading">Your Recent Sheets</h1>
+			<h1 class="profileheading">Your Recent Lists</h1>
 		</div>
 	</div>
 	<div class="row">

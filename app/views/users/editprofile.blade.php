@@ -1,5 +1,13 @@
 @extends('layouts.master')
 @section('content')
+	<div class="error" role="alert">
+		<div class="error">{{{$errors->first('firstname', ':message')}}}</div>
+		<div>{{{$errors->first('lastname', ':message')}}}</div>
+		<div>{{{$errors->first('email', ':message')}}}</div>
+		<div>{{{$errors->first('affiliation', ':message')}}}</div>
+		<div>{{{$errors->first('break_type', ':message')}}}</div>
+	</div>
+
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12 text-center">
