@@ -2,19 +2,29 @@
 
 @section('content')
 	
-	@foreach($notes as $note)
-			<p>Notes Created:	{{{ $note->created_at->setTimezone('America/Chicago')->format('l, F jS, Y @ h:i A') }}} </p>
-			<h2>
-				<a href="{{{ action('NotesController@show', ($note->title)) }}}">{{{ $note->title }}}</a>
-			</h2>
-			<p class="blogBody">{{{ $note->body }}}</p>	
-		@endforeach
-
-{{ Form::open(array('action' => array('NotesController@destroy', $note->id), 'method' => 'DELETE')) }}
-
-	
-	<button type="submit" class="btn btn-danger">Delete Note</button>
-
-{{ Form::close() }}
+	<div class="container pushdown">
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <h4 id="infotitle">Note Info</h4>
+                <ul class="list-group infobox">
+                    <li class="list-group-item">Posted by {{{ $note->user->firstname }}}</li>
+                    <li class="list-group-item">Note set to {{{ $note->public_or_private}}}</li>
+                    <li class="list-group-item">Created at {{{ $note->created_at->setTimezone('America/Chicago')->format('n-j-Y g:i a') }}}</li>
+                    <li class="list-group-item">Last update {{{ $note->updated_at->setTimezone('America/Chicago')->format('n-j-Y g:i a') }}}</li>
+                </ul>
+            </div>
+            <div class="col-md-8">
+                <h2 class="text-center">{{ $note->title }}</h2>
+                <p class="noteBody">{{ $note->body }}</p>
+                
+                <a href="{{{ action('NotesController@index') }}}">Back to Notes Index</a>
+            </div> <!-- end col-md-8 -->
+        </div> <!-- end row -->
+    </div> <!--end container-->
 
 @stop
+		
+
+	{{-- {{ Form::open(array('action' => array('NotesController@destroy', $note->id), 'method' => 'DELETE')) }}
+		<button type="submit" class="btn btn-danger">Delete Note</button>
+	{{ Form::close() }} --}}
