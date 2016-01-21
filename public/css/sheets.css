@@ -10,4 +10,15 @@
 .responseslide {
 	display: none;
 }
+dt, dd {
+	display: inline-block;
+}
 /* End CSS for Sheets show.blade.php. */
+/* Start CSS for Sheets create.blade.php. */
+.radiomargin {
+    margin-left: 10px;
+}
+.formmargin {
+    margin-bottom: 15px;
+}
+/* End CSS for Sheets create.blade.php. */

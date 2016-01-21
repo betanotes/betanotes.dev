@@ -39,26 +39,51 @@ class SheetsController extends \BaseController {
      */
     public function store()
     {
-        // $validator = Validator::make(Input::all(), Sheet::$rules);
+        $validator = Validator::make(Input::all(), Sheet::$rules);
 
-        // if ($validator->fails()) {
-        //     return Redirect::back()->withInput()->withErrors($validator);
-        // } else {
-        //     $sheet = new Sheet();
-        //     $sheet->title = Input::get('title');
-        //     $sheet->title = Input::get('title');
-        //     $sheet->user_id = Auth::user()->id;
-        //     $result = $sheet->save();
+        if ($validator->fails()) {
+            return Redirect::back()->withInput()->withErrors($validator);
+        } else {
+            $sheet = new Sheet();
+            $sheet->title = Input::get('title');
+            $sheet->public_or_private = Input::get('public_or_private');
+            $sheet->user_id = Auth::user()->id;
+            $result1 = $sheet->save();
+            
+            $formLinesArray = Input::all();
+            $cluesArray = [];
+            $responsesArray = [];
+            foreach ($formLinesArray as $key => $value) {
+                if (substr($key, 0, 4) == 'clue') {
+                    array_push($cluesArray, $value);
+                }
+                if (substr($key, 0, 8) == 'response') {
+                    array_push($responsesArray, $value);
+                }
+            }
+            $concatenatedArray = [];
+            foreach ($cluesArray as $key => $value) {
+                array_push($concatenatedArray, $value . '|' . $responsesArray[$key]);
+            }
+            foreach ($concatenatedArray as $value) {
+                $pieces = explode('|', $value);
+                $line = new Line();
+                $line->sheet_id = $sheet->id;
+                $line->clue = $pieces[0];
+                $line->response = $pieces[1];
+                $result2 = $line->save();
+            }
 
-        //     if ($result) {
-        //         Session::flash('successMessage', 'This sheet was saved.');
-        //         Log::info('This is some useful information.', Input::all());
-        //         return Redirect::route('sheet.index');
-        //     } else {
-        //         Session::flash('errorMessage', 'This sheet was not submitted.');
-        //         return Redirect::back()->withInput();
-        //     }
-        // }
+
+            if ($result1 && $result2) {
+                Session::flash('successMessage', 'This sheet was saved.');
+                // Log::info('This is some useful information.', Input::all());
+                return Redirect::route('sheets.index');
+            } else {
+                Session::flash('errorMessage', 'This sheet was not submitted.');
+                return Redirect::back()->withInput();
+            }
+        }
     }
 
 

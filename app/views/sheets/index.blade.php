@@ -4,9 +4,11 @@
     
     <div class="container">
         <div class="row">
-
-            {{-- <p>Welcome, {{{ Auth::user()->firstname }}}</p> --}}
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-2 text-center">
+                <p>Welcome, {{{ Auth::user()->firstname }}}</p>
+                <a href="{{{ action('SheetsController@create') }}}" class="btn btn-default">Create a Sheet</a>
+            </div>
+            <div class="col-md-8">
                 <h2 class="text-center">Sheets Index</h2>
 
                 <table class="table table-hover">
