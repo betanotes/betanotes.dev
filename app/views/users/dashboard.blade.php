@@ -28,7 +28,7 @@
 				</ul>
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 dashboardcolumn">
-				<button class="btn btn-primary">Create a Note</button>
+				<a href="/notes/create"><button class="btn btn-primary">Create a Note</button></a>
 				@foreach($usernotes as $note)
 				<ul>
 					<li><h5>{{{$note->title}}} ({{{$note->public_or_private}}})</h5></li>
@@ -37,7 +37,7 @@
 				@endforeach
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 dashboardcolumn">
-				<button class="btn btn-primary">Create a List</button>
+				<a href="/sheets/create"><button class="btn btn-primary">Create a List</button></a>
 				@foreach($userlists as $lists)
 				<ul>
 					<li><h5>{{{$lists->title}}} ({{{$lists->public_or_private}}})</h5></li>
