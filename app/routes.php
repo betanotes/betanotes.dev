@@ -36,3 +36,23 @@ Route::get('/logout', 'UsersController@logout');
 Route::get('/users/edit', 'UsersController@showedit');
 
 Route::post('/users/edit', 'UsersController@update');
+
+Route::get('/socialstudy', 'MeetupsController@index');
+
+Route::get('/socialstudy/create', 'MeetupsController@createmeetup');
+
+Route::post('/socialstudy/create', 'MeetupsController@store');
+
+Route::get('/socialstudy/edit', 'MeetupsController@showedit');
+
+Route::post('/socialstudy/edit', 'MeetupsController@updatemeetup');
+
+Route::get('/socialstudy/{id}', 'MeetupsController@showmeetup');
+
+Route::post('/socialstudy/{id}', 'MeetupsController@comment');
+
+Route::get('/socialstudy/{id}/invite', 'MeetupsController@showinvite');
+
+Route::post('/socialstudy/{id}/invite', 'MeetupsController@inviteguest');
+
+
