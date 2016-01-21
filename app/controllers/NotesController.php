@@ -23,7 +23,7 @@ class NotesController extends BaseController{
 	// 	}
 
 // 		$notes = $query->paginate(4);
-		$notes = Note::with('user')->orderBy('updated_at', 'desc')->paginate(4);
+		$notes = Note::with('user')->orderBy('updated_at', 'desc')->paginate(10);
 		return View::make('notes.index')->with('notes', $notes);	
 	}
 
@@ -66,7 +66,7 @@ class NotesController extends BaseController{
 		if(!$note) {
 			App::abort(404);
 		}
-		return View::make('note.show')->with('note', $note);
+		return View::make('notes.show')->with('note', $note);
 	}
 
 // 	/**
@@ -75,11 +75,19 @@ class NotesController extends BaseController{
 // 	 * @param  int  $id
 // 	 * @return Response
 // 	 */
-// 	public function edit($id)
-// 	{
-// 		$note = Post::find($id);
-// 		return View::make('notes.edit')->with('note', $note);
-// 	}
+	public function edit($idOrTitle)
+	{
+		if (is_numeric($idOrTitle)){
+			$note = Note::find($idOrTitle);
+		} else {
+			$note = Note::where('slug', '=', $idOrTitle)->first();
+		}
+		// if(!$note) {
+		// 	App::abort(404);
+		// }
+
+		return View::make('notes.edit')->with('note', $note);
+	}
 
 // 	/**
 // 	 * Update the specified resource in storage.
@@ -87,12 +95,11 @@ class NotesController extends BaseController{
 // 	 * @param  int  $id
 // 	 * @return Response
 // 	 */
-// 	public function update($id)
-// 	{
-
-// 			$note = Post::find($id);
-// 			return $this->validateAndSave($note);
-// 	}
+	public function update($id)
+	{
+			$note = Note::find($id);
+			return $this->validateAndSave($note);
+	}
 
 	public function destroy($id)
 	{
@@ -109,10 +116,10 @@ class NotesController extends BaseController{
 
 	   		 // attempt validation
 	    	if ($validator->fails()) {
-	    		// validation failed, redirect to the post create page with validation errors and old inputs
+	    		// validation failed, redirect to the note create page with validation errors and old inputs
 	    		return Redirect::back()->withInput()->withErrors($validator);
 	    	} else {
-	        // validation succeeded, create and save the post
+	        // validation succeeded, create and save the note
 
 				$note->title = Input::get('title');
 				$note->body = Input::get('body');

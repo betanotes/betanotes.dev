@@ -17,15 +17,12 @@
 
 				<div class="form-group">
 					{{ Form::label('title', 'Title') }}
-					{{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Enter blog title']) }}
+					{{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Enter notes title']) }}
 				</div>
 
 				<div class="form-group">
 				  	{{ Form::label('body', 'Body') }}
-				  	{{ Form::textarea('body', null, ['class' => 'form-control', 'name' => 'body', 'id' => 'editor1', 'rows' => '10']) }}
-					{{-- <textarea name="editor1" id="editor1" rows="10" class="form-control">
-	                
-	            	</textarea>	 --}}
+				  	{{ Form::textarea('body', null, ['class' => 'form-control', 'name' => 'body', 'id' => 'editor1', ]) }}
 	            </div>	
 
 			 	 <input name="user_id" type="hidden" value="1">
