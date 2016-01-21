@@ -8,8 +8,10 @@
 
 <div class="container">
         <div class="row">
-
-            {{-- <p>Welcome, {{{ Auth::user()->firstname }}}</p> --}}
+        	<div class="col-md-2 text-center">
+                <p>Welcome, {{{ Auth::user()->firstname }}}</p>
+                <a href="{{{ action('NotesController@create') }}}" class="btn btn-default">Create a New Note</a>
+            </div>
             <div class="col-md-8 col-md-offset-2">
                 <h2 class="text-center">Notes Index</h2>
 
@@ -27,9 +29,12 @@
                         @foreach($notes as $note)
                             <tr>
                                 <td>{{{ $note->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
+
                                 <td><a href="{{ action('NotesController@show', ($note->slug)) }}">{{ $note->title }}</a></td>
+
                                 <td>{{{ $note->public_or_private }}}</td>
                                 <td><a class="btn btn-default" role="button" href="{{{ action('NotesController@edit', $note->slug) }}}">Edit this Note</a></td>
+
                                 <td>{{ Form::model($note, array('action' => array('NotesController@destroy', $note->id), 'method' => 'DELETE', 'class' => 'deleteform')) }}
                                     <button class="btn btn-danger" type="submit">Delete</button>
                                 {{ Form::close() }}</td>
