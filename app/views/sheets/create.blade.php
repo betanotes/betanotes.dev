@@ -29,10 +29,10 @@
 
                                 <label>Privacy Setting (Choose One): </label>
                                 <label class="radiomargin">
-                                    <input type="radio" name="public_or_private" id="public_or_private1" value="public" @if (Input::old()['public_or_private'] == 'public') checked @endif> Public
+                                    <input type="radio" name="public_or_private" id="public_or_private1" value="public" <?php if (!empty(Input::old()['public_or_private']) && (Input::old()['public_or_private']) == 'private'): ?> checked <?php endif ?> > Public
                                 </label>
                                 <label class="radiomargin">
-                                    <input type="radio" name="public_or_private" id="public_or_private2" value="private"  @if (Input::old()['public_or_private'] == 'private') checked @endif> Private
+                                    <input type="radio" name="public_or_private" id="public_or_private2" value="private" <?php if (!empty(Input::old()['public_or_private']) && (Input::old()['public_or_private']) == 'private'): ?> checked <?php endif ?> > Private
                                 </label>
                             </div> <!-- end form-group -->
                         </div> <!-- end col-xs-6 -->
@@ -54,7 +54,7 @@
                                 {{ Form::text('response', null, ['class' => 'form-control']) }}
                             </div> <!-- end form-group -->
                         </div> <!-- end col-xs-6 -->
-                        @if (Input::old())
+                        @if (Input::old('cluesArray'))
                             <?php $clueTitle = 'Clue'; ?>
                             <?php $responseTitle = 'Response'; ?>
                             <?php $i = 2; ?>
