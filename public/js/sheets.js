@@ -18,23 +18,32 @@ $(document).ready(function() {
         $(this).next("dd").fadeToggle();
     });
 
-    var i = 1;
+    var i = 2;
     $("#makeline").click(function() {
         var linesHTML = "<div class='col-xs-6'>";
             linesHTML += "<div class='form-group'>";
-            linesHTML += "<label for='clue" + i + "'>Clue" + i + "</label>";
-            linesHTML += "<input class='form-control' name='clue" + i + "' type='text' id='clue" + i + "'>";
+            linesHTML += "<label for='clue'>Clue" + i + "</label>";
+            linesHTML += "<input class='form-control' name='cluesArray[]' type='text'>";
             linesHTML += "</div>";
             linesHTML += "</div>";
             linesHTML += "<div class='col-xs-6'>";
             linesHTML += "<div class='form-group'>";
-            linesHTML += "<label for='response" + i + "'>Response" + i + "</label>";
-            linesHTML += "<input class='form-control' name='response" + i + "' type='text' id='response" + i + "'>";
+            linesHTML += "<label for='response'>Response" + i + "</label>";
+            linesHTML += "<input class='form-control' name='responsesArray[]' type='text'>";
             linesHTML += "</div>";
             linesHTML += "</div>";
         $(".lines").append(linesHTML)
         i = i + 1;
         console.log(i);
+    });
+
+    // Listerner for each delete button
+    $(".deletebtn").on('click', function(event) {
+        event.preventDefault();
+
+        if (confirm("Are you sure you want to delete this post?")) {
+            $(this).parent().submit();
+        }
     });
 
 });

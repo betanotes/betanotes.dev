@@ -15,7 +15,8 @@ class SheetsController extends \BaseController {
      */
     public function index()
     {
-        $sheets = Sheet::with('lines')->orderBy('id', 'desc')->paginate(10);
+        $loggedInId = Auth::user()->id;
+        $sheets = Sheet::with('lines')->where('user_id', '=', $loggedInId)->orderBy('id', 'desc')->paginate(10);
         return View::make('sheets.index')->with('sheets', $sheets);
         // return View::make('sheets.index');
     }
@@ -40,7 +41,6 @@ class SheetsController extends \BaseController {
     public function store()
     {
         $validator = Validator::make(Input::all(), Sheet::$rules);
-
         if ($validator->fails()) {
             return Redirect::back()->withInput()->withErrors($validator);
         } else {
@@ -49,31 +49,18 @@ class SheetsController extends \BaseController {
             $sheet->public_or_private = Input::get('public_or_private');
             $sheet->user_id = Auth::user()->id;
             $result1 = $sheet->save();
-            
-            $formLinesArray = Input::all();
-            $cluesArray = [];
-            $responsesArray = [];
-            foreach ($formLinesArray as $key => $value) {
-                if (substr($key, 0, 4) == 'clue') {
-                    array_push($cluesArray, $value);
-                }
-                if (substr($key, 0, 8) == 'response') {
-                    array_push($responsesArray, $value);
-                }
-            }
-            $concatenatedArray = [];
+
+            $cluesArray = Input::get('cluesArray');
+            $responsesArray = Input::get('responsesArray');
+            array_unshift($cluesArray, Input::get('clue'));
+            array_unshift($responsesArray, Input::get('response'));
             foreach ($cluesArray as $key => $value) {
-                array_push($concatenatedArray, $value . '|' . $responsesArray[$key]);
-            }
-            foreach ($concatenatedArray as $value) {
-                $pieces = explode('|', $value);
                 $line = new Line();
                 $line->sheet_id = $sheet->id;
-                $line->clue = $pieces[0];
-                $line->response = $pieces[1];
+                $line->clue = $cluesArray[$key];
+                $line->response = $responsesArray[$key];
                 $result2 = $line->save();
             }
-
 
             if ($result1 && $result2) {
                 Session::flash('successMessage', 'This sheet was saved.');
@@ -114,14 +101,16 @@ class SheetsController extends \BaseController {
      */
     public function edit($id)
     {
-        // $sheet = Sheet::find($id);
-        // if (!$sheet) {
-        //     Session::flash('errorMessage', 'This sheet does not exist for editing.');
-        //     return Redirect::route('sheets.index');
-        // }
+        $sheet = Sheet::with('lines')->find($id);
+        if (!$sheet) {
+            Session::flash('errorMessage', 'This sheet does not exist for editing.');
+            return Redirect::route('sheets.index');
+        }
+        $clueLines = Line::with('sheet')->where('sheet_id', '=', $id)->lists('clue');
+        $responseLines = Line::with('sheet')->where('sheet_id', '=', $id)->lists('response');
 
-        // return View::make('sheets.edit')->with('sheet', $sheet);
-        return View::make('sheets.edit');
+        $data = array('sheet' => $sheet, 'clueLines' => $clueLines, 'responseLines' => $responseLines);
+        return View::make('sheets.edit')->with($data);
     }
 
 
@@ -133,26 +122,41 @@ class SheetsController extends \BaseController {
      */
     public function update($id)
     {
-        // $validator = Validator::make(Input::all(), Sheet::$rules);
+        $validator = Validator::make(Input::all(), Sheet::$rules);
 
-        // if ($validator->fails()) {
-        //     return Redirect::back()->withInput()->withErrors($validator);
-        // } else {
-        //     $sheet = Sheet::find($id);
-        //     $sheet->title = Input::get('title');
-        //     $sheet->title = Input::get('title');
-        //     $sheet->user_id = Auth::user()->id;
-        //     $result = $sheet->save();
+        if ($validator->fails()) {
+            return Redirect::back()->withInput()->withErrors($validator);
+        } else {
+            $sheet = Sheet::find($id);
+            $sheet->title = Input::get('title');
+            $sheet->public_or_private = Input::get('public_or_private');
+            $sheet->user_id = Auth::user()->id;
+            $result1 = $sheet->save();
 
-        //     if ($result) {
-        //         Session::flash('successMessage', 'This sheet was saved.');
-        //         // Log::info('This is some useful information.', Input::all());
-        //         return Redirect::route('sheets.index');
-        //     } else {
-        //         Session::flash('errorMessage', 'This sheet was not submitted.');
-        //         return Redirect::back()->withInput();
-        //     }
-        // }
+            $cluesArray = Input::get('cluesArray');
+            $responsesArray = Input::get('responsesArray');
+            $linesArray = Line::where('sheet_id', '=', $id)->lists('id');
+            foreach ($cluesArray as $key => $value) {
+                if (array_key_exists($key, $linesArray)) {
+                    $line = Line::find($linesArray[$key]);
+                } else {
+                    $line = new Line();
+                }
+                $line->sheet_id = $sheet->id;
+                $line->clue = $cluesArray[$key];
+                $line->response = $responsesArray[$key];
+                $result2 = $line->save();
+            }
+
+            if ($result1 && $result2) {
+                Session::flash('successMessage', 'This sheet was saved.');
+                // Log::info('This is some useful information.', Input::all());
+                return Redirect::route('sheets.index');
+            } else {
+                Session::flash('errorMessage', 'This sheet was not submitted.');
+                return Redirect::back()->withInput();
+            }
+        }
     }
 
 
@@ -164,11 +168,15 @@ class SheetsController extends \BaseController {
      */
     public function destroy($id)
     {
-        // $sheet = Sheet::findOrFail($id);
-        // $sheet->delete();
+        $sheet = Sheet::findOrFail($id);
+
+        $lines = Line::with('sheet')->where('sheet_id', '=', $id);
+        $lines->delete();
+
+        $sheet->delete();
         
-        // Session::flash('successMessage', 'This sheet was deleted.');
-        // return Redirect::route('sheets.index');
+        Session::flash('successMessage', 'This sheet was deleted.');
+        return Redirect::route('sheets.index');
     }
 
 

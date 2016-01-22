@@ -12,10 +12,10 @@
                     <li class="list-group-item">Created at {{{ $sheet->created_at->setTimezone('America/Chicago')->format('n-j-Y g:i a') }}}</li>
                     <li class="list-group-item">Last update {{{ $sheet->updated_at->setTimezone('America/Chicago')->format('n-j-Y g:i a') }}}</li>
                 </ul>
-                    <p><a class="btn btn-default" role="button" href="{{{ action('SheetsController@edit', $sheet->slug) }}}">Edit this Sheet</a></p>
+                    <p><a class="btn btn-default" role="button" href="{{{ action('SheetsController@edit', $sheet->id) }}}">Edit this Sheet</a></p>
                     <p>
                         {{ Form::model($sheet, array('action' => array('SheetsController@destroy', $sheet->id), 'method' => 'DELETE', 'class' => 'deleteform')) }}
-                            <button class="btn btn-danger" type="submit">Delete</button>
+                            <button class="btn btn-danger deletebtn" type="submit">Delete</button>
                         {{ Form::close() }}
                     </p>
                     
