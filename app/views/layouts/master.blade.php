@@ -6,7 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Beta Notes</title>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/custom-buttons.css">
         <link rel="stylesheet" href="/css/navbar-footer.css">
+        <link rel="stylesheet" href="/css/meetups.css">
         <link rel="stylesheet" href="/css/sheets.css">
         <link rel="stylesheet" href="/css/notes.css">
         <link rel="stylesheet" href="/css/users.css">
