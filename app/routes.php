@@ -57,4 +57,4 @@ Route::get('/socialstudy/{id}/invite', 'MeetupsController@showinvite');
 
 Route::post('/socialstudy/{id}/invite', 'MeetupsController@inviteguest');
 
-
+Route::post('/voteUpOrDown', 'HomeController@voteUpOrDown');

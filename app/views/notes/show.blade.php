@@ -15,6 +15,17 @@
                 	<p>
                 		<a class="btn btn-default" role="button" href="{{{ action('NotesController@edit', $note->slug) }}}">Edit this note</a>
                 	</p>
+
+                    <button  id="voteUp" class="glyphicon glyphicon-chevron-up"
+                       
+                        data-note_id="{{ $note->id }}"
+                        data-vote="true">VoteUp</button>
+
+                    <button  id="voteDown" class="glyphicon glyphicon-chevron-down"
+                       
+                        data-note_id="{{ $note->id }}"
+                        data-vote="false">VoteDown</button>
+
                     <p>
                     {{ Form::model($note, array('action' => array('NotesController@destroy', $note->id), 'method' => 'DELETE', 'class' => 'deleteform')) }}
                         <button class="btn btn-danger" type="submit">Delete</button>
@@ -31,6 +42,8 @@
     </div> <!--end container-->
 
 @stop
+
+{{-- end of bottom script    --}}
 		
 
 	{{-- {{ Form::open(array('action' => array('NotesController@destroy', $note->id), 'method' => 'DELETE')) }}
