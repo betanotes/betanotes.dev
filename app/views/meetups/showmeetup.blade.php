@@ -15,6 +15,14 @@
 					<li>{{{$guest}}}</li>
 				@endforeach
 			</ul>
+
+			<a href="{{{action('MeetupsController@commentform', array($meetup->id))}}}"><button class="btn btn-primary">Post a comment!</button></a>
+			{{-- Comments
+			<ul>
+				@foreach($comments as $comment)
+				<li>{{{$comment->comment}}}</li>
+				@endforeach
+			</ul> --}}
 		</div>
 	</div>
 </div>

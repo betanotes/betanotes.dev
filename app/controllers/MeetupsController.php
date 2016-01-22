@@ -44,7 +44,10 @@ class MeetupsController extends BaseController {
 		$adminid = $meetup->admin_id;
 		$admin = User::find($adminid);
 		$attendees = Attendee::all();
+		// $comments = DB::table('meetcom')->where('meetup_id', $id);
+		
 		$allguests = [];
+
 		foreach($attendees as $guests) {
 			if($guests->meetup_id == $meetup->id) {
 				$guest = User::find($guests->attendee_id);
@@ -56,9 +59,26 @@ class MeetupsController extends BaseController {
 		return View::make('/meetups/showmeetup')->with('meetup', $meetup)->with('allguests', $allguests)->with('admin', $admin);
 	}
 
-	public function comment($id)
+	public function commentform($id)
 	{
-		return Redirect::back();
+		$meetup = Meetup::find($id);
+		if(Auth::check()) {
+			$checkattendeeslist = DB::table('attendees')->where('attendee_id', Auth::user()->id)->where('meetup_id', $id)->pluck('attendee_id');
+			if($checkattendeeslist != null || Auth::user()->id == $meetup->admin_id) {
+				return View::make('/meetups/comment')->with('meetup', $meetup);
+			}
+		}
+	}
+
+	public function postcomment($id)
+	{
+		
+		$comment = new Meetcom();
+		$comment->comment = Input::get('comment');
+		$comment->meetup_id = $id;
+		$comment->attendee_id = Auth::user()->id;
+		$comment->save();
+		return Redirect::action('MeetupsController@showmeetup', array($id));
 	}
 
 	public function showinvite($id)

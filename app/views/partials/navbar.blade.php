@@ -41,9 +41,9 @@
 			<a href="{{{action('SheetsController@index')}}}"><div class="col-lg-3 navlink"<?php if(Request::url() == "http://betanotes.dev/sheets") {?>style="background-color: #ff8000"<?php }?>>
 				Lists
 			</div></a>
-			<div class="col-lg-3 navlink lastnavlink">
-				Quizzes
-			</div>
+			<a href="{{{action('MeetupsController@index')}}}"><div class="col-lg-3 navlink lastnavlink"<?php if(Request::url() == "http://betanotes.dev/socialstudy") {?>style="background-color: #ff8000"<?php }?>>
+				Social Study-s
+			</div></a>
 		</div>
 	</div>
 </div>
