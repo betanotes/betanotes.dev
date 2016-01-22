@@ -56,5 +56,3 @@ Route::post('/socialstudy/{id}/comment', 'MeetupsController@postcomment');
 Route::get('/socialstudy/{id}/invite', 'MeetupsController@showinvite');
 
 Route::post('/socialstudy/{id}/invite', 'MeetupsController@inviteguest');
-
-
