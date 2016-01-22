@@ -27,9 +27,9 @@
                                 <td>{{{ $sheet->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
                                 <td><a href="{{{ action('SheetsController@show', $sheet->slug) }}}">{{{ Str::limit($sheet->title, 30) }}}</a></td>
                                 <td>{{{ $sheet->public_or_private }}}</td>
-                                <td><a class="btn btn-default" role="button" href="{{{ action('SheetsController@edit', $sheet->slug) }}}">Edit this Sheet</a></td>
+                                <td><a class="btn btn-default" role="button" href="{{{ action('SheetsController@edit', $sheet->id) }}}">Edit this Sheet</a></td>
                                 <td>{{ Form::model($sheet, array('action' => array('SheetsController@destroy', $sheet->id), 'method' => 'DELETE', 'class' => 'deleteform')) }}
-                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                    <button class="btn btn-danger deletebtn" type="submit">Delete</button>
                                 {{ Form::close() }}</td>
                             </tr>
                         @endforeach

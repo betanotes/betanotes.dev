@@ -8,7 +8,9 @@ class Sheet extends Eloquent
 
     public static $rules = array(
     	'title' => 'required|max:100',
-    	'public_or_private' => 'required'
+    	'public_or_private' => 'required',
+        // 'clue' => 'required|max:200',
+        // 'response' => 'required|max:200'
     );
 
     public function user()
