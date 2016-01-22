@@ -1,3 +1,9 @@
+/* Start Shared CSS. */
+.pushdown {
+	margin-top: 10px;
+}
+
+/* End Shared CSS. */
 /* Start CSS for Sheets index.blade.php. */
 .table>tbody>tr>td {
     vertical-align: middle;
@@ -7,11 +13,27 @@
 .infobox {
 	display: none;
 }
+.sheetcolbtns {
+	margin: 5px 0;
+}
+.deleteform {
+	display: inline-block;
+}
+.sheettitle {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.pushsheetlistdown {
+	margin-top: 22px;
+}
 .responseslide {
 	display: none;
 }
 dt, dd {
 	display: inline-block;
+}
+dd {
+	color: #f68735;
 }
 /* End CSS for Sheets show.blade.php. */
 /* Start CSS for Sheets create.blade.php. */

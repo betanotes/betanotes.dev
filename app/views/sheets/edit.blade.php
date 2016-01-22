@@ -5,7 +5,7 @@
         <div class="row">
 
             <div class="col-md-2 text-center">
-                <a href="{{{ action('SheetsController@index') }}}">Back to Sheets Index</a>
+                <a  class="btn btn-back" role="button" href="{{{ action('SheetsController@index') }}}">Back</a>
             </div> <!-- end col-md-2 -->
 
             <div class="col-md-8">
@@ -58,8 +58,8 @@
                         @endforeach
                         
                     </div> <!-- end row -->
-                    <button id="makeline" class="btn btn-default formmargin" type="button">Make New Clue/Response</button>
-                    <button class="btn btn-default formmargin" type="submit">Update Sheet</button>
+                    <button id="makeline" class="btn btn-standard formmargin" type="button">New Row</button>
+                    <button class="btn btn-edit formmargin" type="submit">Update</button>
                 {{ Form::close() }}
             </div> <!-- end col-md-8 -->
 
