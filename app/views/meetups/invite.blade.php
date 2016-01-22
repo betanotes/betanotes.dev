@@ -11,6 +11,7 @@
 				</div>
 				<button class="btn btn-success">Invite!</button>
 			</form>
+			<a href="{{{action('MeetupsController@showmeetup', array($meetup->id))}}}"><button class="btn btn-primary">Back to Social Study</button></a>
 		</div>
 	</div>
 </div>

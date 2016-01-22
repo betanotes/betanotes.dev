@@ -8,5 +8,10 @@ class Attendee extends Eloquent {
 	{
 		return $this->hasMany('Meetup');
 	}
+
+	public function meetcoms()
+	{
+		return $this->hasMany('Meetcom');
+	}
 }
 ?>

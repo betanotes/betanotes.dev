@@ -21,17 +21,20 @@
 /*li {
 	list-style-type: none;
 }*/
+.userpageslist {
+	list-style-type: none;
+}
 /*img {
 	height: 300px;
 	width: 300px;
 }*/
 
 .profilepic {
-	border-left: 5px solid black;
+	/*border-left: 5px solid black;
 	border-top: 5px solid black;
-	border-bottom: 6px solid black;
-	height: 300px;
-	width: 300px;
+	border-bottom: 6px solid black;*/
+	height: 200px;
+	width: 200px;
 	margin-left: -15.5%;
 
 }
