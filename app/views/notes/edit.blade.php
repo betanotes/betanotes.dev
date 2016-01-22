@@ -25,15 +25,15 @@
                             <div class="form-group">
                                 {{ $errors->first('public_or_private', '<span class="help-block">:message</span>') }}    
 
-                                <label>Privacy Setting (Choose One): </label>
+                                <label>Privacy Setting</label>
                                 <label class="radiomargin">
                                     <input type="radio" name="public_or_private" id="public_or_private1" value="public" 
-                                    @if ($note->public_or_private == "public") 
-                                    checked @endif 
+                                    @if ($note->public_or_private == "public") {{ "checked" }}
+                                     @endif 
                                     > Public
                                 </label>
                                 <label class="radiomargin">
-                                    <input type="radio" name="public_or_private" id="public_or_private2" value="private" @if ($note->public_or_private == "public") checked @endif
+                                    <input type="radio" name="public_or_private" id="public_or_private2" value="private" @if ($note->public_or_private == "private") {{ "checked" }} @endif
                                     > Private
                                 </label>
                             </div> <!-- end form-group -->

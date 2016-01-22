@@ -12,7 +12,9 @@
                     <li class="list-group-item">Created at {{{ $note->created_at->setTimezone('America/Chicago')->format('n-j-Y g:i a') }}}</li>
                     <li class="list-group-item">Last update {{{ $note->updated_at->setTimezone('America/Chicago')->format('n-j-Y g:i a') }}}</li>
                 </ul>
-                	<p><a class="btn btn-default" role="button" href="{{{ action('NotesController@edit', $note->slug) }}}">Edit this note</a></p>
+                	<p>
+                		<a class="btn btn-default" role="button" href="{{{ action('NotesController@edit', $note->slug) }}}">Edit this note</a>
+                	</p>
                     <p>
                     {{ Form::model($note, array('action' => array('NotesController@destroy', $note->id), 'method' => 'DELETE', 'class' => 'deleteform')) }}
                         <button class="btn btn-danger" type="submit">Delete</button>

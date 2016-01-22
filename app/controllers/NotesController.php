@@ -110,6 +110,7 @@ class NotesController extends BaseController{
 
 			$note->title = Input::get('title');
 			$note->body = Input::get('body');
+			$note->public_or_private = Input::get('public_or_private');
 				
 // 				if (Input::hasFile('image_upload'))
 // 				{
