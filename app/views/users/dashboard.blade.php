@@ -20,7 +20,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 dashboardcolumn">
 				<ul>
-					<li><img class = "hidden-sm hidden-xs" src="{{{$user->image_url}}}"></li>
+					<li><img class = "profilepic hidden-sm hidden-xs" src="{{{$user->image_url}}}"></li>
 					<li><h5>Your Name: {{{$user->firstname}}} {{{$user->lastname}}}</h5></li>
 					<li><h5>Your Email: {{{$user->email}}}</h5></li>
 					<li><h5>You are affiliated with {{{$user->affiliation}}}</h5></li>

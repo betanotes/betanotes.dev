@@ -1,7 +1,4 @@
 @extends('layouts.master')
-<?php
-$page = 'profile';
-?>
 @section('content')
 <body class="profilepagebody">
 <div class="container">

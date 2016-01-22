@@ -32,8 +32,8 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-14 text-center dashboardnavbar">
-			<a href="{{{action('UsersController@index')}}}"><div class="col-lg-3 navlink"<?php if(Request::url() == "http://betanotes.dev/users") {?>style="background-color: #ff8000"<?php }?>>
-				Profile
+			<a href="{{{action('HomeController@dashboard')}}}"><div class="col-lg-3 navlink"<?php if(Request::url() == "http://betanotes.dev/dashboard") {?>style="background-color: #ff8000"<?php }?>>
+				Dashboard
 			</div></a>
 			<a href="{{{action('NotesController@index')}}}"><div class="col-lg-3 navlink"<?php if(Request::url() == "http://betanotes.dev/notes") {?>style="background-color: #ff8000"<?php }?>>
 				Notes
@@ -41,9 +41,9 @@
 			<a href="{{{action('SheetsController@index')}}}"><div class="col-lg-3 navlink"<?php if(Request::url() == "http://betanotes.dev/sheets") {?>style="background-color: #ff8000"<?php }?>>
 				Lists
 			</div></a>
-			<div class="col-lg-3 navlink lastnavlink">
-				Quizzes
-			</div>
+			<a href="{{{action('MeetupsController@index')}}}"><div class="col-lg-3 navlink lastnavlink"<?php if(Request::url() == "http://betanotes.dev/socialstudy") {?>style="background-color: #ff8000"<?php }?>>
+				Social Study-s
+			</div></a>
 		</div>
 	</div>
 </div>
