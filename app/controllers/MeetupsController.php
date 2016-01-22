@@ -45,9 +45,11 @@ class MeetupsController extends BaseController {
 		$admin = User::find($adminid);
 		$attendees = Attendee::all();
 		// $comments = DB::table('meetcom')->where('meetup_id', $id);
-		
+		$comments = Meetcom::all();
+		$allcomments = [];
 		$allguests = [];
 
+		foreach($comments as $comment)
 		foreach($attendees as $guests) {
 			if($guests->meetup_id == $meetup->id) {
 				$guest = User::find($guests->attendee_id);

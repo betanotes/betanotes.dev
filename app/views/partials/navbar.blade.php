@@ -32,8 +32,8 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-14 text-center dashboardnavbar">
-			<a href="{{{action('UsersController@index')}}}"><div class="col-lg-3 navlink"<?php if(Request::url() == "http://betanotes.dev/users") {?>style="background-color: #ff8000"<?php }?>>
-				Profile
+			<a href="{{{action('HomeController@dashboard')}}}"><div class="col-lg-3 navlink"<?php if(Request::url() == "http://betanotes.dev/dashboard") {?>style="background-color: #ff8000"<?php }?>>
+				Dashboard
 			</div></a>
 			<a href="{{{action('NotesController@index')}}}"><div class="col-lg-3 navlink"<?php if(Request::url() == "http://betanotes.dev/notes") {?>style="background-color: #ff8000"<?php }?>>
 				Notes
