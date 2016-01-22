@@ -4,7 +4,7 @@ class MeetupsController extends BaseController {
 
 	public function index()
 	{
-		$allmeetups = Meetup::paginate(5);
+		$allmeetups = Meetup::with('attendees')->orderBy('created_at', 'desc')->paginate(5);
 		return View::make('/meetups/index')->with('allmeetups', $allmeetups);
 	}
 
@@ -45,20 +45,37 @@ class MeetupsController extends BaseController {
 		$admin = User::find($adminid);
 		$attendees = Attendee::all();
 		// $comments = DB::table('meetcom')->where('meetup_id', $id);
-		$comments = Meetcom::all();
+		$comments = DB::table('meetcoms')->where('meetup_id', $id)->orderBy('created_at', 'desc')->paginate(3);
 		$allcomments = [];
 		$allguests = [];
 
-		foreach($comments as $comment)
+		foreach($comments as $comment) {
+			if($comment->meetup_id == $meetup->id) {
+				$commenter = User::find($comment->attendee_id);
+				$commentdata = array(
+					'created_at' => $comment->created_at,
+					'id' => $comment->id,
+					'commenter' => $commenter->firstname . ' ' . $commenter->lastname,
+					'commenterid' => $commenter->id,
+					'comment' => $comment->comment,
+					'picture' => "../" . $commenter->image_url,
+				);
+				array_push($allcomments, $commentdata);
+			}
+		}
 		foreach($attendees as $guests) {
 			if($guests->meetup_id == $meetup->id) {
 				$guest = User::find($guests->attendee_id);
 				$guestname = $guest->firstname . ' ' . $guest->lastname;
-				array_push($allguests, $guestname);
+				$guestinfo = array(
+					'name' => $guestname,
+					'picture' => $guest->image_url,
+				);
+				array_push($allguests, $guestinfo);
 			}
 		}
 
-		return View::make('/meetups/showmeetup')->with('meetup', $meetup)->with('allguests', $allguests)->with('admin', $admin);
+		return View::make('/meetups/showmeetup')->with('meetup', $meetup)->with('allguests', $allguests)->with('admin', $admin)->with('allcomments', $allcomments)->with('comments', $comments);
 	}
 
 	public function commentform($id)
@@ -74,13 +91,19 @@ class MeetupsController extends BaseController {
 
 	public function postcomment($id)
 	{
-		
+		$validator = Validator::make(Input::all(), Meetcom::$rules);
 		$comment = new Meetcom();
 		$comment->comment = Input::get('comment');
 		$comment->meetup_id = $id;
 		$comment->attendee_id = Auth::user()->id;
-		$comment->save();
-		return Redirect::action('MeetupsController@showmeetup', array($id));
+		if($validator->fails()) {
+			Session::flash('errorMessage', 'Your comment must be between 1 and 400 characters');
+			return Redirect::back()->withInput();
+		} else {
+			$comment->save();
+			Session::flash('successMessage', 'Your comment was successfully posted!');
+			return Redirect::action('MeetupsController@showmeetup', array($id));
+		}
 	}
 
 	public function showinvite($id)
@@ -111,6 +134,14 @@ class MeetupsController extends BaseController {
 			Session::flash('errorMessage', 'This email does not exist in our system!');
 			return Redirect::back();
 		}
+	}
+
+	public function destroy($id)
+	{
+		$meetcom = Meetcom::find($id);
+		$meetcom->delete();
+		Session::flash('successMessage', 'Comment successfully deleted');
+		return Redirect::action('MeetupsController@index');
 	}
 }
 ?>

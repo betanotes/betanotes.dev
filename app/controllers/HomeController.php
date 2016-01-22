@@ -25,7 +25,18 @@ class HomeController extends BaseController {
 		$user = Auth::user();
 		$userlists = DB::table('sheets')->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
 		$usernotes = DB::table('notes')->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
-		return View::make('/users/dashboard')->with('user', $user)->with('userlists', $userlists)->with('usernotes', $usernotes);
+		$alladmin = DB::table('meetups')->where('admin_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
+		$allmeetups = DB::table('attendees')->where('attendee_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
+		$meetupsyouarepartof = [];
+		if($allmeetups != null) {
+			foreach($allmeetups as $individualmeetups) {
+				$meetup = Meetup::find($individualmeetups->meetup_id);
+				array_push($meetupsyouarepartof, $meetup->title);
+			}
+		} else {
+			array_push($meetupsyouarepartof, 'You are not attending any meetups, or you are admin of all of them!');
+		}
+		return View::make('/users/dashboard')->with('user', $user)->with('userlists', $userlists)->with('usernotes', $usernotes)->with('alladmin', $alladmin)->with('meetupsyouarepartof', $meetupsyouarepartof);
 	}
 
 	public function navbar() 

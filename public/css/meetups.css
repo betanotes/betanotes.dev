@@ -1,0 +1,26 @@
+.meetuphead {
+	margin-top: 5%;
+	border: 2px solid black;
+}
+.meetupname {
+	background-color: #DDD;
+	padding-top: 0.5%;
+	padding-bottom: 1%;
+}
+.meetupimg {
+	height: 50px;
+	width: 50px;
+}
+.attendeeslist {
+	margin-top: 2%;
+}
+.commentbody {
+	border: 1px solid black;
+	height: 100px;
+}
+textarea {
+	resize: none;
+}
+.individualcomment {
+	margin-top: 5%;
+}

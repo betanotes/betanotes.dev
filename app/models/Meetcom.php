@@ -13,5 +13,9 @@ class Meetcom extends Eloquent {
 	{
 		return $this->hasMany('Attendee');
 	}
+
+	public static $rules = array(
+		'comment' => 'required|between:1,400',
+	);
 }
 ?>
