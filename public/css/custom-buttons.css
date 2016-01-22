@@ -1,0 +1,138 @@
+.btn {
+    height: 35px;
+    width: 85px;
+}
+/* Start CSS for standard buttons, dark greys. */
+.btn-standard {
+    border: 1px solid #999fad;
+    background-color: #999fad;
+    color: #ffffff;
+}
+.btn-standard:visited {
+    border: 1px solid #999fad;
+    background-color: #999fad;
+    color: #ffffff;
+}
+.btn-standard:hover {
+    border: 1px solid #727a8d;
+    background-color: #727a8d;
+    color: #ffffff;
+}
+.btn-standard:active {
+    border: 1px solid #505563;
+    background-color: #505563;
+    color: #ffffff;
+}
+/* End CSS for standard buttons, dark greys. */
+/* Start CSS for back buttons, black. */
+.btn-back {
+    border: 1px solid #000;
+    background-color: #000;
+    color: #ffffff;
+}
+.btn-back:visited {
+    border: 1px solid #000;
+    background-color: #000;
+    color: #ffffff;
+}
+.btn-back:hover {
+    border: 1px solid #333333;
+    background-color: #333333;
+    color: #ffffff;
+}
+.btn-back:active {
+    border: 1px solid #595959;
+    background-color: #595959;
+    color: #ffffff;
+}
+/* End CSS for back buttons, black. */
+/* Start CSS for create buttons, Steel Blues. */
+.btn-create {
+    border: 1px solid #3f547f;
+    background-color: #3f547f;
+    color: #ffffff;
+}
+.btn-create:visited {
+    border: 1px solid #3f547f;
+    background-color: #3f547f;
+    color: #ffffff;
+}
+.btn-create:hover {
+    border: 1px solid #2a3855;
+    background-color: #2a3855;
+    color: #ffffff;
+}
+.btn-create:active {
+    border: 1px solid #192233;
+    background-color: #192233;
+    color: #ffffff;
+}
+/* End CSS for create buttons, Steel Blues. */
+/* Start CSS for edit buttons, Oranges. */
+.btn-edit {
+    border: 1px solid #f68735;
+    background-color: #f68735;
+    color: #ffffff;
+}
+.btn-edit:visited {
+    border: 1px solid #f68735;
+    background-color: #f68735;
+    color: #ffffff;
+}
+.btn-edit:hover {
+    border: 1px solid #dc630a;
+    background-color: #dc630a;
+    color: #ffffff;
+}
+.btn-edit:active {
+    border: 1px solid #924207;
+    background-color: #924207;
+    color: #ffffff;
+}
+/* End CSS for edit buttons, Oranges. */
+/* Start CSS for title anchor tags. */
+.anchortitle {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    color: #3f547f;
+    padding: 5px 7px;
+    border: 2px solid transparent;
+}
+.anchortitle:visited {
+    text-decoration: none;
+    color: #3f547f;
+}
+.anchortitle:hover {
+    text-decoration: none;
+    color: #3f547f;
+    border: 2px solid #f68735;
+}
+.anchortitle:active {
+    text-decoration: none;
+    color: #3f547f;
+    border: 2px solid #999fad;
+}
+/* End CSS for title anchor tags. */
+/* Start CSS for footer words. */
+.footerword {
+    text-decoration: none;
+    color: #3f547f;
+    padding: 5px 7px;
+    border: 2px solid transparent;
+}
+.footerword:visited {
+    text-decoration: none;
+    color: #3f547f;
+}
+.footerword:hover {
+    text-decoration: none;
+    color: #3f547f;
+    border: 2px solid #999fad;
+}
+.footerword:active {
+    text-decoration: none;
+    color: #3f547f;
+    border: 2px solid #999fad;
+}
+/* End CSS for title anchor tags. */

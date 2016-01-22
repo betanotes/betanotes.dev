@@ -59,6 +59,3 @@
 @stop 
 {{-- end of content	 --}}
 
-@section('bottom-script')
-@stop
-{{-- end of bottom script	 --}}

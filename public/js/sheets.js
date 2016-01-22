@@ -15,7 +15,8 @@ $(document).ready(function() {
     });
     // Next targets one dd at a time.
     $("dt").click(function() {
-        $(this).next("dd").fadeToggle();
+        var ddtofade = $(this).attr("data-clue");
+        $('[data-response="'+ ddtofade +'"]').fadeToggle();
     });
 
     var i = 2;

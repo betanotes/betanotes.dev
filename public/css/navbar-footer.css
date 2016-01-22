@@ -16,7 +16,6 @@ body {
 .firstnav {
     padding-top: 2%;
     padding-bottom: 2%;
-
 }
 .secondnav {
     padding-top: 1.5%;
@@ -66,19 +65,6 @@ a > .upnav {
     /*margin-left: -53px;
     margin-right: -53px;*/
 }
-/*.navbtns > .btn-default {
-    border: 1px solid #ffffff;
-}
-.navbtns > .btn-default:hover {
-    border: 1px solid #4cbfe6;
-    background-color: #ffffff;
-    color: #4cbfe6;
-}
-.navbtns > .btn-default:active {
-    border: 1px solid #198cb3;
-    background-color: #e6e6e6;
-    color: #198cb3;
-}*/
 .footer {
     position: absolute;
     bottom: 0;

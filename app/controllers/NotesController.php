@@ -15,6 +15,15 @@ class NotesController extends BaseController{
 		return View::make('notes.index')->with('notes', $notes);	
 	}
 
+	// public function votes($id)
+	// {
+ //        $vote = new Vote;
+ //        $vote->user_id = Auth::id();
+ //        $vote->note_id = $id;
+ //        $vote->vote = input::get() //fill in the rest.
+ //        $vote->Save();
+ //    }
+ 
 	/**
 	 * Show the form for creating a new resource.
 	 *
