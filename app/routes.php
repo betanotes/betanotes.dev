@@ -49,8 +49,6 @@ Route::post('/socialstudy/edit', 'MeetupsController@updatemeetup');
 
 Route::get('/socialstudy/{id}', 'MeetupsController@showmeetup');
 
-Route::delete('/socialstudy/{id}', 'MeetupsController@destroy');
-
 Route::get('/socialstudy/{id}/comment', 'MeetupsController@commentform');
 
 Route::post('/socialstudy/{id}/comment', 'MeetupsController@postcomment');
