@@ -2,7 +2,9 @@
 .pushdown {
 	margin-top: 10px;
 }
-
+.img-inline {
+	display: inline-block;
+}
 /* End Shared CSS. */
 /* Start CSS for Sheets index.blade.php. */
 .table>tbody>tr>td {

@@ -5,6 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2 text-center">
+                <img src="/img/sheet.gif" class="img-responsive img-inline" alt="Responsive image">
                 <p>Welcome, {{{ Auth::user()->firstname }}}</p>
                 <a class="btn btn-create" role="button" href="{{{ action('SheetsController@create') }}}">Create</a>
             </div>
