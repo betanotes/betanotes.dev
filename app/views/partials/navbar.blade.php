@@ -9,16 +9,16 @@
                         <img src="/img/minilogo.gif" class="img-responsive img-inline" alt="Responsive image">
                         {{-- Social Notes<br>Life is a test. Ace it! --}}
                     </a>
-                </div>
-                <div class="col-md-4 col-sm-12 col-xs-12">
+                </div> {{-- end col-md-3 --}}
+                <div class="col-md-4 paddingtop  hidden-sm hidden-xs">
                     <form class="form-horizontal">
-                        <div class="col-xs-8 inputmargin">
+                        <div class="col-xs-8">
                             <input type="text" class="form-control" name="search">
                         </div>
                         <button class="btn btn-standard">Search</button>
                     </form>
-                </div>
-                <div class="col-md-5 col-sm-12 col-xs-12">
+                </div> {{-- end col-md-4 --}}
+                <div class="col-md-5 paddingtop  hidden-sm hidden-xs">
                     <a class="navbarwords" href="">Public Feed</a>
                     @if(Auth::check())
                         <a class="navbarwords" href="{{{action('HomeController@dashboard')}}}">{{{Auth::user()->firstname}}} {{{Auth::user()->lastname}}} is logged in!</a>
@@ -30,14 +30,39 @@
                     @else
                         <a class="navbarwords" href="{{{action('UsersController@showlogin')}}}">Log In</a>
                     @endif
-                </div>
+                </div> {{-- end col-md-5 --}}
+
+                {{-- Alt Mobile Navbar for mobile views --}}
+                <div class="col-sm-12 col-xs-12 hidden-md hidden-lg mobilenavmargin">
+                    <form class="form-horizontal">
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" name="search">
+                        </div>
+                        <button class="btn btn-standard">Search</button>
+                    </form>
+                </div> {{-- end col-sm-12 --}}
+                <div class="col-sm-12 col-xs-12 hidden-md hidden-lg mobilenavmargin">
+                    <a class="navbarwords" href="">Public Feed</a>
+                    @if(Auth::check())
+                        <a class="navbarwords" href="{{{action('HomeController@dashboard')}}}">{{{Auth::user()->firstname}}} {{{Auth::user()->lastname}}} is logged in!</a>
+                    @else
+                        <a class="navbarwords" href="{{{action('UsersController@showsignup')}}}">Sign Up</a>
+                    @endif
+                    @if(Auth::check())
+                        <a class="navbarwords" href="{{{action('UsersController@logout')}}}">Log Out</a>
+                    @else
+                        <a class="navbarwords" href="{{{action('UsersController@showlogin')}}}">Log In</a>
+                    @endif
+                </div> {{-- end col-sm-12 --}}
+                {{-- End mobile navbar view --}}
+
             </div> <!-- end row -->
         </div> <!-- end col-md-14-->
 
     </div> <!-- end row -->
 </div> <!-- end container-fluid -->
 
-{{-- Lower Navbar --}}
+{{-- Start Lower/Dashboard Navbar --}}
 @if(Auth::check())
     <div class="container-fluid">
         <div class="row">
@@ -55,8 +80,8 @@
                 <a href="{{{action('MeetupsController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/socialstudy") {?>style="background-color: #f68735"<?php }?>>
                     Social Study-s
                 </div></a>
-            </div>
+            </div> {{-- end col-md-12 --}}
 
-        </div>
-    </div>
+        </div> {{-- end row --}}
+    </div> {{-- end container-fluid --}}
 @endif

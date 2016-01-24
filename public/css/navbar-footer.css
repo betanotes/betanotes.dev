@@ -12,63 +12,16 @@ body {
 .uppernavbar {
     background-color: #DDD;
     color: #3F547F;
-    height: 122px;
-    line-height: 122px;
 }
-.inputmargin {
-    margin-top: 45px;
+.paddingtop {
+    padding-top: 45px;
 }
-.firstnav {
-    padding-top: 2%;
-    padding-bottom: 2%;
+.mobilenavmargin {
+    margin: 5px 0;
 }
-.secondnav {
-    padding-top: 1.5%;
-    padding-bottom: 1.4%;
-}
-.thirdnav {
-    padding-top: 2%;
-    padding-bottom: 2%;
-}
-.lastnav {
-    padding-top: 2%;
-    padding-bottom: 2%;
-    /*border-right: 5px solid #ff8000;*/
-}
-.upnav {
-    background-color: #DDD;
-    color: #3F547F;
-    /*border-left: 5px solid #ff8000;
-    border-top: 5px solid #ff8000;
-    border-bottom: 5px solid #ff8000;*/
-}
-a > .upnav {
-    text-decoration: none;
-    color: #3F547F;
-}
-.navlink {
-    /*border-left: 5px solid #DDD;
-    border-bottom: 5px solid #DDD;
-    border-top: 5px solid #DDD;*/
-    /*padding-top: 5px;*/
-    /*padding-bottom: 5px;*/
-    /*background-color: #3F547F;*/
-    /*color: white;*/
-}
-.lastnavlink {
-    /*border-right: 5px solid #DDD;*/
-}
-.navlink:hover {
-    /*border-left: 5px solid black;
-    border-bottom: 5px solid black;
-    border-right: 5px solid black;
-    border-top: 5px solid #ff8000;*/
-    background-color: #ff8000;
-    color: black;
-}
+
 /* Lower Navbar only seen if logged in. */
 .dashboardnavbar {
-    /*padding: 5px 0px;*/
     background-color: #3f547f;
 }
 .dashboardnavbar div {
@@ -81,6 +34,7 @@ a > .upnav {
     color: #ffffff;
     text-decoration: none;
 }
+
 /* CSS for footer. */
 .footer {
     position: absolute;
