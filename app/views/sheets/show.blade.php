@@ -6,6 +6,7 @@
         <div class="row pushdown">
 
             <div class="col-md-4 text-center">
+                <img src="/img/sheet.gif" class="img-responsive img-inline" alt="Responsive image">
                 <h2 class="sheettitle">{{{ $sheet->title }}}</h2>
                 <h4 id="infotitle">Sheet Info</h4>
                 <ul class="list-group infobox">

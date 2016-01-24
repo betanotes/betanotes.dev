@@ -114,6 +114,29 @@
     border: 2px solid #999fad;
 }
 /* End CSS for title anchor tags. */
+/* Start CSS for navbar words. */
+.navbarwords {
+    text-decoration: none;
+    color: #3f547f;
+    font-size: 15px;
+    padding: 5px 7px;
+    border: 2px solid transparent;
+}
+.navbarwords:visited {
+    text-decoration: none;
+    color: #3f547f;
+}
+.navbarwords:hover {
+    text-decoration: none;
+    color: #3f547f;
+    border: 2px solid #999fad;
+}
+.navbarwords:active {
+    text-decoration: none;
+    color: #3f547f;
+    border: 2px solid #999fad;
+}
+/* End CSS for navbar words. */
 /* Start CSS for footer words. */
 .footerword {
     text-decoration: none;
@@ -135,4 +158,4 @@
     color: #3f547f;
     border: 2px solid #999fad;
 }
-/* End CSS for title anchor tags. */
+/* End CSS for footer words. */

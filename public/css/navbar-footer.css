@@ -6,12 +6,17 @@ html {
 body {
     width: 100%;
     background-color: #ffffff;
-    /* Margin bottom by footer height */
+    /* Margin bottom set equal to footer height, must match or it will look off. */
     margin-bottom: 80px;
 }
 .uppernavbar {
-   /* margin-left: -53px;
-    margin-right: -53px;*/
+    background-color: #DDD;
+    color: #3F547F;
+    height: 122px;
+    line-height: 122px;
+}
+.inputmargin {
+    margin-top: 45px;
 }
 .firstnav {
     padding-top: 2%;
@@ -45,10 +50,10 @@ a > .upnav {
     /*border-left: 5px solid #DDD;
     border-bottom: 5px solid #DDD;
     border-top: 5px solid #DDD;*/
-    padding-top: 5px;
-    padding-bottom: 5px;
-    background-color: #3F547F;
-    color: white;
+    /*padding-top: 5px;*/
+    /*padding-bottom: 5px;*/
+    /*background-color: #3F547F;*/
+    /*color: white;*/
 }
 .lastnavlink {
     /*border-right: 5px solid #DDD;*/
@@ -61,15 +66,27 @@ a > .upnav {
     background-color: #ff8000;
     color: black;
 }
+/* Lower Navbar only seen if logged in. */
 .dashboardnavbar {
-    /*margin-left: -53px;
-    margin-right: -53px;*/
+    /*padding: 5px 0px;*/
+    background-color: #3f547f;
 }
+.dashboardnavbar div {
+    padding: 5px 0px;
+}
+.dashboardnavbar div:hover {
+    background-color: #999fad;
+}
+.dashboardnavbar > a {
+    color: #ffffff;
+    text-decoration: none;
+}
+/* CSS for footer. */
 .footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    /* Set the fixed height of the footer here */
+    /* Setting the fixed height of the footer on next line. */
     height: 80px;
     background-color: #ddd;
 }
