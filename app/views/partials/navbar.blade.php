@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-12 col-xs-12">
                     <a href="{{{action('HomeController@showWelcome')}}}">
-                        <img src="/img/minilogo.gif" class="img-responsive img-inline" alt="Responsive image">
+                        <img src="/img/logo.gif" class="img-responsive img-inline" alt="Responsive image">
                         {{-- Social Notes<br>Life is a test. Ace it! --}}
                     </a>
                 </div> {{-- end col-md-3 --}}

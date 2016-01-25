@@ -13,6 +13,9 @@ body {
     background-color: #DDD;
     color: #3F547F;
 }
+.uppernavbar img {
+    height: 122px;
+}
 .paddingtop {
     padding-top: 45px;
 }

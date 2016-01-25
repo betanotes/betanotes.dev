@@ -1,9 +1,9 @@
 /* Start Shared CSS. */
 .pushdown {
-	margin-top: 10px;
+    margin-top: 10px;
 }
 .img-inline {
-	display: inline-block;
+    display: inline-block;
 }
 /* End Shared CSS. */
 /* Start CSS for Sheets index.blade.php. */
@@ -13,29 +13,29 @@
 /* End CSS for Sheets index.blade.php. */
 /* Start CSS for Sheets show.blade.php. */
 .infobox {
-	display: none;
+    display: none;
 }
 .sheetcolbtns {
-	margin: 5px 0;
+    margin: 5px 0;
 }
 .deleteform {
-	display: inline-block;
+    display: inline-block;
 }
 .sheettitle {
-	margin-top: 10px;
-	margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 .pushsheetlistdown {
-	margin-top: 22px;
+    margin-top: 22px;
 }
 .responseslide {
-	display: none;
+    display: none;
 }
 dt, dd {
-	display: inline-block;
+    display: inline-block;
 }
 dd {
-	color: #f68735;
+    color: #f68735;
 }
 /* End CSS for Sheets show.blade.php. */
 /* Start CSS for Sheets create.blade.php. */
@@ -46,3 +46,99 @@ dd {
     margin-bottom: 15px;
 }
 /* End CSS for Sheets create.blade.php. */
+/* ====================================================================== */
+/* Start CSS for Landing Page, main.blade.php. */
+.maintop {
+    background-color: #ddd;
+    text-align: center;
+}
+.maintop h1 {
+    margin-top: 102px;
+    color: #3F547F;
+}
+.maintop h3 {
+    color: #999fad;
+    margin: 0 0 15px 0;
+}
+.mainnotey {
+    height: 425px;
+    width: 370px;
+    margin: 25px auto;
+    background: url(/img/notey_big.gif);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+}
+.noteyspan {
+    font-size: 25px;
+    font-style: italic;
+    height: 117px;
+    width: 209px;
+    position: absolute;
+    top: 30px;
+    left: 149px;
+    padding: 18px 10px;
+}
+.mainmiddle {
+    background-color: #fff;
+    /*height: 650px;*/
+    text-align: center;
+}
+.mainmiddle h1 {
+    color: #3F547F;
+    margin-top: 95px;
+}
+.middle1 {
+    height: 300px;
+    padding: 3px 10px 0;
+    margin-top: 75px;
+    margin-bottom: 130px;
+}
+.middle1 > h3 {
+    margin-top: 10px; 
+}
+.middle1 > p, .middle2 > p, .middle3 > p {
+    color: #999fad; 
+}
+.middle2 {
+    height: 300px;
+    padding: 0px 10px 0;
+    margin-top: 75px;
+    margin-bottom: 130px;
+}
+.middle2 > h3 {
+    margin-top: 6px; 
+}
+.middle3 {
+    height: 300px;
+    padding: 2px 10px 0;
+    margin-top: 75px;
+    margin-bottom: 130px;
+}
+.middle3 > h3 {
+    margin-top: 7px; 
+}
+.mainlast {
+    background-color: #3F547F;
+    /*height: 525px;*/
+    text-align: center;
+}
+.mainlast h3 {
+    color: #f68735;
+    font-size: 50px;
+}
+.mainlast h1 {
+    color: #fff;
+    font-size: 100px;
+    font-weight: bold;
+}
+.mainlast p {
+    color: #ddd;
+    font-size: 16px;
+    margin: 30px 0 50px;
+}
+.mainlast span {
+    color: #999fad;
+}
+/* End CSS for Landing Page, main.blade.php. 
