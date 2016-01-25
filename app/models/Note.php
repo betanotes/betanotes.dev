@@ -13,6 +13,37 @@ class Note extends Eloquent
     	'body'       => 'required|max:10000',
     ];
 
+// function that I am going to call off the note-object. finding an instance of vote. two wheres, do I have a note from this user for this vote, two wheres do I have a note from this user if it does have a note, return true, if they haven't voted, return false. 
+    public function votes()
+    {
+        return $this->hasMany('Vote');
+    }
+
+    public function userHasVoted()
+    {
+
+        $vote = Vote::where('user_id', '=', Auth::id())->where('note_id', '=', $this->id)->first();
+        if($vote){
+            return true;
+        }
+        return false;
+    }
+
+    // public function countVotes()
+    // {
+    //     return Vote::where('note_id', '=', $this->id)->count();
+    // }
+
+    public function voteUpCount()
+    {
+        return Vote::where('note_id', '=', $this->id)->where('vote', 1)->count();
+    }
+
+    public function voteDownCount()
+    {
+        return Vote::where('note_id', '=', $this->id)->where('vote', 0)->count();
+    }
+
     public function setTitleAttribute($value)
     {
     	$this->attributes['title'] = $value;

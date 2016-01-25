@@ -6,10 +6,15 @@
 {{-- line above is end of top script --}}
 @section('content')
     
-<div class="container createNote">
+<div class="container">
 	<div class="row">
 
-		<div class="col-md-8 col-md-offset-2 createNote">
+		<div class="col-md-2 text-center">
+	        <img src="/img/note.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
+	        <a  class="btn btn-back" role="button" href="{{{ action('NotesController@index') }}}">Back</a>
+        </div> <!-- end col-md-2 -->
+
+		<div class="col-md-8 createNote">
 
 			{{ Form::open(array('action' => array('NotesController@update', $note->id), 'method' => 'PUT')) }}
 
@@ -46,9 +51,7 @@
 					{{ Form::textarea('body', $note->body, ['class' => 'form-control', 'id' => 'editor1', 'rows' => '10', 'placeholder' => 'Enter notes title']) }}
 				</div>	
 
-			 	<input name="user_id" type="hidden" value="1">
-				<a href="{{{ action('NotesController@index') }}}" class="btn btn-default">Cancel</a> 
-				<button type="submit" class="btn btn-primary">Update</button>
+				<button type="submit" class="btn btn-edit">Update</button>
 
 			{{ Form::close() }}
 
