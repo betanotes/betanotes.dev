@@ -43,9 +43,9 @@ Route::get('/socialstudy/create', 'MeetupsController@createmeetup');
 
 Route::post('/socialstudy/create', 'MeetupsController@store');
 
-Route::get('/socialstudy/edit', 'MeetupsController@showedit');
+Route::get('/socialstudy/{id}/edit', 'MeetupsController@showedit');
 
-Route::post('/socialstudy/edit', 'MeetupsController@updatemeetup');
+Route::post('/socialstudy/{id}/edit', 'MeetupsController@updatemeetup');
 
 Route::get('/socialstudy/{id}', 'MeetupsController@showmeetup');
 
@@ -56,3 +56,13 @@ Route::post('/socialstudy/{id}/comment', 'MeetupsController@postcomment');
 Route::get('/socialstudy/{id}/invite', 'MeetupsController@showinvite');
 
 Route::post('/socialstudy/{id}/invite', 'MeetupsController@inviteguest');
+
+Route::get('/public', 'PublicController@showMain');
+
+Route::get('/public/sheets', 'PublicController@showSheets');
+
+Route::get('/public/notes', 'PublicController@showNotes');
+
+Route::get('/public/socialstudy', 'PublicController@showMeetups');
+
+Route::post('/voteUpOrDown', 'HomeController@voteUpOrDown');
