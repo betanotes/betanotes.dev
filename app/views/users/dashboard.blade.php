@@ -31,7 +31,7 @@
 				</ul>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 dashboardcolumn">
-				<a href="/notes/create"><button class="btn btn-primary">Create a Note</button></a>
+				<a href="/notes/create"><button class="btn btn-create">Create</button></a>
 				@foreach($usernotes as $note)
 				<ul class="userpageslist">
 					<li><h5>{{{$note->title}}} ({{{$note->public_or_private}}})</h5></li>
@@ -40,7 +40,7 @@
 				@endforeach
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 dashboardcolumn">
-				<a href="/sheets/create"><button class="btn btn-primary">Create a List</button></a>
+				<a href="/sheets/create"><button class="btn btn-create">Create</button></a>
 				@foreach($userlists as $lists)
 				<ul class="userpageslist">
 					<li><h5>{{{$lists->title}}} ({{{$lists->public_or_private}}})</h5></li>
@@ -48,7 +48,7 @@
 				@endforeach
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 dashboardcolumn">
-				<a href="/socialstudy/create"><button class="btn btn-primary">Create a Social Study</button></a>
+				<a href="/socialstudy/create"><button class="btn btn-create">Create</button></a>
 				<h5>Social Studies you are admin of:</h5>
 				@foreach($alladmin as $meetups)
 				<ul class="userpageslist">

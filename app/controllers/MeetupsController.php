@@ -4,8 +4,13 @@ class MeetupsController extends BaseController {
 
 	public function index()
 	{
-		$allmeetups = Meetup::with('attendees')->orderBy('created_at', 'desc')->paginate(10);
-		return View::make('/meetups/index')->with('allmeetups', $allmeetups);
+		if(Auth::check()) {	
+			$allmeetups = Meetup::with('attendees')->where('admin_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
+			return View::make('/meetups/index')->with('allmeetups', $allmeetups);
+		} else {
+			Session::flash('errorMessage', 'You must be logged in');
+			return Redirect::action('UsersController@showlogin');
+		}
 	}
 
 	public function createmeetup()
