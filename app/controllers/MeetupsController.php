@@ -4,7 +4,7 @@ class MeetupsController extends BaseController {
 
 	public function index()
 	{
-		$allmeetups = Meetup::with('attendees')->orderBy('created_at', 'desc')->paginate(5);
+		$allmeetups = Meetup::with('attendees')->orderBy('created_at', 'desc')->paginate(10);
 		return View::make('/meetups/index')->with('allmeetups', $allmeetups);
 	}
 
@@ -28,14 +28,39 @@ class MeetupsController extends BaseController {
 		return Redirect::action('MeetupsController@index');
 	}
 
-	public function showedit()
+	public function showedit($id)
 	{
-		return View::make('/meetups/editmeetup');
+		$meetup = Meetup::find($id);
+		if(Auth::check()) {
+			if(Auth::user()->id == $meetup->admin_id) {
+				return View::make('/meetups/editmeetup')->with('meetup', $meetup);
+			} else {
+				Session::flash('errorMessage', 'You are not the admin of this Social Study. You cannot edit it!');
+				return Redirect::back();
+			}
+		} else {
+			Session::flash('errorMessage', 'You must be logged in to edit a Social Study');
+			return Redirect::action('UsersController@showlogin');
+		}
 	}
 
-	public function updatemeetup()
+	public function updatemeetup($id)
 	{
-		return Redirect::back();
+		$meetuptoupdate = Meetup::find($id);
+
+		$title = Input::get('title') ? Input::get('title') : $meetuptoupdate->title;
+		$description = Input::get('description') ? Input::get('description') : $meetuptoupdate->description;
+		$date = Input::get('date') ? Input::get('date') : $meetuptoupdate->date;
+		$time = Input::get('time') ? Input::get('time') : $meetuptoupdate->time;
+		$location = Input::get('location') ? Input::get('location') : $meetuptoupdate->location;
+
+		$meetuptoupdate->title = $title;
+		$meetuptoupdate->description = $description;
+		$meetuptoupdate->date = $date;
+		$meetuptoupdate->time = $time;
+		$meetuptoupdate->location = $location;
+		$meetuptoupdate->save();
+		return Redirect::action('MeetupsController@showmeetup', array($id));
 	}
 
 	public function showmeetup($id)

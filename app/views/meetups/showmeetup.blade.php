@@ -10,7 +10,8 @@
 			<h5>Where: {{{$meetup->location}}}</h5>
 			<h5>When: {{{$meetup->date}}} at {{{$meetup->time}}}</h5>
 			@if(Auth::user()->id == $admin->id)
-			<a href="{{{action('MeetupsController@showinvite', array($meetup->id))}}}"><button class="btn btn-primary"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Invite a friend to this Social Study!</button></a><br>
+			<a href="{{{action('MeetupsController@showinvite', array($meetup->id))}}}"><button class="btn btn-create"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Invite</button></a><br>
+			<a href="{{{action('MeetupsController@showedit', array($meetup->id))}}}"><button class="btn btn-edit">Edit</button></a>
 			@endif
 			</div>
 		</div>
@@ -41,7 +42,7 @@
 					{{Form::open(array('url' => "/socialstudy/$meetup->id", 'id' => 'deleteform'))}}
 						{{Form::hidden('_method', 'DELETE')}}
 					{{Form::close()}}
-						<button class="btn btn-danger" data-id="{{{$comment['id']}}}" id="deleter" data-id="{{{$comment['id']}}}" data-author="{{{$comment['commenter']}}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete this Comment</button>
+						<button class="btn btn-danger" data-id="{{{$comment['id']}}}" id="deleter" data-id="{{{$comment['id']}}}" data-author="{{{$comment['commenter']}}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
 					@endif
 					@endforeach
 				</ul>
@@ -49,7 +50,7 @@
 				<div class="text-center">
 					{{$comments->links()}}
 				</div>
-				<a href="{{{action('MeetupsController@commentform', array($meetup->id))}}}"><button class="btn btn-primary">Post a comment!</button></a>
+				<a href="{{{action('MeetupsController@commentform', array($meetup->id))}}}"><button class="btn btn-create">Comment</button></a>
 			</div>
 		</div>
 	</div>
