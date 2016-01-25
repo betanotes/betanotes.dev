@@ -18,13 +18,13 @@
 
                     <button  id="voteUp" class="glyphicon glyphicon-chevron-up"
                        
-                        data-note_id="{{ $note->id }}"
-                        data-vote="true">VoteUp</button>
+                        data-noteId="{{ $note->id }}"
+                        data-vote="1">VoteUp</button>
 
                     <button  id="voteDown" class="glyphicon glyphicon-chevron-down"
                        
-                        data-note_id="{{ $note->id }}"
-                        data-vote="false">VoteDown</button>
+                        data-noteId="{{ $note->id }}"
+                        data-vote="0">VoteDown</button>
 
                     <p>
                     {{ Form::model($note, array('action' => array('NotesController@destroy', $note->id), 'method' => 'DELETE', 'class' => 'deleteform')) }}

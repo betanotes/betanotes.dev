@@ -43,4 +43,15 @@ class HomeController extends BaseController {
 	{
 		return View::make('/users/dashnav');
 	}
+
+	public function voteUpOrDown()
+	{
+		$vote = new Vote();
+        $vote->user_id = Auth::user()->id;
+		$vote->note_id = Input::get('noteId');
+		$vote->vote = (bool)Input::get('vote');
+		$vote->save();
+
+		// dd(Input::get('vote'));
+    }
 }

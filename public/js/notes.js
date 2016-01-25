@@ -7,7 +7,22 @@ $(document).ready(function()
 		    type: "POST",
 		    
 		    data: {
-		        note_id: $(this).data('note_id'),
+		        note_id: $(this).data('noteId'),
+		        vote: 	 $(this).data('vote')
+		    }
+		}).done(function(data){
+			console.log(data);
+			//trigger a modal that vote was submitted console.log(data);
+		});
+	});
+
+	$('#voteDown').click(function(){
+
+		$.ajax("/voteUpOrDown", {
+		    type: "POST",
+		    
+		    data: {
+		        note_id: $(this).data('noteId'),
 		        vote: 	 $(this).data('vote')
 		    }
 		}).done(function(data){
@@ -15,16 +30,3 @@ $(document).ready(function()
 		});
 	});
 });
-
-public function voteUpOrDown()
-	{
-		$vote = new Vote();
-        $vote->user_id = Auth::user()->id;
-		$vote->note_id = Input::get('note_id');
-		$vote->vote = (bool)Input::get('vote');
-		$vote->save();
-
-		// dd(Input::get('vote'));
-    }
-
-    Route::post('/voteUpOrDown', 'HomeController@voteUpOrDown');

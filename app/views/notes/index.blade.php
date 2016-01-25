@@ -1,17 +1,14 @@
 @extends('layouts.master')
 
-@section('top-script')
-
-@stop 
-{{-- line above is end of top script --}}
 @section('content')
 
 <div class="container">
         <div class="row">
 
         	<div class="col-md-2 text-center">
+                <img src="/img/note.gif" class="img-responsive img-inline" alt="Responsive image">
                 <p>Welcome, {{{ Auth::user()->firstname }}}</p>
-                <a href="{{{ action('NotesController@create') }}}" class="btn btn-default">Create a New Note</a>
+                <a href="{{{ action('NotesController@create') }}}" class="btn btn-create" role="button">Create</a>
             </div>
 
             <div class="col-md-8">
@@ -36,13 +33,14 @@
 
                                 <td>{{{ $note->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
 
-                                <td><a href="{{ action('NotesController@show', ($note->slug)) }}">{{ $note->title }}</a></td>
+                                <td><a class="anchortitle" href="{{ action('NotesController@show', ($note->slug)) }}">{{{ Str::limit($note->title, 30) }}}</a></td>
 
                                 <td>{{{ $note->public_or_private }}}</td>
-                                <td><a class="btn btn-default" role="button" href="{{{ action('NotesController@edit', $note->slug) }}}">Edit this Note</a></td>
+
+                                <td><a class="btn btn-edit" role="button" href="{{{ action('NotesController@edit', $note->slug) }}}">Edit</a></td>
 
                                 <td>{{ Form::model($note, array('action' => array('NotesController@destroy', $note->id), 'method' => 'DELETE', 'class' => 'deleteform')) }}
-                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                    <button class="btn btn-danger deletebtn" type="submit">Delete</button>
                                 {{ Form::close() }}</td>
                             </tr>
                         @endforeach
