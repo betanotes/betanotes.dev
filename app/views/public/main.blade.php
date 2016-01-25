@@ -10,7 +10,7 @@
                 <a class="btn btn-create" role="button" href="{{{ action('SheetsController@create') }}}">Create</a>
             </div>
             <div class="col-md-8">
-                <h2 class="text-center">Sheets Index</h2>
+                <h2 class="text-center">The Public Feed</h2>
 
                 <table class="table table-hover">
                     <thead>

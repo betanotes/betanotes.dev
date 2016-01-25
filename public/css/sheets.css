@@ -5,6 +5,9 @@
 .img-inline {
     display: inline-block;
 }
+.img-margintop {
+    margin: 10px 0;
+}
 /* End Shared CSS. */
 /* Start CSS for Sheets index.blade.php. */
 .table>tbody>tr>td {
