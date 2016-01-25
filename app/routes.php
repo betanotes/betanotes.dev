@@ -57,12 +57,12 @@ Route::get('/socialstudy/{id}/invite', 'MeetupsController@showinvite');
 
 Route::post('/socialstudy/{id}/invite', 'MeetupsController@inviteguest');
 
-Route::get('/public', 'PublicController@showMain');
+Route::get('/feed', 'FeedController@showMain');
 
-Route::get('/public/sheets', 'PublicController@showSheets');
+Route::get('/feed/sheets', 'FeedController@showSheets');
 
-Route::get('/public/notes', 'PublicController@showNotes');
+Route::get('/feed/notes', 'FeedController@showNotes');
 
-Route::get('/public/socialstudy', 'PublicController@showMeetups');
+Route::get('/feed/socialstudy', 'FeedController@showMeetups');
 
 Route::post('/voteUpOrDown', 'HomeController@voteUpOrDown');
