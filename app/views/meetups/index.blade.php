@@ -14,9 +14,8 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>date created</th>
+						{{-- <th>date created</th> --}}
 						<th>title</th>
-						<th>description</th>
 						<th>where</th>
 						<th>when</th>
 						<th>edit</th>
@@ -26,13 +25,18 @@
 				<tbody>
 					@foreach($allmeetups as $meetup)
 					<tr>
-						<td>{{{$meetup->created_at->setTimezone('America/Chicago')->format('n-j-Y')}}}</td>
+						{{-- <td>{{{$meetup->created_at->setTimezone('America/Chicago')->format('n-j-Y')}}}</td> --}}
 						<td><a class="anchortitle" href="{{{action('MeetupsController@showmeetup', array($meetup->id))}}}">{{{$meetup->title}}}</a></td>
-						<td>{{{Str::limit($meetup->description, 20)}}}</td>
 						<td>{{{$meetup->location}}}</td>
 						<td>{{{$meetup->date}}}, {{{$meetup->time}}}</td>
-						<td><a href="{{{action('MeetupsController@showedit', array($meetup->id))}}}"><button class="btn btn-edit">Edit</button></a></td>
-						<td><a href="{{{action('MeetupsController@index', array($meetup->id))}}}"><button class="btn btn-danger">Delete</button></a></td>
+						<td><a href="{{{action('MeetupsController@showedit', array($meetup->id))}}}" class="btn btn-edit">Edit</a></td>
+
+					{{-- Delete --}}
+						<td>
+							{{ Form::model($meetup, array('action' => array('MeetupsController@destroy', $meetup->id), 'method' => 'DELETE', 'class' => 'deleteform', 'data-meetup-id' => $meetup->id)) }}
+							{{ Form::close() }}
+							<button class="btn btn-danger deleter" data-id="{{{$meetup->id}}}" data-title = "{{{$meetup->title}}}">Delete</button>
+						</td>
 					</tr>
 					@endforeach
 				</tbody>
@@ -41,4 +45,18 @@
 		</div>
 	</div>
 </div>
+@stop
+@section('bottom-script')
+<script>
+	"Use Strict";
+	$(".deleter").click(function(event) {
+		event.preventDefault();
+		var meetupid = $(this).data("id");
+		var meetuptitle = $(this).data("title");
+		if(confirm("Are you sure you want to delete this Social Study: " + meetuptitle + "?")) {
+			
+			$('form[data-meetup-id="' + meetupid + '"]').submit();
+		}
+	});
+</script>
 @stop

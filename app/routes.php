@@ -15,6 +15,8 @@ Route::get('/', 'HomeController@showWelcome');
 
 Route::get('/dashboard', 'HomeController@dashboard');
 
+Route::DELETE('/dashboard', 'UsersController@destroy');
+
 Route::get('/navbar', 'HomeController@navbar');
 
 Route::resource('sheets', 'SheetsController');
@@ -49,9 +51,13 @@ Route::post('/socialstudy/{id}/edit', 'MeetupsController@updatemeetup');
 
 Route::get('/socialstudy/{id}', 'MeetupsController@showmeetup');
 
+Route::DELETE('/socialstudy/{id}', 'MeetupsController@destroy');
+
 Route::get('/socialstudy/{id}/comment', 'MeetupsController@commentform');
 
 Route::post('/socialstudy/{id}/comment', 'MeetupsController@postcomment');
+
+Route::DELETE('/socialstudy/{id}/comment', 'MeetupsController@deletecomment');
 
 Route::get('/socialstudy/{id}/invite', 'MeetupsController@showinvite');
 

@@ -45,9 +45,9 @@
 				</div>
 				<div class="form-group">
 					<label class="control-label" for "image_url">Profile Picture</label>
-					<input type="file" class="form-control" name="image_url">
+					<input type="file" name="image_url">
 				</div>
-				<button class="btn btn-standard">Sign Up!</button>
+				<button class="btn btn-standard">Sign Up</button>
 			{{Form::close()}}
 		</div>
 	</div>

@@ -13,7 +13,7 @@
 					<label class="control-label" for "password">Password</label>
 					<input type="password" class="form-control" name="password">
 				</div>
-				<button class="btn btn-standard">Log In!</button>
+				<button class="btn btn-standard"><span class="glyphicon glyphicon-log-in"></span> Log In!</button>
 			</form>
 		</div>
 	</div>
