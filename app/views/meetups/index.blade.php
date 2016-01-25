@@ -4,6 +4,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-2 text-center">
+			<img class="meetupimgindex" src="/img/meet.gif">
 			<p>Want to create your own study group?</p>
 			<a href="{{{action('MeetupsController@createmeetup')}}}"><button class="btn btn-create">Make one</button></a>
 		</div>
@@ -18,20 +19,20 @@
 						<th>description</th>
 						<th>where</th>
 						<th>when</th>
-						<th>admin</th>
-						<th>view</th>
+						<th>edit</th>
+						<th>delete</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($allmeetups as $meetup)
 					<tr>
 						<td>{{{$meetup->created_at->setTimezone('America/Chicago')->format('n-j-Y')}}}</td>
-						<td>{{{$meetup->title}}}</td>
-						<td>{{{Str::limit($meetup->description, 30)}}}</td>
+						<td><a class="anchortitle" href="{{{action('MeetupsController@showmeetup', array($meetup->id))}}}">{{{$meetup->title}}}</a></td>
+						<td>{{{Str::limit($meetup->description, 20)}}}</td>
 						<td>{{{$meetup->location}}}</td>
-						<td>{{{$meetup->date}}} at {{{$meetup->time}}}</td>
-						<td>{{{User::find($meetup->admin_id)->firstname}}} {{{User::find($meetup->admin_id)->lastname}}}</td>
-						<td><a href="{{{action('MeetupsController@showmeetup', array($meetup->id))}}}"><button class="btn btn-standard">View</button></a></td>
+						<td>{{{$meetup->date}}}, {{{$meetup->time}}}</td>
+						<td><a href="{{{action('MeetupsController@showedit', array($meetup->id))}}}"><button class="btn btn-edit">Edit</button></a></td>
+						<td><a href="{{{action('MeetupsController@index', array($meetup->id))}}}"><button class="btn btn-danger">Delete</button></a></td>
 					</tr>
 					@endforeach
 				</tbody>
