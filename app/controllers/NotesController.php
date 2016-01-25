@@ -12,17 +12,8 @@ class NotesController extends BaseController{
 	{ 	
 		$loggedInUser = Auth::user()->id;
 		$notes = Note::with('user')->where('user_id', '=', $loggedInUser)->orderBy('updated_at', 'desc')->paginate(10);
-		return View::make('notes.index')->with('notes', $notes);	
+		return View::make('notes.index')->with('notes', $notes);
 	}
-
-	// public function votes($id)
-	// {
- //        $vote = new Vote;
- //        $vote->user_id = Auth::id();
- //        $vote->note_id = $id;
- //        $vote->vote = input::get() //fill in the rest.
- //        $vote->Save();
- //    }
  
 	/**
 	 * Show the form for creating a new resource.
@@ -62,7 +53,8 @@ class NotesController extends BaseController{
 		if(!$note) {
 			App::abort(404);
 		}
-		return View::make('notes.show')->with('note', $note);
+
+		return View::make('notes.show')->with(['note' => $note, 'hasVoted' => $note->userHasVoted()]);
 	}
 
 // 	/**

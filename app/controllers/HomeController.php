@@ -46,12 +46,17 @@ class HomeController extends BaseController {
 
 	public function voteUpOrDown()
 	{
-		$vote = new Vote();
-        $vote->user_id = Auth::user()->id;
-		$vote->note_id = Input::get('noteId');
-		$vote->vote = (bool)Input::get('vote');
-		$vote->save();
-
-		// dd(Input::get('vote'));
+		$note = Note::find(Input::get('note_id'));
+		$vote = Vote::where('user_id', '=', Auth::id())->where('note_id', '=', $note->id)->first();
+		if($vote){
+			$vote->vote = Input::get('vote');
+			$vote->save();
+		}else{
+			$vote = new Vote();
+	        $vote->user_id = Auth::user()->id;
+			$vote->note_id = $note->id;
+			$vote->vote = Input::get('vote');
+			$vote->save();
+		}
     }
 }
