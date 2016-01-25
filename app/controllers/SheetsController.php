@@ -15,10 +15,15 @@ class SheetsController extends \BaseController {
      */
     public function index()
     {
-        $loggedInId = Auth::user()->id;
-        $sheets = Sheet::with('lines')->where('user_id', '=', $loggedInId)->orderBy('id', 'desc')->paginate(10);
-        return View::make('sheets.index')->with('sheets', $sheets);
-        // return View::make('sheets.index');
+        if (Auth::check()) {
+            $loggedInId = Auth::user()->id;
+            $sheets = Sheet::with('lines')->where('user_id', '=', $loggedInId)->orderBy('id', 'desc')->paginate(10);
+            return View::make('sheets.index')->with('sheets', $sheets);
+        } else {
+            Session::flash('errorMessage', 'You are not logged in.');
+            return Redirect::action('UsersController@showlogin');
+        }
+
     }
 
 
@@ -29,7 +34,12 @@ class SheetsController extends \BaseController {
      */
     public function create()
     {
-        return View::make('sheets.create');
+        if (Auth::check()) {
+            return View::make('sheets.create');
+        } else {
+            Session::flash('errorMessage', 'You are not logged in.');
+            return Redirect::action('UsersController@showlogin');
+        }
     }
 
 
@@ -40,36 +50,41 @@ class SheetsController extends \BaseController {
      */
     public function store()
     {
-        $validator = Validator::make(Input::all(), Sheet::$rules);
-        if ($validator->fails()) {
-            return Redirect::back()->withInput()->withErrors($validator);
-        } else {
-            $sheet = new Sheet();
-            $sheet->title = Input::get('title');
-            $sheet->public_or_private = Input::get('public_or_private');
-            $sheet->user_id = Auth::user()->id;
-            $result1 = $sheet->save();
-
-            $cluesArray = Input::get('cluesArray');
-            $responsesArray = Input::get('responsesArray');
-            array_unshift($cluesArray, Input::get('clue'));
-            array_unshift($responsesArray, Input::get('response'));
-            foreach ($cluesArray as $key => $value) {
-                $line = new Line();
-                $line->sheet_id = $sheet->id;
-                $line->clue = $cluesArray[$key];
-                $line->response = $responsesArray[$key];
-                $result2 = $line->save();
-            }
-
-            if ($result1 && $result2) {
-                Session::flash('successMessage', 'This sheet was saved.');
-                // Log::info('This is some useful information.', Input::all());
-                return Redirect::route('sheets.index');
+        if (Auth::check()) {
+            $validator = Validator::make(Input::all(), Sheet::$rules);
+            if ($validator->fails()) {
+                return Redirect::back()->withInput()->withErrors($validator);
             } else {
-                Session::flash('errorMessage', 'This sheet was not submitted.');
-                return Redirect::back()->withInput();
+                $sheet = new Sheet();
+                $sheet->title = Input::get('title');
+                $sheet->public_or_private = Input::get('public_or_private');
+                $sheet->user_id = Auth::user()->id;
+                $result1 = $sheet->save();
+
+                $cluesArray = Input::get('cluesArray');
+                $responsesArray = Input::get('responsesArray');
+                array_unshift($cluesArray, Input::get('clue'));
+                array_unshift($responsesArray, Input::get('response'));
+                foreach ($cluesArray as $key => $value) {
+                    $line = new Line();
+                    $line->sheet_id = $sheet->id;
+                    $line->clue = $cluesArray[$key];
+                    $line->response = $responsesArray[$key];
+                    $result2 = $line->save();
+                }
+
+                if ($result1 && $result2) {
+                    Session::flash('successMessage', 'This sheet was saved.');
+                    // Log::info('This is some useful information.', Input::all());
+                    return Redirect::route('sheets.index');
+                } else {
+                    Session::flash('errorMessage', 'This sheet was not submitted.');
+                    return Redirect::back()->withInput();
+                }
             }
+        } else {
+            Session::flash('errorMessage', 'You are not logged in.');
+            return Redirect::action('UsersController@showlogin');
         }
     }
 
@@ -82,14 +97,19 @@ class SheetsController extends \BaseController {
      */
     public function show($id)
     {
-        $sheet = Sheet::with('lines')->where('id', $id)->orWhere('slug', $id)->first();
+        if (Auth::check()) {
+            $sheet = Sheet::with('lines')->where('id', $id)->orWhere('slug', $id)->first();
 
-        if (!$sheet) {
-            Session::flash('errorMessage', 'This sheet does not exist.');
-            return Redirect::route('sheets.index');
+            if (!$sheet) {
+                Session::flash('errorMessage', 'This sheet does not exist.');
+                return Redirect::route('sheets.index');
+            }
+
+            return View::make('sheets.show')->with('sheet', $sheet);
+        } else {
+            Session::flash('errorMessage', 'You are not logged in.');
+            return Redirect::action('UsersController@showlogin');
         }
-
-        return View::make('sheets.show')->with('sheet', $sheet);
     }
 
 
@@ -101,16 +121,21 @@ class SheetsController extends \BaseController {
      */
     public function edit($id)
     {
-        $sheet = Sheet::with('lines')->find($id);
-        if (!$sheet) {
-            Session::flash('errorMessage', 'This sheet does not exist for editing.');
-            return Redirect::route('sheets.index');
-        }
-        $clueLines = Line::with('sheet')->where('sheet_id', '=', $id)->lists('clue');
-        $responseLines = Line::with('sheet')->where('sheet_id', '=', $id)->lists('response');
+        if (Auth::check()) {
+            $sheet = Sheet::with('lines')->find($id);
+            if (!$sheet) {
+                Session::flash('errorMessage', 'This sheet does not exist for editing.');
+                return Redirect::route('sheets.index');
+            }
+            $clueLines = Line::with('sheet')->where('sheet_id', '=', $id)->lists('clue');
+            $responseLines = Line::with('sheet')->where('sheet_id', '=', $id)->lists('response');
 
-        $data = array('sheet' => $sheet, 'clueLines' => $clueLines, 'responseLines' => $responseLines);
-        return View::make('sheets.edit')->with($data);
+            $data = array('sheet' => $sheet, 'clueLines' => $clueLines, 'responseLines' => $responseLines);
+            return View::make('sheets.edit')->with($data);
+        } else {
+            Session::flash('errorMessage', 'You are not logged in.');
+            return Redirect::action('UsersController@showlogin');
+        }
     }
 
 
@@ -122,40 +147,45 @@ class SheetsController extends \BaseController {
      */
     public function update($id)
     {
-        $validator = Validator::make(Input::all(), Sheet::$rules);
+        if (Auth::check()) {
+            $validator = Validator::make(Input::all(), Sheet::$rules);
 
-        if ($validator->fails()) {
-            return Redirect::back()->withInput()->withErrors($validator);
-        } else {
-            $sheet = Sheet::find($id);
-            $sheet->title = Input::get('title');
-            $sheet->public_or_private = Input::get('public_or_private');
-            $sheet->user_id = Auth::user()->id;
-            $result1 = $sheet->save();
-
-            $cluesArray = Input::get('cluesArray');
-            $responsesArray = Input::get('responsesArray');
-            $linesArray = Line::where('sheet_id', '=', $id)->lists('id');
-            foreach ($cluesArray as $key => $value) {
-                if (array_key_exists($key, $linesArray)) {
-                    $line = Line::find($linesArray[$key]);
-                } else {
-                    $line = new Line();
-                }
-                $line->sheet_id = $sheet->id;
-                $line->clue = $cluesArray[$key];
-                $line->response = $responsesArray[$key];
-                $result2 = $line->save();
-            }
-
-            if ($result1 && $result2) {
-                Session::flash('successMessage', 'This sheet was saved.');
-                // Log::info('This is some useful information.', Input::all());
-                return Redirect::route('sheets.index');
+            if ($validator->fails()) {
+                return Redirect::back()->withInput()->withErrors($validator);
             } else {
-                Session::flash('errorMessage', 'This sheet was not submitted.');
-                return Redirect::back()->withInput();
+                $sheet = Sheet::find($id);
+                $sheet->title = Input::get('title');
+                $sheet->public_or_private = Input::get('public_or_private');
+                $sheet->user_id = Auth::user()->id;
+                $result1 = $sheet->save();
+
+                $cluesArray = Input::get('cluesArray');
+                $responsesArray = Input::get('responsesArray');
+                $linesArray = Line::where('sheet_id', '=', $id)->lists('id');
+                foreach ($cluesArray as $key => $value) {
+                    if (array_key_exists($key, $linesArray)) {
+                        $line = Line::find($linesArray[$key]);
+                    } else {
+                        $line = new Line();
+                    }
+                    $line->sheet_id = $sheet->id;
+                    $line->clue = $cluesArray[$key];
+                    $line->response = $responsesArray[$key];
+                    $result2 = $line->save();
+                }
+
+                if ($result1 && $result2) {
+                    Session::flash('successMessage', 'This sheet was saved.');
+                    // Log::info('This is some useful information.', Input::all());
+                    return Redirect::route('sheets.index');
+                } else {
+                    Session::flash('errorMessage', 'This sheet was not submitted.');
+                    return Redirect::back()->withInput();
+                }
             }
+        } else {
+            Session::flash('errorMessage', 'You are not logged in.');
+            return Redirect::action('UsersController@showlogin');
         }
     }
 

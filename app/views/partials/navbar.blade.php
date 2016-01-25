@@ -19,7 +19,7 @@
                     </form>
                 </div> {{-- end col-md-4 --}}
                 <div class="col-md-5 paddingtop  hidden-sm hidden-xs">
-                    <a class="navbarwords" href="">Public Feed</a>
+                    <a class="navbarwords" href="{{{action('FeedController@showMain')}}}">Public Feed</a>
                     @if(Auth::check())
                         <a class="navbarwords" href="{{{action('HomeController@dashboard')}}}">{{{Auth::user()->firstname}}} {{{Auth::user()->lastname}}} is logged in!</a>
                     @else

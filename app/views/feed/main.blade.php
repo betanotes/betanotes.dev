@@ -5,14 +5,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2 text-center">
-                <img src="/img/sheet.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
-                <p>Welcome, {{{ Auth::user()->firstname }}}</p>
-                <a class="btn btn-create" role="button" href="{{{ action('SheetsController@create') }}}">Create</a>
+                <img src="/img/notey2.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
             </div>
             <div class="col-md-8">
                 <h2 class="text-center">The Public Feed</h2>
 
-                <table class="table table-hover">
+                <table class="table table-hover " name="mytable" id="mytable">
                     <thead>
                         <tr>
                             <th>date created</th>
@@ -28,18 +26,24 @@
                                 <td>{{{ $sheet->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
                                 <td><a class="anchortitle" href="{{{ action('SheetsController@show', $sheet->slug) }}}">{{{ Str::limit($sheet->title, 30) }}}</a></td>
                                 <td>{{{ $sheet->public_or_private }}}</td>
-                                <td><a class="btn btn-edit" role="button" href="{{{ action('SheetsController@edit', $sheet->id) }}}">Edit</a></td>
-                                <td>{{ Form::model($sheet, array('action' => array('SheetsController@destroy', $sheet->id), 'method' => 'DELETE', 'class' => 'deleteform')) }}
-                                    <button class="btn btn-danger deletebtn" type="submit">Delete</button>
-                                {{ Form::close() }}</td>
-                            </tr>
+                        @endforeach
+                        @foreach($notes as $note)
+                            <tr>
+                                <td>{{{ $note->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
+                                <td><a class="anchortitle" href="{{{ action('NotesController@show', $note->slug) }}}">{{{ Str::limit($note->title, 30) }}}</a></td>
+                                <td>{{{ $note->public_or_private }}}</td>
+                        @endforeach
+                        @foreach($meetups as $meetup)
+                            <tr>
+                                <td>{{{ $meetup->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
+                                <td><a class="anchortitle" href="{{{ action('MeetupsController@showmeetup', $meetup->id) }}}">{{{ Str::limit($meetup->title, 30) }}}</a></td>
                         @endforeach
                     </tbody>
                 </table>
 
-                <div class="text-center">
+                {{-- <div class="text-center">
                     {{ $sheets->links() }}
-                </div>
+                </div> --}}
             </div> <!-- end col-md-8 -->
 
         </div> <!-- end row -->

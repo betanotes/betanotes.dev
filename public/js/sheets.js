@@ -47,4 +47,32 @@ $(document).ready(function() {
         }
     });
 
+    function sortTable() {
+
+        var rows = $('#mytable tbody  tr').get();
+        rows.sort(function(a, b) {
+
+            var A = $(a).children('td').eq(0).text().toUpperCase();
+            var B = $(b).children('td').eq(0).text().toUpperCase();
+            console.log(A);
+
+            if (A > B) {
+                return -1;
+            }
+
+            if (A < B) {
+                return 1;
+            }
+
+            return 0;
+
+        });
+
+        $.each(rows, function(index, row) {
+            $('#mytable').children('tbody').append(row);
+        });
+
+    }
+    sortTable();
+
 });
