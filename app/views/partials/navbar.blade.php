@@ -1,50 +1,87 @@
 {{-- Upper Navbar --}}
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-lg-14 col-md-14 col-sm-14 col-xs-14 text-center uppernavbar">
-			<a href="{{{action('HomeController@showWelcome')}}}"><div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 upnav firstnav">Life is a test. Ace it!</div></a>
-			<div class="col-lg-4 upnav secondnav">
-				<form class="form-horizontal">
-					<div class="col-lg-8 hidden-sm hidden-xs"><input type="text" class="form-control" name="search"></div>
-					<div class="col-lg-1 hidden-sm hidden-xs"><button class="btn btn-primary">Search Notes</button></div>
-				</form>
-			</div>
-			<div class="col-lg-3 upnav thirdnav">
-				@if(Auth::check())
-					<a class="hidden-sm hidden-xs" href="{{{action('HomeController@dashboard')}}}">{{{Auth::user()->firstname}}} {{{Auth::user()->lastname}}} is logged in!</a>
-				@else
-					<a href="{{{action('UsersController@showsignup')}}}">Sign Up</a>
-				@endif
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-13 upnav lastnav">
-				@if(Auth::check())
-					<a href="{{{action('UsersController@logout')}}}">Log Out</a>
-				@else
-					<a href="{{{action('UsersController@showlogin')}}}">Log In</a>
-				@endif
-			</div>
-		</div>
-	</div>
-</div>
+    <div class="row">
 
+        <div class="col-md-12 text-center uppernavbar">
+            <div class="row">
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <a href="{{{action('HomeController@showWelcome')}}}">
+                        <img src="/img/logo.gif" class="img-responsive img-inline" alt="Responsive image">
+                        {{-- Social Notes<br>Life is a test. Ace it! --}}
+                    </a>
+                </div> {{-- end col-md-3 --}}
+                <div class="col-md-4 paddingtop  hidden-sm hidden-xs">
+                    <form class="form-horizontal">
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" name="search">
+                        </div>
+                        <button class="btn btn-standard">Search</button>
+                    </form>
+                </div> {{-- end col-md-4 --}}
+                <div class="col-md-5 paddingtop  hidden-sm hidden-xs">
+                    <a class="navbarwords" href="">Public Feed</a>
+                    @if(Auth::check())
+                        <a class="navbarwords" href="{{{action('HomeController@dashboard')}}}">{{{Auth::user()->firstname}}} {{{Auth::user()->lastname}}} is logged in!</a>
+                    @else
+                        <a class="navbarwords" href="{{{action('UsersController@showsignup')}}}">Sign Up</a>
+                    @endif
+                    @if(Auth::check())
+                        <a class="navbarwords" href="{{{action('UsersController@logout')}}}">Log Out</a>
+                    @else
+                        <a class="navbarwords" href="{{{action('UsersController@showlogin')}}}">Log In</a>
+                    @endif
+                </div> {{-- end col-md-5 --}}
+
+                {{-- Alt Mobile Navbar for mobile views --}}
+                <div class="col-sm-12 col-xs-12 hidden-md hidden-lg mobilenavmargin">
+                    <form class="form-horizontal">
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" name="search">
+                        </div>
+                        <button class="btn btn-standard">Search</button>
+                    </form>
+                </div> {{-- end col-sm-12 --}}
+                <div class="col-sm-12 col-xs-12 hidden-md hidden-lg mobilenavmargin">
+                    <a class="navbarwords" href="">Public Feed</a>
+                    @if(Auth::check())
+                        <a class="navbarwords" href="{{{action('HomeController@dashboard')}}}">{{{Auth::user()->firstname}}} {{{Auth::user()->lastname}}} is logged in!</a>
+                    @else
+                        <a class="navbarwords" href="{{{action('UsersController@showsignup')}}}">Sign Up</a>
+                    @endif
+                    @if(Auth::check())
+                        <a class="navbarwords" href="{{{action('UsersController@logout')}}}">Log Out</a>
+                    @else
+                        <a class="navbarwords" href="{{{action('UsersController@showlogin')}}}">Log In</a>
+                    @endif
+                </div> {{-- end col-sm-12 --}}
+                {{-- End mobile navbar view --}}
+
+            </div> <!-- end row -->
+        </div> <!-- end col-md-14-->
+
+    </div> <!-- end row -->
+</div> <!-- end container-fluid -->
+
+{{-- Start Lower/Dashboard Navbar --}}
 @if(Auth::check())
-{{-- Lower Navbar --}}
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-lg-14 text-center dashboardnavbar">
-			<a href="{{{action('HomeController@dashboard')}}}"><div class="col-lg-3 navlink"<?php if(Request::url() == "http://betanotes.dev/dashboard") {?>style="background-color: #ff8000"<?php }?>>
-				Dashboard
-			</div></a>
-			<a href="{{{action('NotesController@index')}}}"><div class="col-lg-3 navlink"<?php if(Request::url() == "http://betanotes.dev/notes") {?>style="background-color: #ff8000"<?php }?>>
-				Notes
-			</div></a>
-			<a href="{{{action('SheetsController@index')}}}"><div class="col-lg-3 navlink"<?php if(Request::url() == "http://betanotes.dev/sheets") {?>style="background-color: #ff8000"<?php }?>>
-				Lists
-			</div></a>
-			<a href="{{{action('MeetupsController@index')}}}"><div class="col-lg-3 navlink lastnavlink"<?php if(Request::url() == "http://betanotes.dev/socialstudy") {?>style="background-color: #ff8000"<?php }?>>
-				Social Study-s
-			</div></a>
-		</div>
-	</div>
-</div>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-12 text-center dashboardnavbar">
+                <a href="{{{action('HomeController@dashboard')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/dashboard") {?>style="background-color: #f68735"<?php }?>>
+                    Dashboard
+                </div></a>
+                <a href="{{{action('NotesController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/notes") {?>style="background-color: #f68735"<?php }?>>
+                    Notes
+                </div></a>
+                <a href="{{{action('SheetsController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/sheets") {?>style="background-color: #f68735"<?php }?>>
+                    Study Sheets
+                </div></a>
+                <a href="{{{action('MeetupsController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/socialstudy") {?>style="background-color: #f68735"<?php }?>>
+                    Social Study-s
+                </div></a>
+            </div> {{-- end col-md-12 --}}
+
+        </div> {{-- end row --}}
+    </div> {{-- end container-fluid --}}
 @endif

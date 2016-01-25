@@ -5,6 +5,7 @@
         <div class="row">
 
             <div class="col-md-2 text-center">
+                <img src="/img/sheet.gif" class="img-responsive img-inline" alt="Responsive image">
                 <a  class="btn btn-back" role="button" href="{{{ action('SheetsController@index') }}}">Back</a>
             </div> <!-- end col-md-2 -->
 
