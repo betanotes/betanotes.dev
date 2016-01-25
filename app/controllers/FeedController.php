@@ -12,7 +12,7 @@ class FeedController extends \BaseController {
     {
         $sheets = Sheet::with('lines')->where('public_or_private', '=', 'public')->orderBy('id', 'desc')->take(15)->get();
         $notes = Note::with('user')->where('public_or_private', '=', 'public')->orderBy('id', 'desc')->take(15)->get();
-        $meetups = Meetup::with('attendees')->where('admin_id', Auth::user()->id)->orderBy('created_at', 'desc')->take(15)->get();
+        $meetups = Meetup::with('attendees')->orderBy('created_at', 'desc')->take(15)->get();
 
         return View::make('feed.main')->with('sheets', $sheets)->with('notes', $notes)->with('meetups', $meetups);
     }
