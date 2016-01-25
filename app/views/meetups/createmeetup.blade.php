@@ -26,8 +26,9 @@
 						<label class="control-label" for "location">Location</label>
 						<input type="text" class="form-control" name="location">
 					</div>
-					<button class="btn btn-primary">Create Social Study</button>
+					<button class="btn btn-create"><span class="glyphicon glyphicon-plus"></span> Create</button>
 				</form>
+				<a href="{{{action('MeetupsController@index')}}}"><button class="btn btn-back"><span class="glyphicon glyphicon-chevron-left"><span> Back</button></a>
 			</div>
 		</div>
 	</div>

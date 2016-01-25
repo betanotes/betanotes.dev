@@ -10,9 +10,16 @@
 			<h5>Where: {{{$meetup->location}}}</h5>
 			<h5>When: {{{$meetup->date}}} at {{{$meetup->time}}}</h5>
 			@if(Auth::user()->id == $admin->id)
-			<a href="{{{action('MeetupsController@showinvite', array($meetup->id))}}}"><button class="btn btn-create"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Invite</button></a><br>
-			<a href="{{{action('MeetupsController@showedit', array($meetup->id))}}}"><button class="btn btn-edit">Edit</button></a>
+			<p>
+				<a href="{{{action('MeetupsController@showinvite', array($meetup->id))}}}"><button class="btn btn-create"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Invite</button></a>
+			</p>
+			<p>
+				<a href="{{{action('MeetupsController@showedit', array($meetup->id))}}}"><button class="btn btn-edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</button></a>
+			</p>
 			@endif
+			<p>
+				<a href="{{{action('MeetupsController@index')}}}"><button class="btn btn-back"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Index</button></a>
+			</p>
 			</div>
 		</div>
 	</div>
@@ -21,7 +28,7 @@
 			<div class="col-lg-6">
 				<h3>People attending this Social Study:</h3>
 				<ul class="userpageslist">
-					<li><img class="meetupimg" src="{{{$admin->image_url}}}">{{{$admin->firstname}}} {{{$admin->lastname}}} (admin)</li>
+					<li><img class="meetupimg" src="../{{{$admin->image_url}}}">{{{$admin->firstname}}} {{{$admin->lastname}}} (admin)</li>
 					@foreach($allguests as $guest)
 						<li class="attendeeslist"><img class="meetupimg" src="../{{{$guest['picture']}}}">{{{$guest['name']}}} (guest)</li>
 					@endforeach
@@ -39,10 +46,11 @@
 
 				{{-- If you are the admin or the author of the post, you can delete the comment --}}
 					@if(Auth::user()->id == $admin->id || Auth::user()->id == $comment['commenterid'])
-					{{Form::open(array('url' => "/socialstudy/$meetup->id", 'id' => 'deleteform'))}}
-						{{Form::hidden('_method', 'DELETE')}}
-					{{Form::close()}}
-						<button class="btn btn-danger" data-id="{{{$comment['id']}}}" id="deleter" data-id="{{{$comment['id']}}}" data-author="{{{$comment['commenter']}}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+
+				{{-- Delete --}}
+					<li>{{Form::model($comment, array('action' => array('MeetupsController@deletecomment', $comment['id']), 'method' => 'DELETE', 'class' => 'deleteform', 'data-comment-id' => $comment['id']))}}
+						<button class="btn btn-danger" data-id="{{{$comment['id']}}}" class="deleter" data-author="{{{$comment['commenter']}}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+					{{Form::close()}}</li>
 					@endif
 					@endforeach
 				</ul>
@@ -65,11 +73,14 @@
 @section('bottom-script')
 	<script>
 	"Use Strict";
-	$("#deleter").click(function() {
+	$(".deleter").click(function(event) {
+		event.preventDefault();
+
 		var commentid = $(this).data("id");
 		var commenter = $(this).data("author");
-		if(confirm("Are you sure you want to delete this comment by " + commenter + "?")) {
-			$("#deleteform").submit();
+		console.log(commentid);
+		if(confirm("Are you sure you want to delete this comment?")) {
+			$('form[data-comment-id="' + commentid + '"}').submit();
 		}
 	});
 	</script>
