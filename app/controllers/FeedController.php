@@ -10,24 +10,29 @@ class FeedController extends \BaseController {
 
     public function showMain()
     {
-        $sheets = Sheet::with('lines')->orderBy('id', 'desc')->paginate(10);
-        return View::make('feed.main')->with('sheets', $sheets);
-        // return View::make('sheets.index');
+        $sheets = Sheet::with('lines')->where('public_or_private', '=', 'public')->orderBy('id', 'desc')->take(15)->get();
+        $notes = Note::with('user')->where('public_or_private', '=', 'public')->orderBy('id', 'desc')->take(15)->get();
+        $meetups = Meetup::with('attendees')->where('admin_id', Auth::user()->id)->orderBy('created_at', 'desc')->take(15)->get();
+
+        return View::make('feed.main')->with('sheets', $sheets)->with('notes', $notes)->with('meetups', $meetups);
     }
 
     public function showNotes()
     {
-        return View::make('feed.notes');
+        $notes = Note::with('user')->where('public_or_private', '=', 'public')->orderBy('id', 'desc')->paginate(10);
+        return View::make('feed.notes')->with('notes', $notes);
     }
 
     public function showSheets()
     {
-        return View::make('feed.sheets');
+        $sheets = Sheet::with('lines')->where('public_or_private', '=', 'public')->orderBy('id', 'desc')->paginate(10);
+        return View::make('feed.sheets')->with('sheets', $sheets);
     }
 
     public function showMeetups()
     {
-        return View::make('feed.meets');
+        $meetups = Meetup::with('attendees')->orderBy('created_at', 'desc')->paginate(10);
+        return View::make('feed.meets')->with('meetups', $meetups);
     }
 
 }
