@@ -43,9 +43,9 @@ Route::get('/socialstudy/create', 'MeetupsController@createmeetup');
 
 Route::post('/socialstudy/create', 'MeetupsController@store');
 
-Route::get('/socialstudy/{id}/edit', 'MeetupsController@showedit');
+Route::get('/socialstudy/edit', 'MeetupsController@showedit');
 
-Route::post('/socialstudy/{id}/edit', 'MeetupsController@updatemeetup');
+Route::post('/socialstudy/edit', 'MeetupsController@updatemeetup');
 
 Route::get('/socialstudy/{id}', 'MeetupsController@showmeetup');
 
