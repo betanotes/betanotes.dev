@@ -20,6 +20,7 @@
                 </div> {{-- end col-md-4 --}}
                 <div class="col-md-5 paddingtop  hidden-sm hidden-xs">
                     <a class="navbarwords" href="{{{action('FeedController@showMain')}}}">Public Feed</a>
+
                     @if(Auth::check())
                         <a class="navbarwords" href="{{{action('HomeController@dashboard')}}}">{{{Auth::user()->firstname}}} {{{Auth::user()->lastname}}} is logged in!</a>
                     @else
@@ -69,16 +70,16 @@
 
             <div class="col-md-12 text-center dashboardnavbar">
                 <a href="{{{action('HomeController@dashboard')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/dashboard") {?>style="background-color: #f68735"<?php }?>>
-                    Dashboard
+                    Your Dashboard
                 </div></a>
                 <a href="{{{action('NotesController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/notes") {?>style="background-color: #f68735"<?php }?>>
-                    Notes
+                    Your Notes
                 </div></a>
                 <a href="{{{action('SheetsController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/sheets") {?>style="background-color: #f68735"<?php }?>>
-                    Study Sheets
+                    Your Study Sheets
                 </div></a>
                 <a href="{{{action('MeetupsController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/socialstudy") {?>style="background-color: #f68735"<?php }?>>
-                    Social Study-s
+                    Your Social Study-s
                 </div></a>
             </div> {{-- end col-md-12 --}}
 
