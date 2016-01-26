@@ -2,12 +2,6 @@
 
 class FeedController extends \BaseController {
 
-    public function __construct()
-    {
-        // parent::__construct();
-        // $this->beforeFilter('auth', array('except' => array('index', 'show')));
-    }
-
     public function showMain()
     {
         $sheets = Sheet::with('lines')->where('public_or_private', '=', 'public')->orderBy('id', 'desc')->take(15)->get();
