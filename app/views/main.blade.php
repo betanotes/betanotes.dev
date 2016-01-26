@@ -11,7 +11,7 @@
             </div> <!-- end col-md-5 -->
             <div class="col-md-5">
                 <div class="mainnotey">
-                    <span class="noteyspan">Hello! I'm 'Notey' the note!</span>
+                    <span class="noteyspan">Take, store, share... your notes anywhere!</span>
                 </div>
             </div> <!-- end col-md-5 -->
         </div> <!-- end row maintop -->
