@@ -11,14 +11,14 @@
 			<h5>When: {{{$meetup->date}}} at {{{$meetup->time}}}</h5>
 			@if(Auth::user()->id == $admin->id)
 			<p>
-				<a href="{{{action('MeetupsController@showinvite', array($meetup->id))}}}"><button class="btn btn-create"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Invite</button></a>
+				<a href="{{{action('MeetupsController@showinvite', array($meetup->id))}}}"><button class="btn btn-create">Invite</button></a>
 			</p>
 			<p>
-				<a href="{{{action('MeetupsController@showedit', array($meetup->id))}}}"><button class="btn btn-edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</button></a>
+				<a href="{{{action('MeetupsController@showedit', array($meetup->id))}}}"><button class="btn btn-edit">Edit</button></a>
 			</p>
 			@endif
 			<p>
-				<a href="{{{action('MeetupsController@index')}}}"><button class="btn btn-back"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Index</button></a>
+				<a href="{{{action('MeetupsController@index')}}}"><button class="btn btn-back">Index</button></a>
 			</p>
 			</div>
 		</div>
@@ -49,8 +49,11 @@
 
 				{{-- Delete --}}
 					<li>{{Form::model($comment, array('action' => array('MeetupsController@deletecomment', $comment['id']), 'method' => 'DELETE', 'class' => 'deleteform', 'data-comment-id' => $comment['id']))}}
-						<button class="btn btn-danger" data-id="{{{$comment['id']}}}" class="deleter" data-author="{{{$comment['commenter']}}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+						<button class="btn btn-danger" data-id="{{{$comment['id']}}}" class="deleter" data-author="{{{$comment['commenter']}}}">Delete</button>
 					{{Form::close()}}</li>
+						@if(Auth::user()->id == $comment['commenterid'])
+							<a href="{{{action('MeetupsController@showeditcomment', array($comment['id']))}}}"><button class="btn btn-edit">Edit</button></a>
+						@endif
 					@endif
 					@endforeach
 				</ul>

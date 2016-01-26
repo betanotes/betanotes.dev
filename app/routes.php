@@ -59,6 +59,10 @@ Route::post('/socialstudy/{id}/comment', 'MeetupsController@postcomment');
 
 Route::DELETE('/socialstudy/{id}/comment', 'MeetupsController@deletecomment');
 
+Route::get('/socialstudy/{id}/comment/edit', 'MeetupsController@showeditcomment');
+
+Route::post('/socialstudy/{id}/comment/edit', 'MeetupsController@editcomment');
+
 Route::get('/socialstudy/{id}/invite', 'MeetupsController@showinvite');
 
 Route::post('/socialstudy/{id}/invite', 'MeetupsController@inviteguest');
