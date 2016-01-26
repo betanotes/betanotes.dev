@@ -179,6 +179,34 @@ class MeetupsController extends BaseController {
 			return Redirect::action('MeetupsController@showmeetup', array($meetup));
 		}
 
+	// Shows the comment edit page
+		public function showeditcomment($id)
+		{
+			$comment = Meetcom::find($id);
+			$meetup = Meetup::find($comment->meetup_id);
+			if(Auth::check()) {
+				return View::make('/meetups/editcomment')->with('meetup', $meetup)->with('comment', $comment);
+			}
+		}
+
+	// Edits the comment
+		public function editcomment($id)
+		{
+			$validator = Validator::make(Input::all(), Meetcom::$rules);
+			if($validator->fails()) {
+				Session::flash('errorMessage', 'Your comment must be between 1 and 400 characters');
+				return Redirect::back()->withInput();
+			} else {
+				$validator = Validator::make(Input::all(), Meetcom::$rules);
+				$commenttoupdate = Meetcom::find($id);
+				$meetup = $commenttoupdate->meetup_id;
+				$commenttoupdate->comment = Input::get('comment');
+				$commenttoupdate->save();
+				Session::flash('successMessage', 'Comment successfully updated!');
+				return Redirect::action('MeetupsController@showmeetup', array($meetup));
+			}
+		}
+
 // Invite a friend to join the Meetup
 
 	// Shows the form to invite a friend
