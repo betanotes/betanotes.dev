@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <div class="container">
+    <div class="container  containermargins">
         <div class="row">
             <div class="col-md-2 text-center">
                 <img src="/img/sheet.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">

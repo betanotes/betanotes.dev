@@ -1,4 +1,8 @@
 /* Start Shared CSS. */
+.containermargins {
+    margin-top: 4%;
+    margin-bottom: 10%;
+}
 .pushdown {
     margin-top: 10px;
 }
