@@ -112,8 +112,27 @@ class SheetsController extends \BaseController {
                 Session::flash('errorMessage', 'This sheet does not exist.');
                 return Redirect::route('sheets.index');
             }
-
-            return View::make('sheets.show')->with('sheet', $sheet);
+            $collaborators = [];
+            $allcollaborators = Sheetcollaborator::all();
+            foreach($allcollaborators as $guests) {
+                if($guests->sheet_id == $sheet->id) {
+                    array_push($collaborators, $guests->collaborator_name);
+                }
+            }
+            $comments = [];
+            $allcomments = Sheetcom::all();
+            foreach($allcomments as $comment) {
+                if($comment->sheet_id == $sheet->id) {
+                    $commentdata = array(
+                        'created_at' => $comment->created_at,
+                        'id' => $comment->id,
+                        'comment' => $comment->comment,
+                        'commenter' => DB::table('sheetcollaborators')->where('collaborator_id', $comment->collaborator_id)->pluck('collaborator_name'),
+                    );
+                    array_push($comments, $commentdata);
+                }
+            }
+            return View::make('sheets.show')->with('sheet', $sheet)->with('collaborators', $collaborators)->with('comments', $comments);
         } else {
             Session::flash('errorMessage', 'You are not logged in.');
             return Redirect::action('UsersController@showlogin');
