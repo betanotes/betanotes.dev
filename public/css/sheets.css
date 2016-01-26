@@ -3,6 +3,16 @@
     margin-top: 4%;
     margin-bottom: 10%;
 }
+.fourohfourmargins {
+    margin-top: 5%;
+    margin-bottom: 15%;
+}
+.lostnotey {
+    font-size: 70px;
+    font-style: italic;
+    font-weight: bold;
+    font-family: arial black;
+}
 .pushdown {
     margin-top: 10px;
 }
