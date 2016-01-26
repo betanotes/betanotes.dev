@@ -22,24 +22,24 @@
                             <button class="btn btn-danger deletebtn" type="submit">Delete</button>
                         {{ Form::close() }}
                     </div>
+                    
                     <div class="col-xs-12 sheetcolbtns">
                         <a class="btn btn-back" role="button" href="{{{ action('NotesController@index') }}}">Back</a>  
                     </div>
 
-                    
-                    <button  id="voteUp" class="glyphicon glyphicon-chevron-up"
+                    <h4>Votes:
+                        {{-- <span id="voteUpCounts"> {{ $note->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $note->voteDownCount() }}</span> --}}
+                    </h4>
+
+                    <button  id="voteUp" class="btn btn-standard"
                    
                     data-note-id="{{ $note->id }}"
-                    data-vote="1">VoteUp</button>
+                    data-vote="1"> <span class="glyphicon glyphicon-triangle-top arrowBig" aria-hidden="true"></button>
                     
-                    <span id="voteUpCounts"> {{ $note->voteUpCount() }}</span>
-
-                    <button  id="voteDown" class="glyphicon glyphicon-chevron-down"
+                    <button  id="voteDown" class="btn btn-standard"
 
                     data-note-id="{{ $note->id }}"
-                    data-vote="0">VoteDown</button>
-            
-                    <span id="voteDownCounts">{{ $note->voteDownCount() }}</span>
+                    data-vote="0"> <span class="glyphicon glyphicon-triangle-bottom arrowBig" aria-hidden="true"></span></button>
 
                 </div>
             </div> <!-- end col-md-4 -->
@@ -47,14 +47,8 @@
             <div class="col-md-8">
                 <h2 class="text-center">{{ $note->title }}</h2>
                 <p class="noteBody">{{ $note->body }}</p>
-                
-                <a href="{{{ action('NotesController@index') }}}">Back to Notes Index</a>
             </div> <!-- end col-md-8 -->
         </div> <!-- end row -->
     </div> <!--end container-->
 
 @stop
-		
-	{{-- {{ Form::open(array('action' => array('NotesController@destroy', $note->id), 'method' => 'DELETE')) }}
-		<button type="submit" class="btn btn-danger">Delete Note</button>
-	{{ Form::close() }} --}}

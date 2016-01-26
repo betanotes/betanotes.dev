@@ -26,6 +26,7 @@
                         <a class="btn btn-back" role="button" href="{{{ action('SheetsController@index') }}}">Back</a>
                         <span class="btn btn-standard" role="button" id="toggle-btn">Toggle</span>
                     </div>
+                    
                 </div>
             </div> <!-- end col-md-4 -->
 

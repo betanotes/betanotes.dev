@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotesVotesTable extends Migration {
+class CreateSheetVotesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,17 +12,15 @@ class CreateNotesVotesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('votes', function($table)
+		Schema::create('sheet_votes', function($table)
 		{
 			$table->increments('id');
 			$table->boolean('vote');
 			$table->timestamps();
-			$table->integer('note_id')->unsigned()->nullable();
-			$table->foreign('note_id')->references('id')->on('notes');
-			$table->integer('sheet_id')->unsigned()->nullable();
+			$table->integer('sheet_id')->unsigned();
 			$table->foreign('sheet_id')->references('id')->on('sheets');
-			$table->integer('meetup_id')->unsigned()->nullable();
-			$table->foreign('meetup_id')->references('id')->on('meetups');
+			$table->integer('user_id')->unsigned();
+			$table->foreign('user_id')->references('id')->on('sheets');
 		});
 	}
 
@@ -33,9 +31,7 @@ class CreateNotesVotesTable extends Migration {
 	 */
 	public function down()
 	{
-		
-		Schema::drop('votes');
+		//
 	}
-
 
 }

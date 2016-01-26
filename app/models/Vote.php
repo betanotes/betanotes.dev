@@ -14,4 +14,13 @@ Class Vote extends Eloquent{
 	{
 	    return $this->belongsTo('Note');
 	}
+
+	public function sheet()
+	{
+	    return $this->belongsTo('Sheet');
+	}
+	public function meetup()
+	{
+	    return $this->belongsTo('Meetup');
+	}
 }

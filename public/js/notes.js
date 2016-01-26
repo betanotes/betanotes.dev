@@ -4,6 +4,8 @@ $(document).ready(function()
 	$('#voteUp').click(function(){
 
 		var note_id = $(this).data('noteId');
+		var sheet_id = $(this).data('sheetId');
+		var meetup_id = $(this).data('meetupId');
 		var vote = $(this).data('vote');
 
 		$.ajax("/voteUpOrDown", {
@@ -11,6 +13,8 @@ $(document).ready(function()
 		    
 		    data: {
 		        note_id: note_id,
+		        sheet_id: sheet_id,
+		        meetup_id: meetup_id,
 		        vote: 	 vote
 		    }
 		}).done(function(data){
@@ -21,6 +25,7 @@ $(document).ready(function()
 			console.log(data);
 			console.log('Ajax log failed');
 		})
+		$(this).prop('disabled', true);
 	});
 
 	$('#voteDown').click(function(){
@@ -33,6 +38,8 @@ $(document).ready(function()
 		    
 		    data: {
 		        note_id: note_id,
+		        sheet_id: sheet_id,
+		        meetup_id: meetup_id,
 		        vote: 	 vote
 		    }
 		}).done(function(data){
@@ -43,5 +50,6 @@ $(document).ready(function()
 			console.log(data);
 			console.log('Ajax log failed');
 		})
+		$(this).prop('disabled', true);
 	});	
 });

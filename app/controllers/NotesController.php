@@ -10,9 +10,14 @@ class NotesController extends BaseController{
 
 	public function index()
 	{ 	
-		$loggedInUser = Auth::user()->id;
-		$notes = Note::with('user')->where('user_id', '=', $loggedInUser)->orderBy('updated_at', 'desc')->paginate(10);
-		return View::make('notes.index')->with('notes', $notes);
+		if(Auth::check()){
+			$loggedInUser = Auth::user()->id;
+			$notes = Note::with('user')->where('user_id', '=', $loggedInUser)->orderBy('updated_at', 'desc')->paginate(10);
+			return View::make('notes.index')->with('notes', $notes);
+		} else {
+			Session::flash('errorMessage', 'You are not logged in.');
+            return Redirect::action('UsersController@showlogin');
+		}		
 	}
  
 	/**
@@ -22,7 +27,12 @@ class NotesController extends BaseController{
 	 */
 	public function create()
 	{
-		return View::make('notes.create');
+		if(Auth::check()){
+			return View::make('notes.create');
+		}else {
+			Session::flash('errorMessage', 'You are not logged in.');
+            return Redirect::action('UsersController@showlogin');
+		}		
 	}
 
 	/**
@@ -32,9 +42,14 @@ class NotesController extends BaseController{
 	 */
 	public function store()
 	{
-		Log::info('The info was stored and logged.');
-		$note = new Note();
-		return $this->validateAndSave($note);
+		if(Auth::check()){
+			Log::info('The info was stored and logged.');
+			$note = new Note();
+			return $this->validateAndSave($note);
+		}else {
+			Session::flash('errorMessage', 'You are not logged in.');
+            return Redirect::action('UsersController@showlogin');
+		}	
 	}
 
 	/**
@@ -45,16 +60,21 @@ class NotesController extends BaseController{
 	 */
 	public function show($idOrTitle)
 	{
-		if (is_numeric($idOrTitle)){
-			$note = Note::find($idOrTitle);
-		} else {
-			$note = Note::where('slug', '=', $idOrTitle)->first();
-		}
-		if(!$note) {
-			App::abort(404);
-		}
+		if(Auth::check()){
 
-		return View::make('notes.show')->with(['note' => $note, 'hasVoted' => $note->userHasVoted()]);
+			if (is_numeric($idOrTitle)){
+				$note = Note::find($idOrTitle);
+			} else {
+				$note = Note::where('slug', '=', $idOrTitle)->first();
+			}
+			if(!$note) {
+				App::abort(404);
+			}
+			return View::make('notes.show')->with(['note' => $note, 'hasVoted' => $note->userHasVoted()]);
+		}else {
+			Session::flash('errorMessage', 'You are not logged in.');
+            return Redirect::action('UsersController@showlogin');
+		}	
 	}
 
 // 	/**
@@ -65,16 +85,17 @@ class NotesController extends BaseController{
 // 	 */
 	public function edit($idOrTitle)
 	{
-		if (is_numeric($idOrTitle)){
-			$note = Note::find($idOrTitle);
+		if(Auth::check()){
+			if (is_numeric($idOrTitle)){
+				$note = Note::find($idOrTitle);
+			} else {
+				$note = Note::where('slug', '=', $idOrTitle)->first();
+			}
+			return View::make('notes.edit')->with('note', $note);
 		} else {
-			$note = Note::where('slug', '=', $idOrTitle)->first();
-		}
-		// if(!$note) {
-		// 	App::abort(404);
-		// }
-
-		return View::make('notes.edit')->with('note', $note);
+			Session::flash('errorMessage', 'You are not logged in.');
+            return Redirect::action('UsersController@showlogin');
+		}		
 	}
 
 // 	/**
@@ -85,8 +106,13 @@ class NotesController extends BaseController{
 // 	 */
 	public function update($id)
 	{
-		$note = Note::find($id);
-		return $this->validateAndSave($note);
+		if(Auth::check()){
+			$note = Note::find($id);
+			return $this->validateAndSave($note);
+		} else {
+			Session::flash('errorMessage', 'You are not logged in.');
+            return Redirect::action('UsersController@showlogin');
+		}			
 	}
 
 	public function destroy($id)
@@ -122,7 +148,7 @@ class NotesController extends BaseController{
 // 					$note->image_upload = $destinationPath . $fileName;
 // 				}
    
-			$note->user_id = User::first()->id;
+			$note->user_id = Auth::user()->id;
 
 			$result = $note->save();
 
