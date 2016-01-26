@@ -32,6 +32,39 @@
 			</table>
 		</div>
 	</div>
+	<div class="row aboutMe">
+		<div class="col-md-2 text-center">
+			<h3>27 years old</h3>
+			<p> This section is all about me. It is who I am and where I am from all in 140 characters or less. This is where you show off a bit.</p>
+		</div>
+		<div class="col-md-10 col-sm-10 col-xs-10">
+			{{-- <h2 class="text-center">Hello, {{{$user->firstname}}}</h2> --}}
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>date created</th>
+						<th>title</th>
+						<th>privacy setting</th>
+						<th>edit</th>
+						<th>delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($notes as $note)
+                        <tr>
+                            <td>{{{ $note->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
+                            <td><a class="anchortitle" href="{{ action('NotesController@show', ($note->slug)) }}">{{{ Str::limit($note->title, 30) }}}</a></td>
+                            <td>{{{ $note->public_or_private }}}</td>
+                            <td><a class="btn btn-edit" role="button" href="{{{ action('NotesController@edit', $note->slug) }}}">Edit</a></td>
+                            <td>{{ Form::model($note, array('action' => array('NotesController@destroy', $note->id), 'method' => 'DELETE', 'class' => 'deleteform')) }}
+                                <button class="btn btn-danger deletebtn" type="submit">Delete</button>
+                            {{ Form::close() }}</td>
+                        </tr>
+                    @endforeach
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
 @stop
 @section('bottom-script')
