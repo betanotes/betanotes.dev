@@ -1,4 +1,18 @@
 /* Start Shared CSS. */
+.containermargins {
+    margin-top: 4%;
+    margin-bottom: 10%;
+}
+.fourohfourmargins {
+    margin-top: 5%;
+    margin-bottom: 15%;
+}
+.lostnotey {
+    font-size: 70px;
+    font-style: italic;
+    font-weight: bold;
+    font-family: arial black;
+}
 .pushdown {
     margin-top: 10px;
 }
@@ -144,4 +158,8 @@ dd {
 .mainlast span {
     color: #999fad;
 }
-/* End CSS for Landing Page, main.blade.php. 
+/* End CSS for Landing Page, main.blade.php. */
+/* Start CSS for Public Feed main page. */
+.publicbtnmargin {
+    margin-bottom: 10px;
+}
