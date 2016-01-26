@@ -12,12 +12,13 @@ body {
 .uppernavbar {
     background-color: #DDD;
     color: #3F547F;
+    padding: 5px 0;
 }
 .uppernavbar img {
     height: 85px;
 }
 .paddingtop {
-    padding-top: 25px;
+    padding-top: 27px;
 }
 .mobilenavmargin {
     margin: 5px 0;

@@ -1,8 +1,8 @@
 /* Override of Bootstrap button class to create a uniform size throughout. */
-.btn {
+/*.btn {
     height: 35px;
     width: 85px;
-}
+}*/
 /* Start CSS for standard buttons, dark greys. */
 .btn-standard {
     border: 1px solid #999fad;
