@@ -4,6 +4,8 @@ $(document).ready(function()
 	$('#voteUp').click(function(){
 
 		var note_id = $(this).data('noteId');
+		var sheet_id = $(this).data('sheetId');
+		var meetup_id = $(this).data('meetupId');
 		var vote = $(this).data('vote');
 
 		$.ajax("/voteUpOrDown", {
