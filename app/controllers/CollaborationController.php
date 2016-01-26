@@ -1,23 +1,23 @@
 <?php
 class CollaborationController extends BaseController {
 
+public function __construct()
+{
+	parent::__construct();
+	$this->beforeFilter('auth');
+}
 // Collaboration on Notes
 
 	// Shows the invitation 
 		public function showinvitenote($id)
 		{
 			$note = Note::find($id);
-			if(Auth::check()) {
 				if(Auth::user()->id == $note->id) {
 					return View::make('/collaboration/invitenote')->with('note', $note);
 				} else {
 					Session::flash('errorMessage', 'You are not authorized to invite people to collaborate on this note');
 					return Redirect::back();
 				}
-			} else {
-				Session::flash('errorMessage', 'You must be logged in!');
-				return Redirect::action('UsersController@showlogin');
-			}
 		}
 
 	// Saves the invitee in the database
@@ -51,7 +51,6 @@ class CollaborationController extends BaseController {
 		public function showcommentnote($id)
 		{
 			$note = Note::find($id);
-			if(Auth::check()) {
 				$checkcollaboratorlist = DB::table('notecollaborators')->where('collaborator_id', Auth::user()->id)->where('note_id', $id)->pluck('collaborator_id');
 				if($checkcollaboratorlist != null || Auth::user()->id == $note->user_id) {
 					return View::make('/collaboration/commentnote')->with('note', $note);
@@ -59,10 +58,6 @@ class CollaborationController extends BaseController {
 					Session::flash('errorMessage', 'You are not authorized to collaborate on this note!');
 					return Redirect::back();
 				}
-			} else {
-				Session::flash('errorMessage', 'You must be logged in to continue!');
-				return Redirect::back();
-			}
 		}
 
 	// Saves the comment in the database
@@ -88,12 +83,7 @@ class CollaborationController extends BaseController {
 		{
 			$comment = Notecom::find($commentid);
 			$note = Note::find($id);
-			if(Auth::check()) {
 				return View::make('/collaboration/editcommentnote')->with('comment', $comment)->with('note', $note);
-			} else {
-				Session::flash('errorMessage', 'You must be logged in to continue!');
-				return Redirect::action('UsersController@showlogin');
-			}
 		}
 
 	// Saves the edited information to the database
@@ -119,17 +109,12 @@ class CollaborationController extends BaseController {
 		public function showinvitesheet($id)
 		{
 			$sheet = Sheet::find($id);
-			if(Auth::check()) {
 				if(Auth::user()->id == $sheet->user_id) {
 					return View::make('/collaboration/invitesheet')->with('sheet', $sheet);
 				} else {
 					Session::flash('errorMessage', 'You are not authorized to invite collaborators to this sheet');
 					return Redirect::back();
 				}
-			} else {
-				Session::flash('errorMessage', 'You must be logged in to continue!');
-				return Redirect::action('UsersController@showlogin');
-			}
 		}
 
 	// Saves the invitee in the database
@@ -164,7 +149,6 @@ class CollaborationController extends BaseController {
 		public function showcommentsheet($id)
 		{
 			$sheet = Sheet::find($id);
-			if(Auth::check()) {
 				$checkcollaboratorlist = DB::table('sheetcollaborators')->where('collaborator_id', Auth::user()->id)->where('sheet_id', $id)->pluck('collaborator_id');
 				if($checkcollaboratorlist != null || Auth::user()->id == $sheet->user_id) {
 					return View::make('/collaboration/commentsheet')->with('sheet', $sheet);
@@ -172,10 +156,6 @@ class CollaborationController extends BaseController {
 					Session::flash('errorMessage', 'You are not authorized to collaborate on this sheet!');
 					return Redirect::back();
 				}
-			} else {
-				Session::flash('errorMessage', 'You must be logged in to continue');
-				return Redirect::action('UsersController@showlogin');
-			}
 		}
 
 	// Saves the comment in the database
@@ -202,12 +182,7 @@ class CollaborationController extends BaseController {
 		{
 			$comment = Sheetcom::find($commentid);
 			$sheet = Sheet::find($id);
-			if(Auth::check()) {
 				return View::make('/collaboration/editcommentsheet')->with('comment', $comment)->with('sheet', $sheet);
-			} else {
-				Session::flash('errorMessage', 'You must be logged in to continue!');
-				return Redirect::action('UsersController@showlogin');
-			}
 		}
 
 	// Saves the updated information to the database.

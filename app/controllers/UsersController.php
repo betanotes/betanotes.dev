@@ -2,17 +2,20 @@
 
 class UsersController extends BaseController {
 
+public function __construct()
+{
+	parent::__construct();
+	$this->beforeFilter('auth', array('except' =>array('showlogin', 'showsignup')));
+}
 // User Profile (no longer being used)
 
 	// Displays all user information
 		public function index()
 		{
-			if(Auth::check()) {
 				$user = Auth::user();
 				$usernotes = DB::table('notes')->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
 				$usersheets = DB::table('sheets')->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
 				return View::make('/users/yourprofile')->with('user', $user)->with('usernotes', $usernotes)->with('usersheets', $usersheets);
-			}
 		}
 
 // Sign Up
@@ -68,12 +71,8 @@ class UsersController extends BaseController {
 	// Shows the log in form
 		public function showlogin()
 		{
-			if(Auth::check()) {
 				Session::flash('errorMessage', 'You are already logged in');
 				return Redirect::action('UsersController@index');
-			} else {
-				return View::make('/users/login');
-			}
 		}
 
 	// Checks against the database
@@ -97,14 +96,9 @@ class UsersController extends BaseController {
 	// Logs you out
 		public function logout()
 		{
-			if(Auth::check()) {
 				Auth::logout();
 				Session::flash('successMessage', 'Goodbye!');
 				return Redirect::action('UsersController@showlogin');
-			} else {
-				Session::flash('errorMessage', 'You are not logged in yet!');
-				return Redirect::action('UsersController@showlogin');
-			}
 		}
 
 // Edit Profile
@@ -119,7 +113,7 @@ class UsersController extends BaseController {
 		public function update()
 		{
 			$validator = Validator::make(Input::all(), User::$editrules);
-			if(Auth::check()) {
+
 				$usertoupdate = Auth::user();
 				$usertoupdate->firstname = (Input::has('firstname') ? Input::get('firstname') : Auth::user()->firstname);
 				$usertoupdate->lastname = (Input::has('lastname') ? Input::get('lastname') : Auth::user()->lastname);
@@ -154,7 +148,6 @@ class UsersController extends BaseController {
 						return Redirect::back()->withInput();
 					}
 				}
-			}
 		}
 
 // Delete Profile
