@@ -17,7 +17,7 @@
                             <th>votes</th>
                             <th>date created</th>
                             <th>title</th>
-                            <th>author</th>
+                            <th>host</th>
                             <th>date</th>
                             <th>location</th>
                         </tr>
