@@ -17,6 +17,8 @@ class CreateNotesVotesTable extends Migration {
 			$table->increments('id');
 			$table->boolean('vote');
 			$table->timestamps();
+			$table->integer('user_id')->unsigned();
+			$table->foreign('user_id')->references('id')->on('users');
 			$table->integer('note_id')->unsigned()->nullable();
 			$table->foreign('note_id')->references('id')->on('notes');
 			$table->integer('sheet_id')->unsigned()->nullable();

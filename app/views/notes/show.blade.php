@@ -28,7 +28,7 @@
                     </div>
 
                     <h4>Votes:
-                        {{-- <span id="voteUpCounts"> {{ $note->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $note->voteDownCount() }}</span> --}}
+                        <span id="voteUpCounts"> {{ $note->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $note->voteDownCount() }}</span>
                     </h4>
 
                     <button  id="voteUp" class="btn btn-standard"

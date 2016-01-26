@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder {
 	{
 		Eloquent::unguard();
 
+		DB::table('attendees')->delete();
+		DB::table('meetcoms')->delete();
+		DB::table('meetups')->delete();
 		DB::table('lines')->delete();
 		DB::table('notes')->delete();
 		DB::table('sheets')->delete();

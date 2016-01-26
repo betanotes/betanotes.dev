@@ -47,16 +47,45 @@ class HomeController extends BaseController {
 	public function voteUpOrDown()
 	{
 		$note = Note::find(Input::get('note_id'));
-		$vote = Vote::where('user_id', '=', Auth::id())->where('note_id', '=', $note->id)->first();
-		if($vote){
-			$vote->vote = Input::get('vote');
-			$vote->save();
-		}else{
-			$vote = new Vote();
-	        $vote->user_id = Auth::user()->id;
-			$vote->note_id = $note->id;
-			$vote->vote = Input::get('vote');
-			$vote->save();
-		}
+		$sheet = Sheet::find(Input::get('sheet_id'));
+		$meetup = Meetup::find(Input::get('meetup_id'));
+
+		if(Input::has('note_id')){
+			$vote = Vote::where('user_id', '=', Auth::id())->where('note_id', '=', $note->id)->first();
+			if($vote){
+				$vote->vote = Input::get('vote');
+				$vote->save();
+			}else{
+				$vote = new Vote();
+		        $vote->user_id = Auth::user()->id;
+				$vote->note_id = $note->id;
+				$vote->vote = Input::get('vote');
+				$vote->save();
+			}
+		}elseif(Input::has('sheet_id')){
+			$vote = Vote::where('sheet_id', '=', Auth::id())->where('sheet_id', '=', $sheet->id)->first();
+						if($vote){
+				$vote->vote = Input::get('vote');
+				$vote->save();
+			}else{
+				$vote = new Vote();
+		        $vote->user_id = Auth::user()->id;
+				$vote->sheet_id = $sheet->id;
+				$vote->vote = Input::get('vote');
+				$vote->save();
+			}
+		}elseif(Input::has('meetup_id')){
+			$vote = Vote::where('meetup_id', '=', Auth::id())->where('meetup_id', '=', $meetup->id)->first();
+						if($vote){
+				$vote->vote = Input::get('vote');
+				$vote->save();
+			}else{
+				$vote = new Vote();
+		        $vote->user_id = Auth::user()->id;
+				$vote->meetup_id = $meetup->id;
+				$vote->vote = Input::get('vote');
+				$vote->save();
+			}
+		}	
     }
 }

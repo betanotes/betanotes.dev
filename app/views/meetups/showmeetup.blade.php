@@ -56,6 +56,20 @@
 						@endif
 					@endif
 					@endforeach
+
+					<h4>Votes:
+                        <span id="voteUpCounts"> {{ $meetup->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $meetup->voteDownCount() }}</span>
+                    </h4>
+
+                    <button  id="voteUp" class="btn btn-standard"
+                   
+                    data-meetup-id="{{ $meetup->id }}"
+                    data-vote="1"> <span class="glyphicon glyphicon-triangle-top arrowBig" aria-hidden="true"></button>
+                    
+                    <button  id="voteDown" class="btn btn-standard"
+
+                    data-meetup-id="{{ $meetup->id }}"
+                    data-vote="0"> <span class="glyphicon glyphicon-triangle-bottom arrowBig" aria-hidden="true"></span></button>
 				</ul>
 
 				<div class="text-center">
