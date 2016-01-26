@@ -144,4 +144,8 @@ dd {
 .mainlast span {
     color: #999fad;
 }
-/* End CSS for Landing Page, main.blade.php. 
+/* End CSS for Landing Page, main.blade.php. */
+/* Start CSS for Public Feed main page. */
+.publicbtnmargin {
+    margin-bottom: 10px;
+}

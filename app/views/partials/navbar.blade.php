@@ -73,13 +73,13 @@
                     Your Dashboard
                 </div></a>
                 <a href="{{{action('NotesController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/notes") {?>style="background-color: #f68735"<?php }?>>
-                    Your Notes
+                    Your Study Notes
                 </div></a>
                 <a href="{{{action('SheetsController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/sheets") {?>style="background-color: #f68735"<?php }?>>
                     Your Study Sheets
                 </div></a>
                 <a href="{{{action('MeetupsController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/socialstudy") {?>style="background-color: #f68735"<?php }?>>
-                    Your Social Study-s
+                    Your Social Study Groups
                 </div></a>
             </div> {{-- end col-md-12 --}}
 
