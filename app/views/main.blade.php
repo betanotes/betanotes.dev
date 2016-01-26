@@ -48,8 +48,32 @@
             <div class="col-md-10 col-md-offset-1">
                 <h3>Best of all,</h3>
                 <h1>IT'S FREE!</h1>
-                <img src="/img/services.gif" class="img-responsive img-inline" alt="Responsive image">
-                <p><em>Take Notes, Create Study Sheets, Play Matching Games, Collaborate, Vote, Share, Social Study-s!</em> Social Notes, YAY!</p>
+            </div> <!-- end col-md-10 -->
+        </div> <!-- end row mainlast -->
+        <div class="row mainlast">
+            <div class="col-md-2 col-md-offset-1">
+                <img src="/img/blue_note.gif" class="img-responsive img-inline" alt="Responsive image">
+                <p><em>Take Notes!</em></p>
+            </div> <!-- end col-md-2 -->
+            <div class="col-md-2">
+                <img src="/img/blue_sheet.gif" class="img-responsive img-inline" alt="Responsive image">
+                <p><em>Create Study Sheets!</em></p>
+            </div> <!-- end col-md-2 -->
+            <div class="col-md-2">
+                <img src="/img/blue_game.gif" class="img-responsive img-inline" alt="Responsive image">
+                <p><em>Play Matching Games!</em></p>
+            </div> <!-- end col-md-2 -->
+            <div class="col-md-2">
+                <img src="/img/blue_collaborate.gif" class="img-responsive img-inline" alt="Responsive image">
+                <p><em>Share &amp; Collaborate!</em></p>
+            </div> <!-- end col-md-2 -->
+            <div class="col-md-3">
+                <img src="/img/blue_notey.gif" class="img-responsive img-inline" alt="Responsive image">
+                <p><em>Social Notes, YAY!</em></p>
+            </div> <!-- end col-md-2 -->
+        </div> <!-- end row mainlast -->
+        <div class="row mainlast">
+            <div class="col-md-10 col-md-offset-1">
                 <span>* All illustrations are original and were made for this project.</span>
             </div> <!-- end col-md-10 -->
         </div> <!-- end row mainlast -->

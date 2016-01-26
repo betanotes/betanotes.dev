@@ -61,8 +61,16 @@ class SheetsController extends \BaseController {
                 $sheet->user_id = Auth::user()->id;
                 $result1 = $sheet->save();
 
-                $cluesArray = Input::get('cluesArray');
-                $responsesArray = Input::get('responsesArray');
+                if (Input::has('cluesArray')) {
+                    $cluesArray = Input::get('cluesArray');
+                } else {
+                    $cluesArray = array();
+                }
+                if (Input::has('responsesArray')) {
+                    $responsesArray = Input::get('responsesArray');
+                } else {
+                    $responsesArray = array();
+                }
                 array_unshift($cluesArray, Input::get('clue'));
                 array_unshift($responsesArray, Input::get('response'));
                 foreach ($cluesArray as $key => $value) {
