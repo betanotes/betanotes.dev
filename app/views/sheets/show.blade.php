@@ -25,8 +25,23 @@
                     <div class="col-xs-12 sheetcolbtns">
                         <a class="btn btn-back" role="button" href="{{{ action('SheetsController@index') }}}">Back</a>
                         <span class="btn btn-standard" role="button" id="toggle-btn">Toggle</span>
+
+                        <h4>Votes:
+                            <span id="voteUpCounts"> {{ $sheet->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $sheet->voteDownCount() }}</span>
+                        </h4>
+
+                        <button  id="voteUp" class="btn btn-standard"
+                       
+                        data-sheet-id="{{ $sheet->id }}"
+                        data-vote="1"> <span class="glyphicon glyphicon-triangle-top arrowBig" aria-hidden="true"></button>
+                        
+                        <button  id="voteDown" class="btn btn-standard"
+
+                        data-sheet-id="{{ $sheet->id }}"
+                        data-vote="0"> <span class="glyphicon glyphicon-triangle-bottom arrowBig" aria-hidden="true"></span></button>
+
                     </div>
-                    
+
                 </div>
             </div> <!-- end col-md-4 -->
 

@@ -49,4 +49,29 @@ class Sheet extends Eloquent
             return uniqid() . '-' . $slug;
         }
     }
+
+    public function votes()
+    {
+        return $this->hasMany('Vote');
+    }
+
+    public function userHasVoted()
+    {
+
+        $vote = Vote::where('user_id', '=', Auth::id())->where('sheet_id', '=', $this->id)->first();
+        if($vote){
+            return true;
+        }
+        return false;
+    }
+    
+    public function voteUpCount()
+    {
+        return Vote::where('sheet_id', '=', $this->id)->where('vote', 1)->count();
+    }
+
+    public function voteDownCount()
+    {
+        return Vote::where('sheet_id', '=', $this->id)->where('vote', 0)->count();
+    }
 }
