@@ -11,6 +11,8 @@ $(document).ready(function()
 		    
 		    data: {
 		        note_id: note_id,
+		        sheet_id: sheet_id,
+		        meetup_id: meetup_id,
 		        vote: 	 vote
 		    }
 		}).done(function(data){
@@ -21,6 +23,7 @@ $(document).ready(function()
 			console.log(data);
 			console.log('Ajax log failed');
 		})
+		$(this).prop('disabled', true);
 	});
 
 	$('#voteDown').click(function(){
@@ -33,6 +36,8 @@ $(document).ready(function()
 		    
 		    data: {
 		        note_id: note_id,
+		        sheet_id: sheet_id,
+		        meetup_id: meetup_id,
 		        vote: 	 vote
 		    }
 		}).done(function(data){
@@ -43,5 +48,6 @@ $(document).ready(function()
 			console.log(data);
 			console.log('Ajax log failed');
 		})
+		$(this).prop('disabled', true);
 	});	
 });

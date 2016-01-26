@@ -59,4 +59,6 @@ class HomeController extends BaseController {
 			$vote->save();
 		}
     }
+
+    
 }
