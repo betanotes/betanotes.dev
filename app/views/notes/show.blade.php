@@ -24,7 +24,8 @@
                     </div>
                     
                     <div class="col-xs-12 sheetcolbtns">
-                        <a class="btn btn-back" role="button" href="{{{ action('NotesController@index') }}}">Back</a>  
+                        <a class="btn btn-back" role="button" href="{{{ action('NotesController@index') }}}">Back</a>
+                        <a class="btn btn-success" href="{{{action('CollaborationController@showinvitenote', array($note->id))}}}">Invite</a>  
                     </div>
 
                     <h4>Votes:
@@ -41,12 +42,30 @@
                     data-note-id="{{ $note->id }}"
                     data-vote="0"> <span class="glyphicon glyphicon-triangle-bottom arrowBig" aria-hidden="true"></span></button>
 
+                    <h4>People collaborating on this note:</h4>
+                    @foreach($collaborators as $guest)
+                    <ul>
+                        <li>{{{$guest}}}</li>
+                    </ul>
+                    @endforeach
                 </div>
             </div> <!-- end col-md-4 -->
 
             <div class="col-md-8">
                 <h2 class="text-center">{{ $note->title }}</h2>
                 <p class="noteBody">{{ $note->body }}</p>
+
+                <h4>Comments:</h4>
+                @foreach($comments as $comment)
+                <h5>@if($comment['commenter'] != null){{{$comment['commenter']}}} says: @else {{{$note->user->firstname . ' ' . $note->user->lastname}}} says: @endif</h5>
+                <textarea class="commentarea" type="disabled" disabled rows="7" cols="50">{{{$comment['comment']}}}</textarea>
+                @if((Auth::user()->firstname . Auth::user()->lastname) == $comment['commenter'] || Auth::user() == $note->user)
+                    <a class="btn btn-edit" href="{{{action('CollaborationController@showeditcommentnote', array($note->id, $comment['id']))}}}">Edit</a>
+                @endif
+                @endforeach
+                <div class="row">
+                    <a class="btn btn-create" href="{{{action('CollaborationController@showcommentnote', array($note->id))}}}">Comment</a>
+                </div>
             </div> <!-- end col-md-8 -->
         </div> <!-- end row -->
     </div> <!--end container-->

@@ -70,7 +70,27 @@ class NotesController extends BaseController{
 			if(!$note) {
 				App::abort(404);
 			}
-			return View::make('notes.show')->with(['note' => $note, 'hasVoted' => $note->userHasVoted()]);
+			$collaborators = [];
+			$allcollaborators = Notecollaborator::all();
+			foreach($allcollaborators as $guests) {
+				if($guests->note_id == $note->id) {
+					array_push($collaborators, $guests->collaborator_name);
+				}
+			}
+			$comments = [];
+			$allcomments = Notecom::all();
+			foreach($allcomments as $comment) {
+				if($comment->note_id == $note->id) {
+					$commentdata = array(
+						'created_at' => $comment->created_at,
+						'id' => $comment->id,
+						'comment' => $comment->comment,
+						'commenter' => DB::table('notecollaborators')->where('collaborator_id', $comment->collaborator_id)->pluck('collaborator_name'),
+					);
+					array_push($comments, $commentdata);
+				}
+			}
+			return View::make('notes.show')->with(['note' => $note, 'hasVoted' => $note->userHasVoted()])->with('collaborators', $collaborators)->with('comments', $comments);
 		}else {
 			Session::flash('errorMessage', 'You are not logged in.');
             return Redirect::action('UsersController@showlogin');

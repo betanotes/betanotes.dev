@@ -25,6 +25,7 @@
                     <div class="col-xs-12 sheetcolbtns">
                         <a class="btn btn-back" role="button" href="{{{ action('SheetsController@index') }}}">Back</a>
                         <span class="btn btn-standard" role="button" id="toggle-btn">Toggle</span>
+                        <a class="btn btn-success" href="{{{action('CollaborationController@showinvitesheet', array($sheet->id))}}}">Invite</a>
 
                         <h4>Votes:
                             <span id="voteUpCounts"> {{ $sheet->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $sheet->voteDownCount() }}</span>
@@ -40,6 +41,12 @@
                         data-sheet-id="{{ $sheet->id }}"
                         data-vote="0"> <span class="glyphicon glyphicon-triangle-bottom arrowBig" aria-hidden="true"></span></button>
 
+                        <h4>People collaborating on this sheet:</h4>
+                        <ul>
+                            @foreach($collaborators as $guest)
+                            <li>{{{$guest}}}</li>
+                            @endforeach
+                        </ul>
                     </div>
 
                 </div>
@@ -63,7 +70,17 @@
                     <?php $i = $i + 1; ?>
                 @endforeach
             </div> <!-- end col-md-8 -->
-
+            <h4>Comments:</h4>
+                @foreach($comments as $comment)
+                <h5>@if($comment['commenter'] != null){{{$comment['commenter']}}} says: @else {{{$sheet->user->firstname . ' ' . $sheet->user->lastname}}} says: @endif</h5>
+                <textarea class="commentarea" type="disabled" disabled rows="7" cols="50">{{{$comment['comment']}}}</textarea>
+                @if((Auth::user()->firstname . Auth::user()->lastname) == $comment['commenter'] || Auth::user() == $sheet->user)
+                    <a class="btn btn-edit" href="{{{action('CollaborationController@showeditcommentsheet', array($sheet->id, $comment['id']))}}}">Edit</a>
+                @endif
+                @endforeach
+                <div class="row">
+                    <a class="btn btn-create" href="{{{action('CollaborationController@showcommentsheet', array($sheet->id))}}}">Comment</a>
+                </div>
         </div> <!-- end row -->
     </div> <!-- end container -->
 

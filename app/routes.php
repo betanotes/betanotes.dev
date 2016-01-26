@@ -19,9 +19,37 @@ Route::DELETE('/dashboard', 'UsersController@destroy');
 
 Route::get('/navbar', 'HomeController@navbar');
 
+// Sheets
+
 Route::resource('sheets', 'SheetsController');
 
+Route::get('/sheets/{id}/invite', 'CollaborationController@showinvitesheet');
+
+Route::post('/sheets/{id}/invite', 'CollaborationController@invitesheet');
+
+Route::get('/sheets/{id}/collaborate', 'CollaborationController@showcommentsheet');
+
+Route::post('/sheets/{id}/collaborate', 'CollaborationController@commentsheet');
+
+Route::get('/sheets/{id}/collaborate/{commentid}/edit', 'CollaborationController@showeditcommentsheet');
+
+Route::post('/sheets/{id}/collaborate/{commentid}/edit', 'CollaborationController@editcommentsheet');
+
+// Notes
+
 Route::resource('notes', 'NotesController');
+
+Route::get('/notes/{id}/invite', 'CollaborationController@showinvitenote');
+
+Route::post('/notes/{id}/invite', 'CollaborationController@invitenote');
+
+Route::get('/notes/{id}/collaborate', 'CollaborationController@showcommentnote');
+
+Route::post('/notes/{id}/collaborate', 'CollaborationController@commentnote');
+
+Route::get('/notes/{id}/collaborate/{commentid}/edit', 'CollaborationController@showeditcommentnote');
+
+Route::post('/notes/{id}/collaborate/{commentid}/edit', 'CollaborationController@editcommentnote');
 
 Route::get('/users', 'UsersController@index');
 
