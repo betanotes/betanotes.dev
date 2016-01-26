@@ -2,16 +2,17 @@
 
 class MeetupsController extends BaseController {
 
+public function __construct()
+{
+	parent::__construct();
+	$this->beforeFilter('auth');
+}
+
 // Shows all meetups for the user
 		public function index()
 		{
-			if(Auth::check()) {	
 				$allmeetups = Meetup::with('attendees')->where('admin_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
 				return View::make('/meetups/index')->with('allmeetups', $allmeetups);
-			} else {
-				Session::flash('errorMessage', 'You must be logged in');
-				return Redirect::action('UsersController@showlogin');
-			}
 		}
 
 // Meetup Creation
@@ -19,9 +20,8 @@ class MeetupsController extends BaseController {
 	// Shows Create Form
 		public function createmeetup()
 		{
-			if(Auth::check()) {
 				return View::make('/meetups/createmeetup');
-			}
+			
 		}
 
 	// Saves the new meetup in the database
@@ -44,17 +44,12 @@ class MeetupsController extends BaseController {
 		public function showedit($id)
 		{
 			$meetup = Meetup::find($id);
-			if(Auth::check()) {
 				if(Auth::user()->id == $meetup->admin_id) {
 					return View::make('/meetups/editmeetup')->with('meetup', $meetup);
 				} else {
 					Session::flash('errorMessage', 'You are not the admin of this Social Study. You cannot edit it!');
 					return Redirect::back();
 				}
-			} else {
-				Session::flash('errorMessage', 'You must be logged in to edit a Social Study');
-				return Redirect::action('UsersController@showlogin');
-			}
 		}
 
 	// Save new information in database
@@ -82,7 +77,6 @@ class MeetupsController extends BaseController {
 	// Displays all information about a specific meetup
 		public function showmeetup($id)
 		{
-			if(Auth::check()) {
 				$meetup = Meetup::find($id);
 				$adminid = $meetup->admin_id;
 				$admin = User::find($adminid);
@@ -118,10 +112,6 @@ class MeetupsController extends BaseController {
 				}
 
 				return View::make('/meetups/showmeetup')->with('meetup', $meetup)->with('allguests', $allguests)->with('admin', $admin)->with('allcomments', $allcomments)->with('comments', $comments);
-			} else {
-				Session::flash('errorMessage', 'You must be logged in!');
-				return Redirect::action('UsersController@showlogin');
-			}
 		}
 
 	// Deletes the meetup from the database
@@ -143,12 +133,10 @@ class MeetupsController extends BaseController {
 		public function commentform($id)
 		{
 			$meetup = Meetup::find($id);
-			if(Auth::check()) {
 				$checkattendeeslist = DB::table('attendees')->where('attendee_id', Auth::user()->id)->where('meetup_id', $id)->pluck('attendee_id');
 				if($checkattendeeslist != null || Auth::user()->id == $meetup->admin_id) {
 					return View::make('/meetups/comment')->with('meetup', $meetup);
 				}
-			}
 		}
 
 	// Saves the comment to the database
@@ -184,9 +172,8 @@ class MeetupsController extends BaseController {
 		{
 			$comment = Meetcom::find($id);
 			$meetup = Meetup::find($comment->meetup_id);
-			if(Auth::check()) {
 				return View::make('/meetups/editcomment')->with('meetup', $meetup)->with('comment', $comment);
-			}
+			
 		}
 
 	// Edits the comment
@@ -213,7 +200,7 @@ class MeetupsController extends BaseController {
 		public function showinvite($id)
 		{
 			$meetup = Meetup::find($id);
-			if(Auth::check() && Auth::user()->id == $meetup->admin_id) {
+			if(Auth::user()->id == $meetup->admin_id) {
 				return View::make('/meetups/invite')->with('meetup', $meetup);
 			}
 		}
