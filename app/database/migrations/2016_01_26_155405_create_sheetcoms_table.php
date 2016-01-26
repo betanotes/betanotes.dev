@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSheetVotesTable extends Migration {
+class CreateSheetcomsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,15 +12,14 @@ class CreateSheetVotesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('sheet_votes', function($table)
-		{
+		Schema::create('sheetcoms', function($table) {
 			$table->increments('id');
-			$table->boolean('vote');
-			$table->timestamps();
+			$table->string('comment', 1000);
 			$table->integer('sheet_id')->unsigned();
 			$table->foreign('sheet_id')->references('id')->on('sheets');
-			$table->integer('user_id')->unsigned();
-			$table->foreign('user_id')->references('id')->on('sheets');
+			$table->integer('collaborator_id')->unsigned();
+			$table->foreign('collaborator_id')->references('id')->on('users');
+			$table->timestamps();
 		});
 	}
 
@@ -31,7 +30,7 @@ class CreateSheetVotesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('sheet_votes');
+		Schema::drop('sheetcoms');
 	}
 
 }
