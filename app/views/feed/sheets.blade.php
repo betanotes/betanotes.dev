@@ -5,11 +5,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2 text-center">
-                <img src="/img/notey2.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
-                <a class="btn btn-back" role="button" href="{{{ action('FeedController@showMain') }}}">Back</a>
+                <img src="/img/sheet.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
+                <a class="btn btn-back" role="button" href="{{{ action('FeedController@showMain') }}}">Back to Public Feed</a>
             </div>
             <div class="col-md-8">
-                <h2 class="text-center">Public Sheets Index</h2>
+                <h2 class="text-center">Public Study Sheets</h2>
 
                 <table class="table table-hover">
                     <thead>
@@ -34,9 +34,6 @@
                     {{ $sheets->links() }}
                 </div>
             </div> <!-- end col-md-8 -->
-            <div class="col-md-2 text-center">
-                <img src="/img/sheet.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
-            </div>
 
         </div> <!-- end row -->
     </div> <!-- end container -->

@@ -5,9 +5,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2 text-center">
-                <img src="/img/notey2.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
-                <a class="btn btn-create" role="button" href="{{{ action('FeedController@showNotes') }}}">Notes</a>
-                <a class="btn btn-create" role="button" href="{{{ action('FeedController@showSheets') }}}">Sheets</a>
+                <img src="/img/collaborate.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
+                <a class="btn btn-create" role="button" href="{{{ action('FeedController@showNotes') }}}"> Public Notes</a>
+                <a class="btn btn-create" role="button" href="{{{ action('FeedController@showSheets') }}}">Public Study Sheets</a>
                 <a class="btn btn-create" role="button" href="{{{ action('FeedController@showMeetups') }}}">Social Study-s</a>
             </div>
             <div class="col-md-8">
@@ -31,6 +31,7 @@
                                 <td>{{{ $sheet->user->firstname }}}</td>
                                 <td>N/A</td>
                                 <td>N/A</td>
+                            </tr>
                         @endforeach
                         @foreach($notes as $note)
                             <tr>
@@ -39,6 +40,7 @@
                                 <td>{{{ $note->user->firstname }}}</td>
                                 <td>N/A</td>
                                 <td>N/A</td>
+                            </tr>
                         @endforeach
                         @foreach($meetups as $meetup)
                             <tr>
@@ -47,19 +49,12 @@
                                 <td>{{{ User::find($meetup->admin_id)->firstname }}}</td>
                                 <td>{{{ Str::limit($meetup->date, 30) }}}</td>
                                 <td>{{{ Str::limit($meetup->location, 30) }}}</td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
 
-                {{-- <div class="text-center">
-                    {{ $sheets->links() }}
-                </div> --}}
             </div> <!-- end col-md-8 -->
-            <div class="col-md-2 text-center">
-                <img src="/img/note.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
-                <img src="/img/sheet.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
-                <img src="/img/meet.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
-            </div>
 
         </div> <!-- end row -->
     </div> <!-- end container -->
