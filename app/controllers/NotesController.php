@@ -2,22 +2,17 @@
 
 class NotesController extends BaseController{
 
-	// public function __construct()
-	// {
-	// 	parent::__construct();
-	// 	$this->beforeFilter('auth', array('except' => array('index', 'show')));
-	// }
+	public function __construct()
+	{
+		parent::__construct();
+		$this->beforeFilter('auth');
+	}
 
 	public function index()
 	{ 	
-		if(Auth::check()){
-			$loggedInUser = Auth::user()->id;
-			$notes = Note::with('user')->where('user_id', '=', $loggedInUser)->orderBy('updated_at', 'desc')->paginate(10);
-			return View::make('notes.index')->with('notes', $notes);
-		} else {
-			Session::flash('errorMessage', 'You are not logged in.');
-            return Redirect::action('UsersController@showlogin');
-		}		
+		$loggedInUser = Auth::user()->id;
+		$notes = Note::with('user')->where('user_id', '=', $loggedInUser)->orderBy('updated_at', 'desc')->paginate(10);
+		return View::make('notes.index')->with('notes', $notes);		
 	}
  
 	/**
@@ -27,12 +22,7 @@ class NotesController extends BaseController{
 	 */
 	public function create()
 	{
-		if(Auth::check()){
-			return View::make('notes.create');
-		}else {
-			Session::flash('errorMessage', 'You are not logged in.');
-            return Redirect::action('UsersController@showlogin');
-		}		
+		return View::make('notes.create');		
 	}
 
 	/**
@@ -42,14 +32,9 @@ class NotesController extends BaseController{
 	 */
 	public function store()
 	{
-		if(Auth::check()){
-			Log::info('The info was stored and logged.');
-			$note = new Note();
-			return $this->validateAndSave($note);
-		}else {
-			Session::flash('errorMessage', 'You are not logged in.');
-            return Redirect::action('UsersController@showlogin');
-		}	
+		Log::info('The info was stored and logged.');
+		$note = new Note();
+		return $this->validateAndSave($note);
 	}
 
 	/**
@@ -60,41 +45,35 @@ class NotesController extends BaseController{
 	 */
 	public function show($idOrTitle)
 	{
-		if(Auth::check()){
-
-			if (is_numeric($idOrTitle)){
-				$note = Note::find($idOrTitle);
-			} else {
-				$note = Note::where('slug', '=', $idOrTitle)->first();
+		if (is_numeric($idOrTitle)){
+			$note = Note::find($idOrTitle);
+		} else {
+			$note = Note::where('slug', '=', $idOrTitle)->first();
+		}
+		if(!$note) {
+			App::abort(404);
+		}
+		$collaborators = [];
+		$allcollaborators = Notecollaborator::all();
+		foreach($allcollaborators as $guests) {
+			if($guests->note_id == $note->id) {
+				array_push($collaborators, $guests->collaborator_name);
 			}
-			if(!$note) {
-				App::abort(404);
+		}
+		$comments = [];
+		$allcomments = Notecom::all();
+		foreach($allcomments as $comment) {
+			if($comment->note_id == $note->id) {
+				$commentdata = array(
+					'created_at' => $comment->created_at,
+					'id' => $comment->id,
+					'comment' => $comment->comment,
+					'commenter' => DB::table('notecollaborators')->where('collaborator_id', $comment->collaborator_id)->pluck('collaborator_name'),
+				);
+				array_push($comments, $commentdata);
 			}
-			$collaborators = [];
-			$allcollaborators = Notecollaborator::all();
-			foreach($allcollaborators as $guests) {
-				if($guests->note_id == $note->id) {
-					array_push($collaborators, $guests->collaborator_name);
-				}
-			}
-			$comments = [];
-			$allcomments = Notecom::all();
-			foreach($allcomments as $comment) {
-				if($comment->note_id == $note->id) {
-					$commentdata = array(
-						'created_at' => $comment->created_at,
-						'id' => $comment->id,
-						'comment' => $comment->comment,
-						'commenter' => DB::table('notecollaborators')->where('collaborator_id', $comment->collaborator_id)->pluck('collaborator_name'),
-					);
-					array_push($comments, $commentdata);
-				}
-			}
-			return View::make('notes.show')->with(['note' => $note, 'hasVoted' => $note->userHasVoted()])->with('collaborators', $collaborators)->with('comments', $comments);
-		}else {
-			Session::flash('errorMessage', 'You are not logged in.');
-            return Redirect::action('UsersController@showlogin');
-		}	
+		}
+		return View::make('notes.show')->with(['note' => $note, 'hasVoted' => $note->userHasVoted()])->with('collaborators', $collaborators)->with('comments', $comments);
 	}
 
 // 	/**
@@ -105,17 +84,12 @@ class NotesController extends BaseController{
 // 	 */
 	public function edit($idOrTitle)
 	{
-		if(Auth::check()){
-			if (is_numeric($idOrTitle)){
-				$note = Note::find($idOrTitle);
-			} else {
-				$note = Note::where('slug', '=', $idOrTitle)->first();
-			}
-			return View::make('notes.edit')->with('note', $note);
+		if (is_numeric($idOrTitle)){
+			$note = Note::find($idOrTitle);
 		} else {
-			Session::flash('errorMessage', 'You are not logged in.');
-            return Redirect::action('UsersController@showlogin');
-		}		
+			$note = Note::where('slug', '=', $idOrTitle)->first();
+		}
+		return View::make('notes.edit')->with('note', $note);
 	}
 
 // 	/**
@@ -126,13 +100,8 @@ class NotesController extends BaseController{
 // 	 */
 	public function update($id)
 	{
-		if(Auth::check()){
-			$note = Note::find($id);
-			return $this->validateAndSave($note);
-		} else {
-			Session::flash('errorMessage', 'You are not logged in.');
-            return Redirect::action('UsersController@showlogin');
-		}			
+		$note = Note::find($id);
+		return $this->validateAndSave($note);	
 	}
 
 	public function destroy($id)

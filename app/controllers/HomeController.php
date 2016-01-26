@@ -15,6 +15,12 @@ class HomeController extends BaseController {
 	|
 	*/
 
+	public function __construct()
+	{
+		parent::__construct();
+		$this->beforeFilter('auth', array('except' => array('showWelcome')));
+	}
+
 	public function showWelcome()
 	{
 		return View::make('main');
