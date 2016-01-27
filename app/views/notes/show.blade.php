@@ -52,7 +52,7 @@
                 @foreach($comments as $comment)
                 <h5>@if($comment['commenter'] != null){{{$comment['commenter']}}} says: @else {{{$note->user->firstname . ' ' . $note->user->lastname}}} says: @endif</h5>
                 <textarea class="commentarea" type="disabled" disabled rows="7" cols="50">{{{$comment['comment']}}}</textarea>
-                @if((Auth::user()->firstname . Auth::user()->lastname) == $comment['commenter'] || Auth::user() == $note->user)
+                @if((Auth::user()->firstname . ' ' . Auth::user()->lastname) == $comment['commenter'] || Auth::user() == $note->user)
                     <a class="btn btn-edit" href="{{{action('CollaborationController@showeditcommentnote', array($note->id, $comment['id']))}}}">Edit</a>
                 @endif
                 @endforeach
