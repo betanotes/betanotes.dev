@@ -31,10 +31,6 @@
 					<input type="text" class="form-control" name="affiliation" value="{{{Auth::user()->affiliation}}}">
 				</div>
 				<div class="form-group">
-					<label class="control-label" for "break_type">What do you like to do when you take a break?</label>
-					<input type="text" class="form-control" name="break_type" value="{{{Auth::user()->break_type}}}">
-				</div>
-				<div class="form-group">
 					<label class="control-label" for "password">Password</label>
 					<input type="password" class="form-control" name="password">
 				</div>

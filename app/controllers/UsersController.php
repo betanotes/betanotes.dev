@@ -35,7 +35,6 @@ public function __construct()
 			$newuser->lastname = Input::get('lastname');
 			$newuser->password = Hash::make(Input::get('password'));
 			$newuser->email = Input::get('email');
-			$newuser->break_type = Input::get('break_type');
 			$newuser->affiliation = Input::get('affiliation');
 
 		if(Input::file('image_url') != null) {
@@ -116,7 +115,6 @@ public function __construct()
 				$usertoupdate = Auth::user();
 				$usertoupdate->firstname = (Input::has('firstname') ? Input::get('firstname') : Auth::user()->firstname);
 				$usertoupdate->lastname = (Input::has('lastname') ? Input::get('lastname') : Auth::user()->lastname);
-				$usertoupdate->break_type = (Input::has('break_type') ? Input::get('break_type') : Auth::user()->break_type);
 				$usertoupdate->affiliation = (Input::has('affiliation') ? Input::get('affiliation') : Auth::user()->affiliation);
 				$usertoupdate->password = (Input::has('password') ? Input::get('password') : Auth::user()->password);
 
