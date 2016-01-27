@@ -6,7 +6,8 @@
 		<div class="box">
 			<div class="col-lg-6 col-lg-offset-3 text-center">
 				<h2>Edit the information for this Social Study</h2>
-				<form class="form-horizontal" method="POST" action="{{{action('MeetupsController@updatemeetup', array($meetup->id))}}}">
+				{{-- <form class="form-horizontal" method="POST" action="{{{action('MeetupsController@updatemeetup', array($meetup->id))}}}"> --}}
+				{{Form::open(array('class' => "form-horizontal", 'method' => "POST", 'action' => array('MeetupsController@updatemeetup', $meetup->id)))}}
 					<div class="form-group">
 						<label class="control-label" for "title">Title</label>
 						<input type="text" class="form-control" name="title" value="{{{$meetup->title}}}">
@@ -28,7 +29,7 @@
 						<input type="text" class="form-control" name="location" value="{{{$meetup->location}}}">
 					</div>
 					<button class="btn btn-edit">Update</button>
-				</form>
+				{{Form::close()}}
 			</div>
 		</div>
 	</div>
