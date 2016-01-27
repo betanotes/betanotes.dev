@@ -53,11 +53,10 @@ class NotesController extends BaseController{
 		if(!$note) {
 			App::abort(404);
 		}
-		$collaborators = [];
-		$allcollaborators = Notecollaborator::all();
-		foreach($allcollaborators as $guests) {
-			if($guests->note_id == $note->id) {
-				array_push($collaborators, $guests->collaborator_name);
+		if($note->public_or_private == "private") {
+			if(Auth::user()->id != $note->user_id) {
+				Session::flash('errorMessage', 'This note is private and cannot be accessed publicly.');
+				return Redirect::action('NotesController@index');
 			}
 		}
 		$comments = [];
@@ -68,12 +67,12 @@ class NotesController extends BaseController{
 					'created_at' => $comment->created_at,
 					'id' => $comment->id,
 					'comment' => $comment->comment,
-					'commenter' => DB::table('notecollaborators')->where('collaborator_id', $comment->collaborator_id)->pluck('collaborator_name'),
+					'commenter' => $comment->collaborator_name,
 				);
 				array_push($comments, $commentdata);
 			}
 		}
-		return View::make('notes.show')->with(['note' => $note, 'hasVoted' => $note->userHasVoted()])->with('collaborators', $collaborators)->with('comments', $comments);
+		return View::make('notes.show')->with(['note' => $note, 'hasVoted' => $note->userHasVoted()])->with('comments', $comments);
 	}
 
 // 	/**
@@ -89,6 +88,10 @@ class NotesController extends BaseController{
 		} else {
 			$note = Note::where('slug', '=', $idOrTitle)->first();
 		}
+		if(Auth::user()->id != $note->user_id) {
+            Session::flash('errorMessage', 'You are not authorized to edit this note.');
+            return Redirect::action('NotesController@index');
+        }
 		return View::make('notes.edit')->with('note', $note);
 	}
 
@@ -107,6 +110,11 @@ class NotesController extends BaseController{
 	public function destroy($id)
 	{
 		$note = Note::find($id);
+
+		if(Auth::user()->id != $note->user_id) {
+			Session::flash('errorMessage', 'You are not authorized to destroy this note!');
+			return Redirect::action('NotesController@index');
+		}
 		$note->delete();
 
 		return Redirect::action('NotesController@index');
