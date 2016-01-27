@@ -95,11 +95,10 @@ class SheetsController extends \BaseController {
             Session::flash('errorMessage', 'This sheet does not exist.');
             return Redirect::route('sheets.index');
         }
-        $collaborators = [];
-        $allcollaborators = Sheetcollaborator::all();
-        foreach($allcollaborators as $guests) {
-            if($guests->sheet_id == $sheet->id) {
-                array_push($collaborators, $guests->collaborator_name);
+        if($sheet->public_or_private == "private") {
+            if(Auth::user()->id != $sheet->user_id) {
+                Session::flash('errorMessage', 'This sheet is private and cannot be accessed publicly.');
+                return Redirect::action('SheetsController@index');
             }
         }
         $comments = [];
@@ -110,12 +109,12 @@ class SheetsController extends \BaseController {
                     'created_at' => $comment->created_at,
                     'id' => $comment->id,
                     'comment' => $comment->comment,
-                    'commenter' => DB::table('sheetcollaborators')->where('collaborator_id', $comment->collaborator_id)->pluck('collaborator_name'),
+                    'commenter' => $comment->collaborator_name,
                 );
                 array_push($comments, $commentdata);
             }
         }
-        return View::make('sheets.show')->with('sheet', $sheet)->with('collaborators', $collaborators)->with('comments', $comments);
+        return View::make('sheets.show')->with('sheet', $sheet)->with('comments', $comments);
     }
 
 
@@ -131,6 +130,10 @@ class SheetsController extends \BaseController {
         if (!$sheet) {
             Session::flash('errorMessage', 'This sheet does not exist for editing.');
             return Redirect::route('sheets.index');
+        }
+        if(Auth::user()->id != $sheet->user_id) {
+            Session::flash('errorMessage', 'You are not authorized to edit this sheet.');
+            return Redirect::action('SheetsController@index');
         }
         $clueLines = Line::with('sheet')->where('sheet_id', '=', $id)->lists('clue');
         $responseLines = Line::with('sheet')->where('sheet_id', '=', $id)->lists('response');
@@ -197,6 +200,10 @@ class SheetsController extends \BaseController {
         $sheet = Sheet::findOrFail($id);
 
         $lines = Line::with('sheet')->where('sheet_id', '=', $id);
+        if(Auth::user()->id != $sheet->user_id) {
+            Session::flash('errorMessage', 'You are not authorized to destroy this sheet!');
+            return Redirect::action('SheetsController@index');
+        }
         $lines->delete();
 
         $sheet->delete();

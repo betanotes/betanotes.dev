@@ -19,6 +19,8 @@ class CreateNotecomsTable extends Migration {
 			$table->foreign('note_id')->references('id')->on('notes');
 			$table->integer('collaborator_id')->unsigned();
 			$table->foreign('collaborator_id')->references('id')->on('users');
+			$table->string('collaborator_name', 100);
+			$table->string('collaborator_email', 100);
 			$table->timestamps();
 		});
 	}

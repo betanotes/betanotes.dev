@@ -118,6 +118,10 @@ public function __construct()
 		public function destroy($id)
 		{
 			$meetuptodelete = Meetup::find($id);
+			if(Auth::user()->id != $meetuptodelete->admin_id) {
+				Session::flash('errorMessage', 'You are not authorized to delete this Social Study!');
+				return Redirect::action('MeetupsController@index');
+			}
 			$meetupcomments = DB::table('meetcoms')->where('meetup_id', $id);
 			$meetupattendees = DB::table('attendees')->where('meetup_id', $id);
 			$meetupcomments->delete();
@@ -161,6 +165,11 @@ public function __construct()
 		public function deletecomment($id)
 		{
 			$commenttodelete = Meetcom::find($id);
+			$meetup = Meetup::find($commenttodelete->meetup_id);
+			if(Auth::user()->id != $commenttodelete->attendee_id || Auth::user()->id != $meetup->admin_id) {
+				Session::flash('errorMessage', 'You are not authorized to delete this comment!');
+				return Redirect::action('MeetupsController@showmeetup', array($meetup->id));
+			}
 			$meetup = $commenttodelete->meetup_id;
 			$commenttodelete->delete();
 			Session::flash('successMessage', 'Comment successfully deleted');
@@ -172,6 +181,11 @@ public function __construct()
 		{
 			$comment = Meetcom::find($id);
 			$meetup = Meetup::find($comment->meetup_id);
+
+			if(Auth::user()->id != $comment->attendee_id || Auth::user()->id != $meetup->admin_id) {
+				Session::flash('errorMessage', 'You are not authorized to edit this comment!');
+				return Redirect::action('MeetupsController@showmeetup', array($meetup->id));
+			}
 				return View::make('/meetups/editcomment')->with('meetup', $meetup)->with('comment', $comment);
 			
 		}

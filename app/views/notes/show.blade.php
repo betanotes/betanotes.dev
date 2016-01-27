@@ -17,15 +17,16 @@
                 </ul>
                 <div class="row">
                     <div class="col-xs-12 sheetcolbtns">
-                        <a class="btn btn-edit" role="button" href="{{{ action('NotesController@edit', $note->id) }}}">Edit</a>
-                        {{ Form::model($note, array('action' => array('NotesController@destroy', $note->id), 'method' => 'DELETE', 'class' => 'deleteform')) }}
-                            <button class="btn btn-danger deletebtn" type="submit">Delete</button>
-                        {{ Form::close() }}
+                        @if(Auth::user()->id == $note->user_id)
+                            <a class="btn btn-edit" role="button" href="{{{ action('NotesController@edit', $note->id) }}}">Edit</a>
+                            {{ Form::model($note, array('action' => array('NotesController@destroy', $note->id), 'method' => 'DELETE', 'class' => 'deleteform')) }}
+                                <button class="btn btn-danger deletebtn" type="submit">Delete</button>
+                            {{ Form::close() }}
+                        @endif
                     </div>
                     
                     <div class="col-xs-12 sheetcolbtns">
-                        <a class="btn btn-back" role="button" href="{{{ action('NotesController@index') }}}">Back</a>
-                        <a class="btn btn-success" href="{{{action('CollaborationController@showinvitenote', array($note->id))}}}">Invite</a>  
+                        <a class="btn btn-back" role="button" href="{{{ action('NotesController@index') }}}">Back</a> 
                     </div>
 
                     <h4>Votes:
@@ -40,12 +41,6 @@
                     data-note-id="{{ $note->id }}"
                     data-vote="0"><span class="glyphicon glyphicon-triangle-bottom arrowBig" aria-hidden="true"></span></button>
 
-                    <h4>People collaborating on this note:</h4>
-                    @foreach($collaborators as $guest)
-                    <ul>
-                        <li>{{{$guest}}}</li>
-                    </ul>
-                    @endforeach
                 </div>
             </div> <!-- end col-md-4 -->
 
@@ -57,7 +52,7 @@
                 @foreach($comments as $comment)
                 <h5>@if($comment['commenter'] != null){{{$comment['commenter']}}} says: @else {{{$note->user->firstname . ' ' . $note->user->lastname}}} says: @endif</h5>
                 <textarea class="commentarea" type="disabled" disabled rows="7" cols="50">{{{$comment['comment']}}}</textarea>
-                @if((Auth::user()->firstname . Auth::user()->lastname) == $comment['commenter'] || Auth::user() == $note->user)
+                @if((Auth::user()->firstname . ' ' . Auth::user()->lastname) == $comment['commenter'] || Auth::user() == $note->user)
                     <a class="btn btn-edit" href="{{{action('CollaborationController@showeditcommentnote', array($note->id, $comment['id']))}}}">Edit</a>
                 @endif
                 @endforeach
