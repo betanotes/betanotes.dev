@@ -2,51 +2,38 @@
 @section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-md-2 text-center">
+		<div class="col-md-3 text-center">
 			<img class="profilepic" src="{{{$user->image_url}}}">
-		</div>
-		<div class="col-md-10 col-sm-10 col-xs-10">
-			{{-- <h2 class="text-center">Hello, {{{$user->firstname}}}</h2> --}}
+			<div class="aboutMe">
+				<h3>Age: 27{{{ $user->age }}}</h3>
+				<h2>{{{ $user->affiliation }}}</h2>
+				<p> About me section. It can only be 140 characters, so make sure you get the point across! {{{ $user->description }}} </p>
+			</div>
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>your name</th>
-						<th>your email</th>
-						<th>your affiliation</th>
-						<th>edit</th>
-						<th>delete</th>
+						<th>edit or delete profile</th>
+						{{-- <th>delete</th> --}}
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>{{{$user->firstname}}} {{{$user->lastname}}}</td>
-						<td>{{{$user->email}}}</td>
-						<td>{{{$user->affiliation}}}</td>
-						<td><a href="{{{action('UsersController@showedit')}}}"><button class="btn btn-edit">Edit</button></a></td>
-						<td>
-							{{Form::model($user, array('action' => array('UsersController@destroy', $user->id), 'method' => 'DELETE', 'class' => 'deleteform', 'data-user-id' => $user->id)) }}
-							{{Form::close()}}
-							<button class="btn btn-danger deleter" data-id="{{{$user->id}}}" data-name="{{{$user->firstname}}}">Delete</td>
+						<td><a href="{{{action('UsersController@showedit')}}}"><button class="btn btn-edit">Edit</button></a>
+						{{Form::model($user, array('action' => array('UsersController@destroy', $user->id), 'method' => 'DELETE', 'class' => 'deleteform', 'data-user-id' => $user->id)) }}
+						{{Form::close()}}
+						<button class="btn btn-danger deleter" data-id="{{{$user->id}}}" data-name="{{{$user->firstname}}}">Delete</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-	</div>
-	<div class="row aboutMe">
-		<div class="col-md-2 text-center">
-			<h3>27 years old</h3>
-			<p> This section is all about me. It is who I am and where I am from all in 140 characters or less. This is where you show off a bit.</p>
-		</div>
-		<div class="col-md-10 col-sm-10 col-xs-10">
-			{{-- <h2 class="text-center">Hello, {{{$user->firstname}}}</h2> --}}
+
+		<div class="col-md-3 col-sm-3 col-xs-3 text-center">
+			<h3>My Top Notes</h3>
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>date created</th>
+						<th>votes</th>
 						<th>title</th>
-						<th>privacy setting</th>
-						<th>edit</th>
-						<th>delete</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -54,6 +41,37 @@
 				</tbody>
 			</table>
 		</div>
+
+		<div class="col-md-3 col-sm-3 col-xs-3 text-center">
+			<h3>My Top Sheets</h3>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>votes</th>
+						<th>title</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+				</tbody>
+			</table>
+		</div>
+
+		<div class="col-md-3 col-sm-3 col-xs-3 text-center">
+			<h3>My Top Study Groups</h3>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>votes</th>
+						<th>title</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
 	</div>
 </div>
 @stop
