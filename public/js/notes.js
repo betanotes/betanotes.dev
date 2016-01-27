@@ -31,7 +31,7 @@ $(document).ready(function()
 			console.log(data);
 			console.log('Ajax log failed');
 		})
-		$(this).prop('disabled', true);
+		// $(this).prop('disabled', true);
 	});
 
 	$('#voteDown').click(function(){
@@ -51,13 +51,13 @@ $(document).ready(function()
 		        vote: 	 vote
 		    }
 		}).done(function(data){
-			var downs = parseInt($("#voteDownCounts").text()) + 1;
+			var downs = parseInt($("#voteDownCounts").text()) -1;
 			$('#voteDownCounts').text(downs);
 
 		}).fail(function(data){
 			console.log(data);
 			console.log('Ajax log failed');
 		})
-		$(this).prop('disabled', true);
+		// $(this).prop('disabled', true);
 	});	
 });
