@@ -83,7 +83,7 @@ public function __construct()
 			);
 
 			if(Auth::attempt($userdata)) {
-				Session::flash('successMessage', 'Welome back!');
+				Session::flash('successMessage', 'Hello, ' . Auth::user()->firstname . "!");
 				return Redirect::action('HomeController@dashboard');
 			} else {
 				// return Redirect::back();
