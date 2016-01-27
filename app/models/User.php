@@ -31,6 +31,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'affiliation' => 'required',
 	);
 
+	public static $descriptionrules = array(
+		'description' => 'required|between:1,140',
+	);
+	
 	public function notes()
 	{
 		return $this->hasMany('Note');

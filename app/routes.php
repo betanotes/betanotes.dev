@@ -63,6 +63,10 @@ Route::post('/signup', 'UsersController@store');
 
 Route::get('/logout', 'UsersController@logout');
 
+Route::get('/description', 'UsersController@showdescription');
+
+Route::post('/description', 'UsersController@postdescription');
+
 Route::get('/users/edit', 'UsersController@showedit');
 
 Route::post('/users/edit', 'UsersController@update');

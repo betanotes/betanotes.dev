@@ -33,6 +33,7 @@ public function __construct()
 			$newuser = new User();
 			$newuser->firstname = Input::get('firstname');
 			$newuser->lastname = Input::get('lastname');
+			$newuser->age = Input::get('age');
 			$newuser->password = Hash::make(Input::get('password'));
 			$newuser->email = Input::get('email');
 			$newuser->affiliation = Input::get('affiliation');
@@ -115,6 +116,7 @@ public function __construct()
 				$usertoupdate = Auth::user();
 				$usertoupdate->firstname = (Input::has('firstname') ? Input::get('firstname') : Auth::user()->firstname);
 				$usertoupdate->lastname = (Input::has('lastname') ? Input::get('lastname') : Auth::user()->lastname);
+				$usertoupdate->age = (Input::has('age') ? Input::get('age') : Auth::user()->age);
 				$usertoupdate->affiliation = (Input::has('affiliation') ? Input::get('affiliation') : Auth::user()->affiliation);
 				$usertoupdate->password = (Input::has('password') ? Input::get('password') : Auth::user()->password);
 
@@ -145,6 +147,30 @@ public function __construct()
 						return Redirect::back()->withInput();
 					}
 				}
+		}
+
+// The Description
+
+	// Shows the form
+		public function showdescription()
+		{
+			return View::make('/users/description');
+		}
+
+	// Stores the description
+		public function postdescription()
+		{
+			$validator = Validator::make(Input::all(), User::$descriptionrules);
+			if($validator->fails()) {
+				Session::flash('errorMessage', 'Your description must be between 1 and 140 characters');
+				return Redirect::back()->withInput();
+			} else {
+				$user = User::find(Auth::user()->id);
+				$user->description = Input::get('description');
+				$user->save();
+				Session::flash('successMessage', 'Description successfully posted');
+				return Redirect::action('HomeController@dashboard');
+			}
 		}
 
 // Delete Profile

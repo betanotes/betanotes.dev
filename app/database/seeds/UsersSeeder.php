@@ -6,10 +6,11 @@ class UsersSeeder extends Seeder
 		$user = new User();
 		$user->firstname = "Stick";
 		$user->lastname = "Figureman";
+		$user->age = "20";
+		$user->description = "I am a stick figure. That is all there is to say.";
 		$user->email = "stick@stickman.com";
 		$user->password = Hash::make("iamastick");
 		$user->affiliation = "2 Dimensional University";
-		$user->break_type = "Hanging out";
 		$user->image_url = "/img/stick.png";
 		$user->save();
 	}

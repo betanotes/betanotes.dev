@@ -24,6 +24,10 @@
 					<input type="text" class="form-control" name="lastname">
 				</div>
 				<div class="form-group">
+					<label class="control-label" for "age">Age</label>
+					<input type="text" class="form-control" name="age">
+				</div>
+				<div class="form-group">
 					<label class="control-label" for "email">Email</label>
 					<input type="text" class="form-control" name="email">
 				</div>
