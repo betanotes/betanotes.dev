@@ -12,7 +12,7 @@ public function __construct()
 		public function showinvitenote($id)
 		{
 			$note = Note::find($id);
-				if(Auth::user()->id == $note->id) {
+				if(Auth::user()->id == $note->user_id) {
 					return View::make('/collaboration/invitenote')->with('note', $note);
 				} else {
 					Session::flash('errorMessage', 'You are not authorized to invite people to collaborate on this note');

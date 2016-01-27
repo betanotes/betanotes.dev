@@ -155,15 +155,40 @@ public function __construct()
 			$id = Auth::user()->id;
 			$usertodelete = User::find($id);
 			$usernotes = DB::table('notes')->where('user_id', $id);
+			$allnotes = Note::all();
 			$allsheets = Sheet::all();
 			$allmeetups = Meetup::all();
 			$usermeetups = DB::table('meetups')->where('admin_id', $id);
 			$userattending = DB::table('attendees')->where('attendee_id', $id);
 			$usercomments = DB::table('meetcoms')->where('attendee_id', $id);
+			$usernotecomments = DB::table('notecoms')->where('collaborator_id', $id);
+			$usernotecollab = DB::table('notecollaborators')->where('collaborator_id', $id);
+			$usersheetcollab = DB::table('sheetcollaborators')->where('collaborator_id', $id);
+			$usersheetcomments = DB::table('sheetcoms')->where('collaborator_id', $id);
 			$sheetids = [];
 			$meetupids = [];
+			$noteids = [];
 			$usercomments->delete();
+			$usernotecomments->delete();
+			$usersheetcomments->delete();
+			$usernotecollab->delete();
+			$usersheetcollab->delete();
 
+			// Your collaborations on other peoples stuff
+			// Others collaborations on your stuff
+
+			foreach($allnotes as $note) {
+				if($note->user_id == $id) {
+					array_push($noteids, $note->id);
+				}
+			}
+
+			foreach($noteids as $notes) {
+				$othernotes = DB::table('notecollaborators')->where('note_id', $notes);
+				$othernotecom = DB::table('notecoms')->where('note_id', $note);
+				$othernotes->delete();
+				$othernotecom->delete();
+			}
 			foreach($allsheets as $sheet) {
 				if($sheet->user_id == $id) {
 					array_push($sheetids, $sheet->id);
@@ -172,7 +197,11 @@ public function __construct()
 
 			foreach($sheetids as $sheets) {
 				$userline = DB::table('lines')->where('sheet_id', $sheets);
+				$othersheet = DB::table('sheetcollaborators')->where('sheet_id', $sheets);
+				$othersheetcom = DB::table('sheetcoms')->where('sheet_id', $sheets);
 				$userline->delete();
+				$othersheet->delete();
+				$othersheetcom->delete();
 			}	
 
 			foreach($allmeetups as $meetup) {
