@@ -70,7 +70,7 @@ dd {
     text-align: center;
 }
 .maintop h1 {
-    margin-top: 102px;
+    margin-top: 127px;
     color: #3F547F;
 }
 .maintop h3 {
@@ -80,7 +80,7 @@ dd {
 .mainnotey {
     height: 425px;
     width: 370px;
-    margin: 25px auto;
+    margin: 50px auto 50px;
     background: url(/img/notey_big.gif);
     background-size: contain;
     background-repeat: no-repeat;
@@ -88,14 +88,14 @@ dd {
     position: relative;
 }
 .noteyspan {
-    font-size: 25px;
+    font-size: 22px;
     font-style: italic;
     height: 117px;
     width: 209px;
     position: absolute;
     top: 30px;
     left: 149px;
-    padding: 18px 10px;
+    padding: 11px 10px;
 }
 .mainmiddle {
     background-color: #fff;
@@ -144,6 +144,7 @@ dd {
 .mainlast h3 {
     color: #f68735;
     font-size: 50px;
+    margin-top: 45px;
 }
 .mainlast h1 {
     color: #fff;

@@ -21,25 +21,22 @@
             <div class="col-md-4">
                 <div class="middle1">
                     <img src="/img/vote.gif" class="img-responsive img-inline" alt="Responsive image">
-                    <h3>Vote Up Your Favorites!</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <h3>Vote Up Favorites!</h3>
+                    <p>Everyone can vote on their favorite study notes, study sheets, and social study groups. Vote them up or vote them down, tell the world which notes are best.</p>
                 </div>
             </div> <!-- end col-md-4 -->
             <div class="col-md-4">
                 <div class="middle2">
                     <img src="/img/share.gif" class="img-responsive img-inline" alt="Responsive image">
-                    <h3>Share Your Notes with Friends!</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <h3>Share Notes with Friends!</h3>
+                    <p>Collaborate with your friends by adding comments to their posts. Add information, insights or support. Just like the content and votes, It's all up to you.</p>
                 </div>
             </div> <!-- end col-md-4 -->
             <div class="col-md-4">
                 <div class="middle3">
                     <img src="/img/meet.gif" class="img-responsive img-inline" alt="Responsive image">
                     <h3>Form Study Groups!</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p>Set up a time and location for some social studying, in person! Invite your friends, take some notes and create some study sheets. Be social, go study!</p>
                 </div>
             </div> <!-- end col-md-4 -->
         </div> <!-- end row mainmiddle -->
@@ -79,7 +76,5 @@
         </div> <!-- end row mainlast -->
 
     </div> <!-- end container-fluid -->
-
-    
 
 @stop

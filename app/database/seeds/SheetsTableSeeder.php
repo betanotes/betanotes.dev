@@ -35,5 +35,17 @@ class SheetsTableSeeder extends Seeder {
         $sheet5->public_or_private = 'public';
         $sheet5->user_id = $user->id;
         $sheet5->save();
+
+        $sheet6 = new Sheet();
+        $sheet6->title = 'Biology Vocab List for Big Test';
+        $sheet6->public_or_private = 'public';
+        $sheet6->user_id = $user->id;
+        $sheet6->save();
+
+        $sheet7 = new Sheet();
+        $sheet7->title = 'Ancient Rome Study Sheet';
+        $sheet7->public_or_private = 'public';
+        $sheet7->user_id = $user->id;
+        $sheet7->save();
     }
 }

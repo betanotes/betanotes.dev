@@ -153,5 +153,95 @@ class LinesTableSeeder extends Seeder {
         $line25->response = 'tired';
         $line25->sheet_id = 5;
         $line25->save();
+
+        $line26 = new Line();
+        $line26->clue = 'Chromosome'; 
+        $line26->response = 'Part of the cellular structure in which genes are located';
+        $line26->sheet_id = 6;
+        $line26->save();
+
+        $line27 = new Line();
+        $line27->clue = 'Recessive Trait'; 
+        $line27->response = 'When two alleles of the same gene expression are present. Since there is no dominant trait involved, there is nothing to mask the expression of the recessive trait';
+        $line27->sheet_id = 6;
+        $line27->save();
+
+        $line28 = new Line();
+        $line28->clue = 'Chlorophyll'; 
+        $line28->response = 'Chlorophyll is the green pigment found in various plants, responsible for trapping light and “feeding” the plant during photosynthesis';
+        $line28->sheet_id = 6;
+        $line28->save();
+
+        $line29 = new Line();
+        $line29->clue = 'Photosynthesis'; 
+        $line29->response = 'The process of plants converting light into energy';
+        $line29->sheet_id = 6;
+        $line29->save();
+
+        $line30 = new Line();
+        $line30->clue = 'Hybridization'; 
+        $line30->response = 'Breeding techique that involves crossing dissimilar individuals to bring together the best traits of both organisms';
+        $line30->sheet_id = 6;
+        $line30->save();
+
+        $line31 = new Line();
+        $line31->clue = 'Recombinant DNA'; 
+        $line31->response = 'DNA produced by combining DNA from different sources';
+        $line31->sheet_id = 6;
+        $line31->save();
+
+        $line32 = new Line();
+        $line32->clue = 'Genetic marker'; 
+        $line32->response = 'Gene that makes it possible to distinguish bacteria that carry a plasmid with foreign DNA from those that don\'t';
+        $line32->sheet_id = 6;
+        $line32->save();
+
+        $line33 = new Line();
+        $line33->clue = 'Romulus & Remus'; 
+        $line33->response = 'founders of Rome who supposedly were raised by a wolf; Romulus would go on to found the Romulan Empire in Star Trek';
+        $line33->sheet_id = 7;
+        $line33->save();
+
+        $line34 = new Line();
+        $line34->clue = 'Gauls'; 
+        $line34->response = 'people that lived in the central part of Europe that were conquered by Julius Caesar';
+        $line34->sheet_id = 7;
+        $line34->save();
+
+        $line35 = new Line();
+        $line35->clue = 'Coliseum'; 
+        $line35->response = 'a large arena in Rome where gladiator contests and other games and sporting events were held, supposedly even mock naval battles';
+        $line35->sheet_id = 7;
+        $line35->save();
+
+        $line36 = new Line();
+        $line36->clue = 'Pax Romana'; 
+        $line36->response = 'a 200-year period of peace and stability established and maintained by the Roman Empire';
+        $line36->sheet_id = 7;
+        $line36->save();
+
+        $line37 = new Line();
+        $line37->clue = 'Byzantine Empire'; 
+        $line37->response = 'the name for the eastern Roman Empire, located at the crossroads of Europe and Asia; it lasted from about 500 to 1453 C.E.';
+        $line37->sheet_id = 7;
+        $line37->save();
+
+        $line38 = new Line();
+        $line38->clue = 'Julius Caesar'; 
+        $line38->response = 'a Roman general who ended the Roman Republic when he seized power and became dictator for life; legacy continues in salad form';
+        $line38->sheet_id = 7;
+        $line38->save();
+
+        $line39 = new Line();
+        $line39->clue = 'gladiator'; 
+        $line39->response = 'A man trained to fight against other men of wild animals in an arena as a spectator sport, this was a practice in ancient Rome; a great Russell Crowe movie';
+        $line39->sheet_id = 7;
+        $line39->save();
+
+        $line40 = new Line();
+        $line40->clue = 'barbarian'; 
+        $line40->response = 'A member of a community other than one of the great civilizations, the great civilizations were Greek, Roman, or Christian; their greatest ambassador was Conan';
+        $line40->sheet_id = 7;
+        $line40->save();
     }
 }
