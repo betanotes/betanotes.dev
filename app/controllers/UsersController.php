@@ -33,9 +33,9 @@ public function __construct()
 			$newuser = new User();
 			$newuser->firstname = Input::get('firstname');
 			$newuser->lastname = Input::get('lastname');
+			$newuser->age = Input::get('age');
 			$newuser->password = Hash::make(Input::get('password'));
 			$newuser->email = Input::get('email');
-			$newuser->break_type = Input::get('break_type');
 			$newuser->affiliation = Input::get('affiliation');
 
 		if(Input::file('image_url') != null) {
@@ -83,7 +83,7 @@ public function __construct()
 			);
 
 			if(Auth::attempt($userdata)) {
-				Session::flash('successMessage', 'Welome back!');
+				Session::flash('successMessage', 'Hello, ' . Auth::user()->firstname . "!");
 				return Redirect::action('HomeController@dashboard');
 			} else {
 				// return Redirect::back();
@@ -116,7 +116,7 @@ public function __construct()
 				$usertoupdate = Auth::user();
 				$usertoupdate->firstname = (Input::has('firstname') ? Input::get('firstname') : Auth::user()->firstname);
 				$usertoupdate->lastname = (Input::has('lastname') ? Input::get('lastname') : Auth::user()->lastname);
-				$usertoupdate->break_type = (Input::has('break_type') ? Input::get('break_type') : Auth::user()->break_type);
+				$usertoupdate->age = (Input::has('age') ? Input::get('age') : Auth::user()->age);
 				$usertoupdate->affiliation = (Input::has('affiliation') ? Input::get('affiliation') : Auth::user()->affiliation);
 				$usertoupdate->password = (Input::has('password') ? Input::get('password') : Auth::user()->password);
 
@@ -149,37 +149,95 @@ public function __construct()
 				}
 		}
 
+// The Description
+
+	// Shows the form
+		public function showdescription()
+		{
+			return View::make('/users/description');
+		}
+
+	// Stores the description
+		public function postdescription()
+		{
+			$validator = Validator::make(Input::all(), User::$descriptionrules);
+			if($validator->fails()) {
+				Session::flash('errorMessage', 'Your description must be between 1 and 140 characters');
+				return Redirect::back()->withInput();
+			} else {
+				$user = User::find(Auth::user()->id);
+				$user->description = Input::get('description');
+				$user->save();
+				Session::flash('successMessage', 'Description successfully posted');
+				return Redirect::action('HomeController@dashboard');
+			}
+		}
+
 // Delete Profile
 		public function destroy()
 		{
 			$id = Auth::user()->id;
 			$usertodelete = User::find($id);
 			$usernotes = DB::table('notes')->where('user_id', $id);
+			$allnotes = Note::all();
 			$allsheets = Sheet::all();
 			$allmeetups = Meetup::all();
 			$usermeetups = DB::table('meetups')->where('admin_id', $id);
 			$userattending = DB::table('attendees')->where('attendee_id', $id);
 			$usercomments = DB::table('meetcoms')->where('attendee_id', $id);
+			$usernotecomments = DB::table('notecoms')->where('collaborator_id', $id);
+			$usernotecollab = DB::table('notecollaborators')->where('collaborator_id', $id);
+			$usersheetcollab = DB::table('sheetcollaborators')->where('collaborator_id', $id);
+			$usersheetcomments = DB::table('sheetcoms')->where('collaborator_id', $id);
 			$sheetids = [];
 			$meetupids = [];
+			$noteids = [];
 			$usercomments->delete();
+			$usernotecomments->delete();
+			$usersheetcomments->delete();
+			$usernotecollab->delete();
+			$usersheetcollab->delete();
 
+		// Collects all notes that the user has made
+			foreach($allnotes as $note) {
+				if($note->user_id == $id) {
+					array_push($noteids, $note->id);
+				}
+			}
+
+		// Deletes all collaborators from any notes the user has made
+			foreach($noteids as $notes) {
+				$othernotes = DB::table('notecollaborators')->where('note_id', $notes);
+				$othernotecom = DB::table('notecoms')->where('note_id', $note);
+				$othernotes->delete();
+				$othernotecom->delete();
+			}
+
+		// Collects all sheets that the user has made
 			foreach($allsheets as $sheet) {
 				if($sheet->user_id == $id) {
 					array_push($sheetids, $sheet->id);
 				}
 			}
 
+		// deletes all lines and collaboration from others in every sheet the user has made
 			foreach($sheetids as $sheets) {
 				$userline = DB::table('lines')->where('sheet_id', $sheets);
+				$othersheet = DB::table('sheetcollaborators')->where('sheet_id', $sheets);
+				$othersheetcom = DB::table('sheetcoms')->where('sheet_id', $sheets);
 				$userline->delete();
+				$othersheet->delete();
+				$othersheetcom->delete();
 			}	
 
+		// Collects all meetups that the user is the admin of
 			foreach($allmeetups as $meetup) {
 				if($meetup->admin_id == $id) {
 					array_push($meetupids, $meetup->id);
 				}
 			}
+
+		// Removes all attendees from all meetups that the user is a part of.
 			foreach($meetupids as $meetups) {
 				$peopleattending = DB::table('attendees')->where('meetup_id', $meetups);
 				$peopleattending->delete();

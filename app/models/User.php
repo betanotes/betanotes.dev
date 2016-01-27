@@ -22,7 +22,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'email' => 'required|email',
 		'password' => 'required',
 		'affiliation' => 'required',
-		'break_type' => 'required',
 	);
 
 	public static $editrules = array(
@@ -30,9 +29,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'lastname' => 'required',
 		'email' => 'required|email',
 		'affiliation' => 'required',
-		'break_type' => 'required',
 	);
 
+	public static $descriptionrules = array(
+		'description' => 'required|between:1,140',
+	);
+	
 	public function notes()
 	{
 		return $this->hasMany('Note');

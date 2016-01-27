@@ -24,16 +24,16 @@
 					<input type="text" class="form-control" name="lastname">
 				</div>
 				<div class="form-group">
+					<label class="control-label" for "age">Age</label>
+					<input type="text" class="form-control" name="age">
+				</div>
+				<div class="form-group">
 					<label class="control-label" for "email">Email</label>
 					<input type="text" class="form-control" name="email">
 				</div>
 				<div class="form-group">
 					<label class="control-label" for "affiliation">Affiliation (ex. Jay High School, SampleCorp)</label>
 					<input type="text" class="form-control" name="affiliation">
-				</div>
-				<div class="form-group">
-					<label class="control-label" for "break_type">What do you like to do when you take a break?</label>
-					<input type="text" class="form-control" name="break_type">
 				</div>
 				<div class="form-group">
 					<label class="control-label" for "password">Password</label>
