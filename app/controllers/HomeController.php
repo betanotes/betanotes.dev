@@ -29,6 +29,19 @@ class HomeController extends BaseController {
 	public function dashboard()
 	{
 		$user = Auth::user();
+
+		$publicnotes = Note::where('user_id', '=', Auth::user()->id)->where('public_or_private', '=', 'public')->get();
+		$privatenotes = Note::where('user_id', '=', Auth::user()->id)->where('public_or_private', '=', 'private')->get();
+
+		$publicsheets = Sheet::where('user_id', '=', Auth::user()->id)->where('public_or_private', '=', 'public')->get();
+		$privatesheets = Sheet::where('user_id', '=', Auth::user()->id)->where('public_or_private', '=', 'private')->get();
+
+		$publicmeetups = Meetup::where('admin_id', '=', Auth::user()->id)->get();
+
+		$yournotes = Note::where('user_id', '=', Auth::user()->id)->take(5)->get();
+		$yoursheets = Sheet::where('user_id', '=', Auth::user()->id)->take(5)->get();
+		$yourmeetups = Meetup::where('admin_id', '=', Auth::user()->id)->take(5)->get();
+
 		$userlists = DB::table('sheets')->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
 		$usernotes = DB::table('notes')->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
 		$alladmin = DB::table('meetups')->where('admin_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
@@ -42,7 +55,7 @@ class HomeController extends BaseController {
 		} else {
 			array_push($meetupsyouarepartof, 'You are not attending any meetups, or you are admin of all of them!');
 		}
-		return View::make('/users/dashboard')->with('user', $user)->with('userlists', $userlists)->with('usernotes', $usernotes)->with('alladmin', $alladmin)->with('meetupsyouarepartof', $meetupsyouarepartof);
+		return View::make('/users/dashboard')->with('user', $user)->with('userlists', $userlists)->with('usernotes', $usernotes)->with('alladmin', $alladmin)->with('meetupsyouarepartof', $meetupsyouarepartof)->with('publicnotes', $publicnotes)->with('privatenotes', $privatenotes)->with('publicsheets', $publicsheets)->with('privatesheets', $privatesheets)->with('publicmeetups', $publicmeetups)->with('yournotes', $yournotes)->with('yoursheets', $yoursheets)->with('yourmeetups', $yourmeetups);
 	}
 
 	public function navbar() 

@@ -5,3 +5,6 @@
 .arrowBig{
 	font-size: 20px;
 }
+.numberDivider {
+	border-right: 2px solid black;
+}
