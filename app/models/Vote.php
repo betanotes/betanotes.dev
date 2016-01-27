@@ -6,6 +6,8 @@ Class Vote extends Eloquent{
 
 	protected $table = 'votes';
 
+	protected $fillable = array('user_id', 'sheet_id', 'note_id', 'meetup_id');
+
 	public function user()
 	{
 	    return $this->belongsTo('User');

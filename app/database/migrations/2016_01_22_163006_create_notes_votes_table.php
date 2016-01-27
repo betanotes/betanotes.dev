@@ -25,6 +25,10 @@ class CreateNotesVotesTable extends Migration {
 			$table->foreign('sheet_id')->references('id')->on('sheets');
 			$table->integer('meetup_id')->unsigned()->nullable();
 			$table->foreign('meetup_id')->references('id')->on('meetups');
+
+			$table->unique(['user_id', 'note_id']);
+			$table->unique(['user_id', 'sheet_id']);
+			$table->unique(['user_id', 'meetup_id']);
 		});
 	}
 
