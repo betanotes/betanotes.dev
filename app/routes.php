@@ -23,10 +23,6 @@ Route::get('/navbar', 'HomeController@navbar');
 
 Route::resource('sheets', 'SheetsController');
 
-Route::get('/sheets/{id}/invite', 'CollaborationController@showinvitesheet');
-
-Route::post('/sheets/{id}/invite', 'CollaborationController@invitesheet');
-
 Route::get('/sheets/{id}/collaborate', 'CollaborationController@showcommentsheet');
 
 Route::post('/sheets/{id}/collaborate', 'CollaborationController@commentsheet');
@@ -38,10 +34,6 @@ Route::post('/sheets/{id}/collaborate/{commentid}/edit', 'CollaborationControlle
 // Notes
 
 Route::resource('notes', 'NotesController');
-
-Route::get('/notes/{id}/invite', 'CollaborationController@showinvitenote');
-
-Route::post('/notes/{id}/invite', 'CollaborationController@invitenote');
 
 Route::get('/notes/{id}/collaborate', 'CollaborationController@showcommentnote');
 
@@ -62,10 +54,6 @@ Route::get('/signup', 'UsersController@showsignup');
 Route::post('/signup', 'UsersController@store');
 
 Route::get('/logout', 'UsersController@logout');
-
-Route::get('/description', 'UsersController@showdescription');
-
-Route::post('/description', 'UsersController@postdescription');
 
 Route::get('/users/edit', 'UsersController@showedit');
 

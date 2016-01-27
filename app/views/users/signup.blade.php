@@ -36,6 +36,10 @@
 					<input type="text" class="form-control" name="affiliation">
 				</div>
 				<div class="form-group">
+					<label class="control-label" for "description">Description (140 characters or less)</label>
+					<textarea class="form-control" type="text" name="description"></textarea>
+				</div>
+				<div class="form-group">
 					<label class="control-label" for "password">Password</label>
 					<input type="password" class="form-control" name="password">
 				</div>
