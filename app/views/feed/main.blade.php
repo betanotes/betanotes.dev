@@ -13,7 +13,7 @@
             <div class="col-md-10">
                 <h2 class="text-center">The Public Feed</h2>
 
-                <table class="table table-hover table-responsive" name="mytable" id="mytable">
+                <table class="table table-striped table-responsive mytable" name="mytable">
                     <thead>
                         <tr>
                             <th>votes</th>

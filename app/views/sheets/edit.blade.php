@@ -41,21 +41,19 @@
                     <div class="row lines">
                         <?php $clueTitle = 'Clue'; ?>
                         <?php $responseTitle = 'Response'; ?>
-                        <?php $i = 1; ?>
                         @foreach ($clueLines as $key => $value)
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for='clue'>{{{ $clueTitle . $i }}}</label>
+                                    <label for='clue'>{{{ $clueTitle }}}</label>
                                     <input class='form-control' name='cluesArray[]' type='text' value="{{{ $value }}}">
                                 </div> <!-- end form-group -->
                             </div> <!-- end col-xs-6 -->
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for='response'>{{{ $responseTitle . $i }}}</label>
+                                    <label for='response'>{{{ $responseTitle }}}</label>
                                     <input class='form-control' name='responsesArray[]' type='text' value="{{{ $responseLines[$key] }}}">
                                 </div> <!-- end form-group -->
                             </div> <!-- end col-xs-6 -->
-                            <?php $i = $i + 1; ?>
                         @endforeach
                         
                     </div> <!-- end row -->

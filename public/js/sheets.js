@@ -23,13 +23,13 @@ $(document).ready(function() {
     $("#makeline").click(function() {
         var linesHTML = "<div class='col-xs-6'>";
             linesHTML += "<div class='form-group'>";
-            linesHTML += "<label for='clue'>Clue" + i + "</label>";
+            linesHTML += "<label for='clue'>Clue</label>";
             linesHTML += "<input class='form-control' name='cluesArray[]' type='text'>";
             linesHTML += "</div>";
             linesHTML += "</div>";
             linesHTML += "<div class='col-xs-6'>";
             linesHTML += "<div class='form-group'>";
-            linesHTML += "<label for='response'>Response" + i + "</label>";
+            linesHTML += "<label for='response'>Response</label>";
             linesHTML += "<input class='form-control' name='responsesArray[]' type='text'>";
             linesHTML += "</div>";
             linesHTML += "</div>";
@@ -49,7 +49,7 @@ $(document).ready(function() {
 
     function sortTable() {
 
-        var rows = $('#mytable tbody  tr').get();
+        var rows = $('.mytable tbody  tr').get();
         rows.sort(function(a, b) {
 
             var A = $(a).children('td').eq(0).text().toUpperCase();
@@ -69,7 +69,7 @@ $(document).ready(function() {
         });
 
         $.each(rows, function(index, row) {
-            $('#mytable').children('tbody').append(row);
+            $('.mytable').children('tbody').append(row);
         });
 
     }

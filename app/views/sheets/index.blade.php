@@ -13,7 +13,7 @@
             <div class="col-md-9">
                 <h2 class="text-center">Your Study Sheets</h2>
 
-                <table class="table table-hover">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>votes</th>
