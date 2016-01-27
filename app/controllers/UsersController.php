@@ -174,27 +174,29 @@ public function __construct()
 			$usernotecollab->delete();
 			$usersheetcollab->delete();
 
-			// Your collaborations on other peoples stuff
-			// Others collaborations on your stuff
-
+		// Collects all notes that the user has made
 			foreach($allnotes as $note) {
 				if($note->user_id == $id) {
 					array_push($noteids, $note->id);
 				}
 			}
 
+		// Deletes all collaborators from any notes the user has made
 			foreach($noteids as $notes) {
 				$othernotes = DB::table('notecollaborators')->where('note_id', $notes);
 				$othernotecom = DB::table('notecoms')->where('note_id', $note);
 				$othernotes->delete();
 				$othernotecom->delete();
 			}
+
+		// Collects all sheets that the user has made
 			foreach($allsheets as $sheet) {
 				if($sheet->user_id == $id) {
 					array_push($sheetids, $sheet->id);
 				}
 			}
 
+		// deletes all lines and collaboration from others in every sheet the user has made
 			foreach($sheetids as $sheets) {
 				$userline = DB::table('lines')->where('sheet_id', $sheets);
 				$othersheet = DB::table('sheetcollaborators')->where('sheet_id', $sheets);
@@ -204,11 +206,14 @@ public function __construct()
 				$othersheetcom->delete();
 			}	
 
+		// Collects all meetups that the user is the admin of
 			foreach($allmeetups as $meetup) {
 				if($meetup->admin_id == $id) {
 					array_push($meetupids, $meetup->id);
 				}
 			}
+
+		// Removes all attendees from all meetups that the user is a part of.
 			foreach($meetupids as $meetups) {
 				$peopleattending = DB::table('attendees')->where('meetup_id', $meetups);
 				$peopleattending->delete();
