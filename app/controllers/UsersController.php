@@ -5,7 +5,7 @@ class UsersController extends BaseController {
 public function __construct()
 {
 	parent::__construct();
-	$this->beforeFilter('auth', array('except' =>array('showlogin', 'showsignup')));
+	$this->beforeFilter('auth', array('except' =>array('showlogin', 'dologin', 'showsignup', 'store')));
 }
 // User Profile (no longer being used)
 
@@ -71,8 +71,7 @@ public function __construct()
 	// Shows the log in form
 		public function showlogin()
 		{
-				Session::flash('errorMessage', 'You are already logged in');
-				return Redirect::action('UsersController@index');
+				return View::make('/users/login');
 		}
 
 	// Checks against the database
@@ -85,9 +84,9 @@ public function __construct()
 
 			if(Auth::attempt($userdata)) {
 				Session::flash('successMessage', 'Welome back!');
-				return Redirect::intended('/dashboard');
+				return Redirect::action('HomeController@dashboard');
 			} else {
-				return Redirect::back();
+				// return Redirect::back();
 			}
 		}
 
