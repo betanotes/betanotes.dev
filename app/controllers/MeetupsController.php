@@ -12,7 +12,22 @@ public function __construct()
 		public function index()
 		{
 				$allmeetups = Meetup::with('attendees')->where('admin_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
-				return View::make('/meetups/index')->with('allmeetups', $allmeetups);
+				$allattending = DB::table('attendees')->where('attendee_id', Auth::user()->id)->get();
+				$allgoing = [];
+				if($allattending != null) {
+					foreach($allattending as $attending) {
+						$meetup = Meetup::find($attending->meetup_id);
+						$meetupinfo = array(
+							'id' => $meetup->id,
+							'title' => $meetup->title,
+							'location' => $meetup->location,
+							'date' => $meetup->date,
+							'time' => $meetup->time,
+						);
+						array_push($allgoing, $meetupinfo);
+					}
+				}
+				return View::make('/meetups/index')->with('allmeetups', $allmeetups)->with('allgoing', $allgoing);
 		}
 
 // Meetup Creation
