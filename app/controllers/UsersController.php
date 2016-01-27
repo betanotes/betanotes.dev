@@ -54,8 +54,17 @@ public function __construct()
 			if($checkdbforemail == null) {
 				if(Input::get('password') == Input::get('confirm')) {
 					$newuser->save();
-					Session::flash('successMessage', 'Your information has been saved');
-					return Redirect::action('UsersController@showlogin');
+					$userdata = array(
+						'email' => Input::get('email'),
+						'password' => Input::get('password')
+					);
+					if(Auth::attempt($userdata)) {	
+						Session::flash('successMessage', 'Your information has been saved');
+						return Redirect::action('HomeController@dashboard');
+					} else {
+						Session::flash('errorMessage', 'There was an error logging you in');
+						return Redirect::action('UsersController@showlogin');
+					}
 				} else {
 					Session::flash('errorMessage', 'Your passwords do not match!');
 					return Redirect::back()->withInput();
