@@ -51,7 +51,7 @@
 					<li>{{Form::model($comment, array('action' => array('MeetupsController@deletecomment', $comment['id']), 'method' => 'DELETE', 'class' => 'deleteform', 'data-comment-id' => $comment['id']))}}
 						<button class="btn btn-danger" data-id="{{{$comment['id']}}}" class="deleter" data-author="{{{$comment['commenter']}}}">Delete</button>
 					{{Form::close()}}</li>
-						@if(Auth::user()->id == $comment['commenterid'])
+						@if(Auth::user()->id == $comment['commenterid'] || Auth::user()->id == $meetup->admin_id)
 							<a href="{{{action('MeetupsController@showeditcomment', array($comment['id']))}}}"><button class="btn btn-edit">Edit</button></a>
 						@endif
 					@endif
