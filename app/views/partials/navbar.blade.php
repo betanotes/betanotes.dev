@@ -9,11 +9,11 @@
                     </a>
                 </div> {{-- end col-md-3 --}}
                 <div class="col-md-4 paddingtop  hidden-sm hidden-xs">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" method="GET" action="{{{ action('FeedController@showMain') }}}">
                         <div class="col-xs-8">
-                            <input type="text" class="form-control" name="search">
+                            <input type="text" id="search" class="form-control" name="search">
                         </div>
-                        <button class="btn btn-standard">Search</button>
+                        <button class="btn btn-standard" type="submit">Search</button>
                     </form>
                 </div> {{-- end col-md-4 --}}
                 <div class="col-md-5 paddingtop  hidden-sm hidden-xs">
