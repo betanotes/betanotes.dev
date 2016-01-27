@@ -31,15 +31,9 @@
                             <span id="voteUpCounts"> {{ $sheet->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $sheet->voteDownCount() }}</span>
                         </h4>
 
-                        <button  id="voteUp" class="btn btn-standard"
-                       
-                        data-sheet-id="{{ $sheet->id }}"
-                        data-vote="1"> <span class="glyphicon glyphicon-triangle-top arrowBig" aria-hidden="true"></button>
+                        <button  id="voteUp" class="btn btn-standard" data-sheet-id="{{ $sheet->id }}" data-vote="1"><span class="glyphicon glyphicon-triangle-top arrowBig" aria-hidden="true"></span></button>
                         
-                        <button  id="voteDown" class="btn btn-standard"
-
-                        data-sheet-id="{{ $sheet->id }}"
-                        data-vote="0"> <span class="glyphicon glyphicon-triangle-bottom arrowBig" aria-hidden="true"></span></button>
+                        <button  id="voteDown" class="btn btn-standard" data-sheet-id="{{ $sheet->id }}" data-vote="0"><span class="glyphicon glyphicon-triangle-bottom arrowBig" aria-hidden="true"></span></button>
 
                         <h4>People collaborating on this sheet:</h4>
                         <ul>
