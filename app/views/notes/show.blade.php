@@ -33,14 +33,12 @@
                     </h4>
 
                     <button  id="voteUp" class="btn btn-standard"
-                   
                     data-note-id="{{ $note->id }}"
-                    data-vote="1"> <span class="glyphicon glyphicon-triangle-top arrowBig" aria-hidden="true"></button>
+                    data-vote="1"><span class="glyphicon glyphicon-triangle-top arrowBig" aria-hidden="true"></span></button>
                     
                     <button  id="voteDown" class="btn btn-standard"
-
                     data-note-id="{{ $note->id }}"
-                    data-vote="0"> <span class="glyphicon glyphicon-triangle-bottom arrowBig" aria-hidden="true"></span></button>
+                    data-vote="0"><span class="glyphicon glyphicon-triangle-bottom arrowBig" aria-hidden="true"></span></button>
 
                     <h4>People collaborating on this note:</h4>
                     @foreach($collaborators as $guest)

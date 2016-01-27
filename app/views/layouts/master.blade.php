@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="/css/sheets.css">
         <link rel="stylesheet" href="/css/notes.css">
         <link rel="stylesheet" href="/css/users.css">
+        <!-- Add CSRF Token as a meta tag in your head -->
+        <meta name="csrf-token" content="{{{ csrf_token() }}}">
         @yield('top-script')
     </head>
     <body>
