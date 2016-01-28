@@ -31,6 +31,8 @@
 /* Start CSS for Sheets show.blade.php. */
 .infobox {
     display: none;
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 .sheetcolbtns {
     margin: 5px 0;
@@ -41,9 +43,16 @@
 .sheettitle {
     margin-top: 10px;
     margin-bottom: 20px;
+    text-align: center;
 }
 .pushsheetlistdown {
     margin-top: 22px;
+}
+.givevocabbottom {
+    margin-bottom: 50px;
+}
+.givevocabtop {
+    margin-top: 50px;
 }
 .responseslide {
     display: none;
@@ -148,9 +157,6 @@ dd {
 .middle1 > h3 {
     margin-top: 10px; 
 }
-.middle1 > p, .middle2 > p, .middle3 > p {
-    color: #999fad; 
-}
 .middle2 {
     height: 300px;
     padding: 0px 10px 0;
@@ -196,4 +202,7 @@ dd {
 /* Start CSS for Public Feed main page. */
 .publicbtnmargin {
     margin-bottom: 10px;
+}
+.mdash {
+    color: #999fad;
 }

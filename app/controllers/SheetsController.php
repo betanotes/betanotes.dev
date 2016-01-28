@@ -234,6 +234,8 @@ class SheetsController extends \BaseController {
             Session::flash('errorMessage', 'You are not authorized to destroy this sheet!');
             return Redirect::action('SheetsController@index');
         }
+        $notescomments = DB::table('sheetcoms')->where('sheet_id', $id);
+        $notescomments->delete();
         $lines->delete();
 
         $sheet->delete();

@@ -15,7 +15,7 @@ Route::get('/', 'HomeController@showWelcome');
 
 Route::get('/dashboard', 'HomeController@dashboard');
 
-Route::DELETE('/dashboard', 'UsersController@destroy');
+Route::DELETE('/users/edit', 'UsersController@destroy');
 
 Route::get('/navbar', 'HomeController@navbar');
 

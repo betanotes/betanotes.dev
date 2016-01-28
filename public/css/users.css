@@ -18,9 +18,9 @@
 	border: 5px double black;
 	height: 500px;
 }
-/*li {
-	list-style-type: none;
-}*/
+.h4extrapadding {
+	padding-top: 10px;
+}
 .userpageslist {
 	list-style-type: none;
 }
@@ -79,5 +79,19 @@
 	margin-right: -6%;
 	padding-top: 10%;
 	padding-bottom: 10%;
-
+}
+.topratedmargintop {
+	margin-top: 48px;
+}
+.deleter {
+	margin-bottom: 20px;
+}
+.signmarginbottom {
+	margin-bottom: 20px;
+}
+.commentername {
+	display: inline-block;
+}
+.commentarea {
+	margin: 10px 0;
 }

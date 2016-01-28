@@ -6,12 +6,12 @@
 
             <div class="col-md-2 text-center">
                 <img src="/img/sheet.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
-                <a  class="btn btn-back" role="button" href="{{{ action('SheetsController@index') }}}">Back</a>
+                <a  class="btn btn-back" role="button" href="{{{ action('SheetsController@index') }}}">Back to Your Sheets</a>
             </div> <!-- end col-md-2 -->
 
             <div class="col-md-8">
                 
-                <h2 class="text-center">Edit This Sheet</h2>
+                <h2 class="text-center">Edit Your Sheet</h2>
                 {{ Form::model($sheet, array('action' => array('SheetsController@update', $sheet->id), 'method' => 'PUT')) }}
                     <div class="row">
                         <div class="col-xs-12">

@@ -11,7 +11,7 @@
             </div> <!-- end col-md-5 -->
             <div class="col-md-5">
                 <div class="mainnotey">
-                    <span class="noteyspan">Take, store, share... your notes anywhere!</span>
+                    <span class="noteyspan">Take, store, share... your notes everywhere!</span>
                 </div>
             </div> <!-- end col-md-5 -->
         </div> <!-- end row maintop -->
@@ -29,14 +29,14 @@
                 <div class="middle2">
                     <img src="/img/share.gif" class="img-responsive img-inline" alt="Responsive image">
                     <h3>Share Notes with Friends!</h3>
-                    <p>Collaborate with your friends by adding comments to their posts. Add information, insights or support. Just like the content and votes, It's all up to you.</p>
+                    <p>Collaborate with your friends by adding comments to their posts. Add information, insights, and support. Just like the content and votes, it's all up to you.</p>
                 </div>
             </div> <!-- end col-md-4 -->
             <div class="col-md-4">
                 <div class="middle3">
                     <img src="/img/meet.gif" class="img-responsive img-inline" alt="Responsive image">
                     <h3>Form Study Groups!</h3>
-                    <p>Set up a time and location for some social studying, in person! Invite your friends, take some notes and create some study sheets. Be social, go study!</p>
+                    <p>Meet up for some social studying! Set up a time and location, invite your friends, take some notes, and create some study sheets. Be social, go study!</p>
                 </div>
             </div> <!-- end col-md-4 -->
         </div> <!-- end row mainmiddle -->
@@ -66,7 +66,7 @@
             </div> <!-- end col-md-2 -->
             <div class="col-md-3">
                 <img src="/img/blue_notey.gif" class="img-responsive img-inline" alt="Responsive image">
-                <p><em>Social Notes, YAY!</em></p>
+                <p><em>Social Notes - YAY!</em></p>
             </div> <!-- end col-md-2 -->
         </div> <!-- end row mainlast -->
         <div class="row mainlast">

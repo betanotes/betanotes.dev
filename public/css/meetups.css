@@ -28,3 +28,8 @@ textarea {
 	height: 100px;
 	width: 130px;
 }
+.attendingbox {
+	background-color: #999fad;
+	padding-top: 0.5%;
+	padding-bottom: 1%;
+}
