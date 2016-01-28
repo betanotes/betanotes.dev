@@ -17,13 +17,14 @@
                     </form>
                 </div> {{-- end col-md-4 --}}
                 <div class="col-md-5 paddingtop  hidden-sm hidden-xs">
-                    <a class="navbarwords" href="{{{action('FeedController@showMain')}}}">Public Feed</a>
 
                     @if(Auth::check())
                         <a class="navbarwords" href="{{{action('HomeController@dashboard')}}}">Welcome, {{{Auth::user()->firstname}}} {{{Auth::user()->lastname}}}!</a>
+                        
                     @else
                         <a class="navbarwords" href="{{{action('UsersController@showsignup')}}}">Sign Up</a>
                     @endif
+                    <a class="navbarwords" href="{{{action('FeedController@showMain')}}}">Public Feed</a>
                     @if(Auth::check())
                         <a class="navbarwords" href="{{{action('UsersController@logout')}}}">Log Out</a>
                     @else

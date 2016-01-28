@@ -2,7 +2,7 @@
 
 @section('content')
 	
-	<div class="container">
+	<div class="container containermargins">
         <div class="row pushdown">
 
             <div class="col-md-4 text-center">
