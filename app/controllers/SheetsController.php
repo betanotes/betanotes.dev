@@ -117,6 +117,36 @@ class SheetsController extends \BaseController {
         return View::make('sheets.show')->with('sheet', $sheet)->with('comments', $comments);
     }
 
+    public function showMatching($id)
+    {
+        $sheet = Sheet::with('lines')->where('id', $id)->orWhere('slug', $id)->first();
+
+        if (!$sheet) {
+            Session::flash('errorMessage', 'This sheet does not exist.');
+            return Redirect::route('sheets.index');
+        }
+        if($sheet->public_or_private == "private") {
+            if(Auth::user()->id != $sheet->user_id) {
+                Session::flash('errorMessage', 'This sheet is private and cannot be accessed publicly.');
+                return Redirect::action('SheetsController@index');
+            }
+        }
+        $comments = [];
+        $allcomments = Sheetcom::all();
+        foreach($allcomments as $comment) {
+            if($comment->sheet_id == $sheet->id) {
+                $commentdata = array(
+                    'created_at' => $comment->created_at,
+                    'id' => $comment->id,
+                    'comment' => $comment->comment,
+                    'commenter' => $comment->collaborator_name,
+                );
+                array_push($comments, $commentdata);
+            }
+        }
+        return View::make('sheets.matching')->with('sheet', $sheet)->with('comments', $comments);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
