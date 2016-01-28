@@ -5,54 +5,62 @@
     <div class="container containermargins">
         <div class="row">
             <div class="col-md-2 text-center">
-                <img src="/img/collaborate.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
-                <a class="btn btn-create publicbtnmargin" role="button" href="{{{ action('FeedController@showNotes') }}}">Public Study Notes</a>
-                <a class="btn btn-create publicbtnmargin" role="button" href="{{{ action('FeedController@showSheets') }}}">Public Study Sheets</a>
-                <a class="btn btn-create publicbtnmargin" role="button" href="{{{ action('FeedController@showMeetups') }}}">Social Study Groups</a>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <img src="/img/collaborate.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
+                    </div>
+                </div>
+                <a class="btn btn-create longbutton publicbtnmargin" role="button" href="{{{ action('FeedController@showNotes') }}}">Social Notes</a>
+                <a class="btn btn-create longbutton publicbtnmargin" role="button" href="{{{ action('FeedController@showSheets') }}}">Social Study Sheets</a>
+                <a class="btn btn-create longbutton publicbtnmargin" role="button" href="{{{ action('FeedController@showMeetups') }}}">Social Study Groups</a>
             </div>
             <div class="col-md-10">
-                <h2 class="text-center">The Public Feed</h2>
+                <h2 class="text-center">The Social Feed</h2>
 
-                <table class="table table-striped table-responsive mytable" name="mytable">
+                <table class="table table-striped mytable" name="mytable">
                     <thead>
                         <tr>
                             <th>votes</th>
-                            <th>date created</th>
-                            <th>title</th>
+                            <th class="hidden-sm hidden-xs">date created</th>
+                            <th class="hidden-sm hidden-xs">title</th>
+                            <th class="hidden-md hidden-lg">title</th>
                             <th>author</th>
-                            <th>date</th>
-                            <th>location</th>
+                            <th class="hidden-sm hidden-xs">date</th>
+                            <th class="hidden-sm hidden-xs">location</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($sheets as $sheet)
                             <tr>
                                 <td><span id="voteUpCounts"> {{ $sheet->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $sheet->voteDownCount() }}</span></td>
-                                <td>{{{ $sheet->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
-                                <td><a class="anchortitle" href="{{{ action('SheetsController@show', $sheet->slug) }}}">{{{ Str::limit($sheet->title, 40) }}}</a> <small>(sheet)</small></td>
+                                <td class="hidden-sm hidden-xs">{{{ $sheet->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
+                                <td class="hidden-sm hidden-xs"><a class="anchortitle" href="{{{ action('SheetsController@show', $sheet->slug) }}}">{{{ Str::limit($sheet->title, 40) }}}</a> <small class="hidden-sm hidden-xs">(sheet)</small></td>
+                                <td class="hidden-md hidden-lg"><a class="anchortitle" href="{{{ action('SheetsController@show', $sheet->slug) }}}">{{{ Str::limit($sheet->title, 15) }}}</a> <small>(sheet)</small></td>
                                 <td>{{{ $sheet->user->firstname }}}</td>
-                                <td>N/A</td>
-                                <td>N/A</td>
+                                <td class="mdash hidden-sm hidden-xs">&mdash;</td>
+                                <td class="mdash hidden-sm hidden-xs">&mdash;</td>
                             </tr>
                         @endforeach
                         @foreach($notes as $note)
                             <tr>
                                 <td><span id="voteUpCounts"> {{ $note->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $note->voteDownCount() }}</span></td>
-                                <td>{{{ $note->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
-                                <td><a class="anchortitle" href="{{{ action('NotesController@show', $note->slug) }}}">{{{ Str::limit($note->title, 40) }}}</a> <small>(note)</small></td>
+                                <td class="hidden-sm hidden-xs">{{{ $note->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
+                                <td class="hidden-sm hidden-xs"><a class="anchortitle" href="{{{ action('NotesController@show', $note->slug) }}}">{{{ Str::limit($note->title, 40) }}}</a> <small class="hidden-sm hidden-xs">(note)</small></td>
+                                <td class="hidden-md hidden-lg"><a class="anchortitle" href="{{{ action('NotesController@show', $note->slug) }}}">{{{ Str::limit($note->title, 15) }}}</a> <small>(note)</small></td>
                                 <td>{{{ $note->user->firstname }}}</td>
-                                <td>N/A</td>
-                                <td>N/A</td>
+                                <td class="mdash hidden-sm hidden-xs">&mdash;</td>
+                                <td class="mdash hidden-sm hidden-xs">&mdash;</td>
                             </tr>
                         @endforeach
                         @foreach($meetups as $meetup)
                             <tr>
                                 <td><span id="voteUpCounts"> {{ $meetup->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $meetup->voteDownCount() }}</span></td>
-                                <td>{{{ $meetup->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
-                                <td><a class="anchortitle" href="{{{ action('MeetupsController@showmeetup', $meetup->id) }}}">{{{ Str::limit($meetup->title, 40) }}}</a> <small>(social study)</small></td>
+                                <td class="hidden-sm hidden-xs">{{{ $meetup->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
+                                <td class=" hidden-sm hidden-xs"><a class="anchortitle" href="{{{ action('MeetupsController@showmeetup', $meetup->id) }}}">{{{ Str::limit($meetup->title, 40) }}}</a> <small class="hidden-sm hidden-xs">(social study)</small></td>
+                                <td class=" hidden-md hidden-lg"><a class="anchortitle" href="{{{ action('MeetupsController@showmeetup', $meetup->id) }}}">{{{ Str::limit($meetup->title, 15) }}}</a> <small>(social study)</small></td>
                                 <td>{{{ User::find($meetup->admin_id)->firstname }}}</td>
-                                <td>{{{ Str::limit($meetup->date, 20) }}}</td>
-                                <td>{{{ Str::limit($meetup->location, 20) }}}</td>
+                                <td class="hidden-sm hidden-xs">{{{ Str::limit($meetup->date, 20) }}}</td>
+                                <td class="hidden-sm hidden-xs">{{{ Str::limit($meetup->location, 20) }}}</td>
                             </tr>
                         @endforeach
                     </tbody>

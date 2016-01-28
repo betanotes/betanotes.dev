@@ -148,9 +148,6 @@ dd {
 .middle1 > h3 {
     margin-top: 10px; 
 }
-.middle1 > p, .middle2 > p, .middle3 > p {
-    color: #999fad; 
-}
 .middle2 {
     height: 300px;
     padding: 0px 10px 0;
@@ -196,4 +193,7 @@ dd {
 /* Start CSS for Public Feed main page. */
 .publicbtnmargin {
     margin-bottom: 10px;
+}
+.mdash {
+    color: #999fad;
 }
