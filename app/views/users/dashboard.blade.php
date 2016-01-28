@@ -12,8 +12,7 @@
                 <p>{{{ $user->description }}}</p>
             </div>
             
-            <h4>Edit Profile</h4>
-            <a href="{{{action('UsersController@showedit')}}}"><button class="btn btn-edit">Edit</button></a>
+            <a href="{{{action('UsersController@showedit')}}}"><button class="btn btn-edit">Edit Profile</button></a>
         </div> <!--end col-md-3-->
 
         <div class="col-md-9">
@@ -73,7 +72,7 @@
                             <th>votes</th>
                             <th class="row hidden-sm hidden-xs">date created</th>
                             <th>title</th>
-                            <th>edit</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

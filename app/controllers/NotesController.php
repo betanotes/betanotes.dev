@@ -115,6 +115,8 @@ class NotesController extends BaseController{
 			Session::flash('errorMessage', 'You are not authorized to destroy this note!');
 			return Redirect::action('NotesController@index');
 		}
+		$notescomments = DB::table('notecoms')->where('note_id', $id);
+		$notescomments->delete();
 		$note->delete();
 
 		return Redirect::action('NotesController@index');

@@ -1,9 +1,5 @@
 @extends('layouts.master')
 
-@section('top-script')
-
-@stop 
-{{-- line above is end of top script --}}
 @section('content')
     
 <div class="container containermargins">
@@ -11,13 +7,13 @@
 
 		<div class="col-md-2 text-center">
 	        <img src="/img/note.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
-	        <a  class="btn btn-back" role="button" href="{{{ action('NotesController@index') }}}">Back</a>
+	        <a  class="btn btn-back" role="button" href="{{{ action('NotesController@index') }}}">Back to Your Notes</a>
         </div> <!-- end col-md-2 -->
 
 		<div class="col-md-8 createNote">
 
+			<h2 class="text-center">Edit Your Note</h2>
 			{{ Form::open(array('action' => array('NotesController@update', $note->id), 'method' => 'PUT')) }}
-
 
 				<div class="form-group">
 					{{ $errors->first('title', '<span class="help-block">:message</span>') }}
@@ -51,7 +47,7 @@
 					{{ Form::textarea('body', $note->body, ['class' => 'form-control', 'id' => 'editor1', 'rows' => '10', 'placeholder' => 'Enter notes title']) }}
 				</div>	
 
-				<button type="submit" class="btn btn-edit">Update</button>
+				<button type="submit" class="btn btn-edit signmarginbottom">Update</button>
 
 			{{ Form::close() }}
 

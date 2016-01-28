@@ -6,14 +6,14 @@
 	<div class="row">
 
 		<div class="col-md-2 text-center">
-            <img src="/img/note.gif" class="img-responsive img-inline" alt="Responsive image">
-            <a  class="btn btn-back" role="button" href="{{{ action('NotesController@index') }}}">Back</a>
+            <img src="/img/note.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
+            <a  class="btn btn-back" role="button" href="{{{ action('NotesController@index') }}}">Back to Your Notes</a>
         </div> <!-- end col-md-2 -->
 
 		<div class="col-md-8 createNote">
 			
+			<h2 class="text-center">Create a New Note</h2>
 			{{ Form::open(array('action' => 'NotesController@store')) }}
-
 
 				<div class="form-group">
 					{{ $errors->first('title', '<span class="help-block">:message</span>') }}
@@ -22,20 +22,20 @@
 				</div>
 
 				 <div class="row">
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                {{ $errors->first('public_or_private', '<span class="help-block">:message</span>') }}    
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            {{ $errors->first('public_or_private', '<span class="help-block">:message</span>') }}    
 
-                                <label> Privacy Setting </label>
-                                <label class="radiomargin">
-                                    <input type="radio" name="public_or_private" id="public_or_private1" value="public" checked> Public
-                                </label>
-                                <label class="radiomargin">
-                                    <input type="radio" name="public_or_private" id="public_or_private2" value="private"> Private
-                                </label>
-                            </div> <!-- end form-group -->
-                        </div> <!-- end col-xs-6 -->
-                    </div> <!-- end row -->
+                            <label> Privacy Setting </label>
+                            <label class="radiomargin">
+                                <input type="radio" name="public_or_private" id="public_or_private1" value="public" checked> Public
+                            </label>
+                            <label class="radiomargin">
+                                <input type="radio" name="public_or_private" id="public_or_private2" value="private"> Private
+                            </label>
+                        </div> <!-- end form-group -->
+                    </div> <!-- end col-xs-6 -->
+                </div> <!-- end row -->
 
 				<div class="form-group">
 					{{ $errors->first('body', '<span class="help-block">:message</span>') }}
@@ -44,8 +44,7 @@
 	            </div>	
 
 			 	<input name="user_id" type="hidden" value="1">
-			 	<a href="{{{ action('NotesController@index') }}}" class="btn btn-default">Cancel</a>
-			  	<button type="submit" class="btn btn-warning">Submit</button>
+			 	<button type="submit" class="btn btn-create signmarginbottom">Submit</button>
 
 			{{ Form::close() }}
 		</div><!--end col-md-8-->

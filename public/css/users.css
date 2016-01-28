@@ -89,3 +89,9 @@
 .signmarginbottom {
 	margin-bottom: 20px;
 }
+.commentername {
+	display: inline-block;
+}
+.commentarea {
+	margin: 10px 0;
+}

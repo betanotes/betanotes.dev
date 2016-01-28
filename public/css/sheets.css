@@ -31,6 +31,8 @@
 /* Start CSS for Sheets show.blade.php. */
 .infobox {
     display: none;
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 .sheetcolbtns {
     margin: 5px 0;
@@ -41,9 +43,16 @@
 .sheettitle {
     margin-top: 10px;
     margin-bottom: 20px;
+    text-align: center;
 }
 .pushsheetlistdown {
     margin-top: 22px;
+}
+.givevocabbottom {
+    margin-bottom: 50px;
+}
+.givevocabtop {
+    margin-top: 50px;
 }
 .responseslide {
     display: none;
