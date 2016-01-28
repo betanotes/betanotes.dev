@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container  containermargins">
+<div class="container containermargins">
     <div class="row">
     	<div class="col-md-2 text-center">
             <img src="/img/note.gif" class="img-responsive img-inline" alt="Responsive image">
@@ -19,7 +19,6 @@
                         <th>title</th>
                         <th>privacy setting</th>
                         <th>edit</th>
-                        <th>delete</th>
                     </tr>
                 </thead>
 
@@ -31,9 +30,6 @@
                             <td><a class="anchortitle" href="{{ action('NotesController@show', ($note->slug)) }}">{{{ Str::limit($note->title, 40) }}}</a></td>
                             <td>{{{ $note->public_or_private }}}</td>
                             <td><a class="btn btn-edit" role="button" href="{{{ action('NotesController@edit', $note->slug) }}}">Edit</a></td>
-                            <td>{{ Form::model($note, array('action' => array('NotesController@destroy', $note->id), 'method' => 'DELETE', 'class' => 'deleteform')) }}
-                                <button class="btn btn-danger deletebtn" type="submit">Delete</button>
-                            {{ Form::close() }}</td>
                         </tr>
                     @endforeach
                 </tbody>

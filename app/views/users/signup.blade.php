@@ -54,7 +54,7 @@
 					<label class="control-label" for "confirm">Confirm Password</label>
 					<input type="password" class="form-control" name="confirm">
 				</div>
-				<button class="btn btn-standard deleter">Sign Up</button>
+				<button class="btn btn-standard signmarginbottom">Sign Up</button>
 			{{Form::close()}}
 		</div>
 	</div>

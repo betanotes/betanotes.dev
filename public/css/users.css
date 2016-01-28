@@ -80,6 +80,9 @@
 	padding-top: 10%;
 	padding-bottom: 10%;
 }
+.topratedmargintop {
+	margin-top: 48px;
+}
 .deleter {
 	margin-bottom: 20px;
 }

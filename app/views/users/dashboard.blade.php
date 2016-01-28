@@ -14,7 +14,6 @@
             
             <h4>Edit Profile</h4>
             <a href="{{{action('UsersController@showedit')}}}"><button class="btn btn-edit">Edit</button></a>
-            
         </div> <!--end col-md-3-->
 
         <div class="col-md-9">
@@ -65,9 +64,9 @@
                 </div>
             </div> <!-- end row -->
 
-            <div class="row">
-                <div class="col-xs-12 text-center">
-                    <h3>Your Top Rated Contributions</h3>
+            <div class="row topratedmargintop">
+                <div class="col-xs-12">
+                    <h3 class="text-center">Your Top Rated Contributions</h3>
                     <table class="table table-striped mytable" name="mytable">
                     <thead>
                         <tr>
