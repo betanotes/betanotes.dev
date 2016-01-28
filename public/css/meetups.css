@@ -7,6 +7,9 @@
 	padding-top: 0.5%;
 	padding-bottom: 1%;
 }
+.meetshowimg {
+	max-height: 108px;
+}
 .meetupimg {
 	height: 50px;
 	width: 50px;
