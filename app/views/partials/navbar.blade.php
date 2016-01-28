@@ -24,7 +24,7 @@
                     @else
                         <a class="navbarwords" href="{{{action('UsersController@showsignup')}}}">Sign Up</a>
                     @endif
-                    <a class="navbarwords" href="{{{action('FeedController@showMain')}}}">Public Feed</a>
+                    <a class="navbarwords" href="{{{action('FeedController@showMain')}}}">Social Feed</a>
                     @if(Auth::check())
                         <a class="navbarwords" href="{{{action('UsersController@logout')}}}">Log Out</a>
                     @else
@@ -42,12 +42,12 @@
                     </form>
                 </div> {{-- end col-sm-12 --}}
                 <div class="col-sm-12 col-xs-12 hidden-md hidden-lg mobilenavmargin">
-                    <a class="navbarwords" href="">Public Feed</a>
                     @if(Auth::check())
                         <a class="navbarwords" href="{{{action('HomeController@dashboard')}}}"> Welcome, {{{Auth::user()->firstname}}}!</a>
                     @else
                         <a class="navbarwords" href="{{{action('UsersController@showsignup')}}}">Sign Up</a>
                     @endif
+                    <a class="navbarwords" href="{{{action('FeedController@showMain')}}}">Social Feed</a>
                     @if(Auth::check())
                         <a class="navbarwords" href="{{{action('UsersController@logout')}}}">Log Out</a>
                     @else
@@ -69,7 +69,7 @@
                     Your Dashboard
                 </div></a>
                 <a href="{{{action('NotesController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/notes") {?>style="background-color: #f68735"<?php }?>>
-                    Your Study Notes
+                    Your Notes
                 </div></a>
                 <a href="{{{action('SheetsController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/sheets") {?>style="background-color: #f68735"<?php }?>>
                     Your Study Sheets

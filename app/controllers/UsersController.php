@@ -196,8 +196,6 @@ public function __construct()
 			$userattending = DB::table('attendees')->where('attendee_id', $id);
 			$usercomments = DB::table('meetcoms')->where('attendee_id', $id);
 			$usernotecomments = DB::table('notecoms')->where('collaborator_id', $id);
-			$usernotecollab = DB::table('notecollaborators')->where('collaborator_id', $id);
-			$usersheetcollab = DB::table('sheetcollaborators')->where('collaborator_id', $id);
 			$usersheetcomments = DB::table('sheetcoms')->where('collaborator_id', $id);
 			$sheetids = [];
 			$meetupids = [];
@@ -205,8 +203,6 @@ public function __construct()
 			$usercomments->delete();
 			$usernotecomments->delete();
 			$usersheetcomments->delete();
-			$usernotecollab->delete();
-			$usersheetcollab->delete();
 
 		// Collects all notes that the user has made
 			foreach($allnotes as $note) {
@@ -217,9 +213,7 @@ public function __construct()
 
 		// Deletes all collaborators from any notes the user has made
 			foreach($noteids as $notes) {
-				$othernotes = DB::table('notecollaborators')->where('note_id', $notes);
 				$othernotecom = DB::table('notecoms')->where('note_id', $note);
-				$othernotes->delete();
 				$othernotecom->delete();
 			}
 
@@ -233,10 +227,8 @@ public function __construct()
 		// deletes all lines and collaboration from others in every sheet the user has made
 			foreach($sheetids as $sheets) {
 				$userline = DB::table('lines')->where('sheet_id', $sheets);
-				$othersheet = DB::table('sheetcollaborators')->where('sheet_id', $sheets);
 				$othersheetcom = DB::table('sheetcoms')->where('sheet_id', $sheets);
 				$userline->delete();
-				$othersheet->delete();
 				$othersheetcom->delete();
 			}	
 
