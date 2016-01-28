@@ -5,13 +5,15 @@
     <div class="container containermargins">
         <div class="row">
             <div class="col-md-2 text-center">
-                <img src="/img/note.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
-                <a class="btn btn-back" role="button" href="{{{ action('FeedController@showMain') }}}">Back to Public Feed</a>
+                <img src="/img/collaborate.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
+                <a class="btn btn-create publicbtnmargin" role="button" href="{{{ action('FeedController@showSheets') }}}">Public Study Sheets</a>
+                <a class="btn btn-create publicbtnmargin" role="button" href="{{{ action('FeedController@showMeetups') }}}">Social Study Groups</a>
+                <a class="btn btn-back publicbtnmargin" role="button" href="{{{ action('FeedController@showMain') }}}">Back to Public Feed</a>
             </div>
             <div class="col-md-9">
                 <h2 class="text-center">Public Study Notes</h2>
 
-                <table class="table table-hover">
+                <table class="table table-striped mytable">
                     <thead>
                         <tr>
                             <th>votes</th>

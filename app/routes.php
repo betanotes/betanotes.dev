@@ -22,6 +22,7 @@ Route::get('/navbar', 'HomeController@navbar');
 // Sheets
 
 Route::resource('sheets', 'SheetsController');
+Route::get('/sheets/{id}/matching', 'SheetsController@showMatching');
 
 Route::get('/sheets/{id}/collaborate', 'CollaborationController@showcommentsheet');
 

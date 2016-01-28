@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 {{ $errors->first('clue', '<span class="help-block">:message</span>') }}    
 
-                                {{ Form::label('clue', 'Clue1') }}
+                                {{ Form::label('clue', 'Clue') }}
                                 {{ Form::text('clue', null, ['class' => 'form-control']) }}
                             </div> <!-- end form-group -->
                         </div> <!-- end col-xs-6 -->
@@ -51,28 +51,26 @@
                             <div class="form-group">
                                 {{ $errors->first('response', '<span class="help-block">:message</span>') }}    
 
-                                {{ Form::label('response', 'Response1') }}
+                                {{ Form::label('response', 'Response') }}
                                 {{ Form::text('response', null, ['class' => 'form-control']) }}
                             </div> <!-- end form-group -->
                         </div> <!-- end col-xs-6 -->
                         @if (Input::old('cluesArray'))
                             <?php $clueTitle = 'Clue'; ?>
                             <?php $responseTitle = 'Response'; ?>
-                            <?php $i = 2; ?>
                             @foreach (Input::old('cluesArray') as $key => $value)
                                 <div class="col-xs-6">
                                     <div class="form-group">
-                                        <label for='clue'>{{{ $clueTitle . $i }}}</label>
+                                        <label for='clue'>{{{ $clueTitle }}}</label>
                                         <input class='form-control' name='cluesArray[]' type='text' value="{{{ $value }}}">
                                     </div> <!-- end form-group -->
                                 </div> <!-- end col-xs-6 -->
                                 <div class="col-xs-6">
                                     <div class="form-group">
-                                        <label for='response'>{{{ $responseTitle . $i }}}</label>
+                                        <label for='response'>{{{ $responseTitle }}}</label>
                                         <input class='form-control' name='responsesArray[]' type='text' value="{{{ Input::old('responsesArray')[$key] }}}">
                                     </div> <!-- end form-group -->
                                 </div> <!-- end col-xs-6 -->
-                                <?php $i = $i + 1; ?>
                             @endforeach
                         @endif
                     </div> <!-- end row -->

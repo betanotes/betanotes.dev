@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container containermargins">
         <div class="row pushdown">
 
             <div class="col-md-4 text-center">
@@ -25,6 +25,7 @@
                         @endif
                     </div>
                     <div class="col-xs-12 sheetcolbtns">
+                        <a class="btn btn-back" role="button" href="{{{ action('SheetsController@showMatching', $sheet->slug) }}}">Matching Game</a>
                         <a class="btn btn-back" role="button" href="{{{ action('SheetsController@index') }}}">Back</a>
                         <span class="btn btn-standard" role="button" id="toggle-btn">Toggle</span>
                     
