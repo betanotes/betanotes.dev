@@ -55,30 +55,38 @@
 			<div class="row">
 				<div class="col-xs-12 text-center">
 					<h3>My Top Everything with Votes</h3>
-					<table class="table table-hover table-responsive" name="mytable" id="mytable">
+					<table class="table table-striped table-responsive mytable" name="mytable">
                     <thead>
                         <tr>
                             <th>votes</th>
+                            <th>date created</th>
                             <th>title</th>
+                            <th>edit</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($yoursheets as $sheet)
                             <tr>
                                 <td><span id="voteUpCounts"> {{ $sheet->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $sheet->voteDownCount() }}</span></td>
+                                <td>{{{ $sheet->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
                                 <td><a class="anchortitle" href="{{{ action('SheetsController@show', $sheet->slug) }}}">{{{ Str::limit($sheet->title, 40) }}}</a> <small>(sheet)</small></td>
+                                <td><a class="btn btn-edit" role="button" href="{{{ action('SheetsController@edit', $sheet->id) }}}">Edit</a></td>
                             </tr>
                         @endforeach
                         @foreach($yournotes as $note)
                             <tr>
                                 <td><span id="voteUpCounts"> {{ $note->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $note->voteDownCount() }}</span></td>
+                                <td>{{{ $note->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
                                 <td><a class="anchortitle" href="{{{ action('NotesController@show', $note->slug) }}}">{{{ Str::limit($note->title, 40) }}}</a> <small>(note)</small></td>
+                                <td><a class="btn btn-edit" role="button" href="{{{ action('NotesController@edit', $note->slug) }}}">Edit</a></td>
                             </tr>
                         @endforeach
                         @foreach($yourmeetups as $meetup)
                             <tr>
                                 <td><span id="voteUpCounts"> {{ $meetup->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $meetup->voteDownCount() }}</span></td>
+                                <td>{{{ $meetup->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
                                 <td><a class="anchortitle" href="{{{ action('MeetupsController@showmeetup', $meetup->id) }}}">{{{ Str::limit($meetup->title, 40) }}}</a> <small>(social study)</small></td>
+                                <td><a class="btn btn-edit" role="button" href="{{{ action('MeetupsController@showedit', $meetup->id) }}}">Edit</a></td>
                             </tr>
                         @endforeach
                     </tbody>

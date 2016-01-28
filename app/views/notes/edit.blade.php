@@ -6,7 +6,7 @@
 {{-- line above is end of top script --}}
 @section('content')
     
-<div class="container">
+<div class="container containermargins">
 	<div class="row">
 
 		<div class="col-md-2 text-center">
