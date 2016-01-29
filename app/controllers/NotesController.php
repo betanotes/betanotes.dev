@@ -137,16 +137,6 @@ class NotesController extends BaseController{
 			$note->title = Input::get('title');
 			$note->body = Input::get('body');
 			$note->public_or_private = Input::get('public_or_private');
-				
-// 				if (Input::hasFile('image_upload'))
-// 				{
-// 					$file = Input::file('image_upload');
-// 					$fileName = $file->getClientOriginalName();
-// 					$destinationPath = 'img/upload/';
-// 					$file->move($destinationPath, $fileName);
-// 					$note->image_upload = $destinationPath . $fileName;
-// 				}
-   
 			$note->user_id = Auth::user()->id;
 
 			$result = $note->save();
@@ -158,5 +148,29 @@ class NotesController extends BaseController{
 				return Redirect::back()->withInput();
 				}	
 			}	
-	}	
+	}
+
+	public function voteUp($id)
+	{
+		return $this->castVote($id, 1);
+	}
+
+	public function voteDown($id)
+	{
+		return $this->castVote($id, -1);
+	}
+
+	protected function castVote($id, $value)
+	{
+		$vote = Vote::firstOrNew([
+			'user_id' => Auth::id(),
+			'voteable_id' => $id,
+			'voteable_type' => 'Note'
+		]);
+
+		$vote->vote = $value;
+		$vote->save();
+
+		return Redirect::back();
+	}
 }

@@ -14,34 +14,20 @@ class Note extends Eloquent
     ];
 
 // function that I am going to call off the note-object. finding an instance of vote. two wheres, do I have a note from this user for this vote, two wheres do I have a note from this user if it does have a note, return true, if they haven't voted, return false. 
-    public function votes()
-    {
-        return $this->hasMany('Vote');
-    }
 
     public function userHasVoted()
     {
 
-        $vote = Vote::where('user_id', '=', Auth::id())->where('note_id', '=', $this->id)->first();
+        $vote = Vote::where('user_id', '=', Auth::id())->where('voteable_id', '=', $this->id)->where('voteable_type', '=', 'Note')->first();
         if($vote){
             return true;
         }
         return false;
     }
 
-    // public function countVotes()
-    // {
-    //     return Vote::where('note_id', '=', $this->id)->count();
-    // }
-
-    public function voteUpCount()
+    public function votes()
     {
-        return Vote::where('note_id', '=', $this->id)->where('vote', 1)->count();
-    }
-
-    public function voteDownCount()
-    {
-        return Vote::where('note_id', '=', $this->id)->where('vote', 0)->count();
+        return $this->morphMany("Vote", "voteable");
     }
 
     public function setTitleAttribute($value)
@@ -81,4 +67,14 @@ class Note extends Eloquent
     	}
     }
 
+    public function getVoteScoreAttribute()
+    {
+        $score = 0;
+
+        foreach ($this->votes as $vote) {
+            $score += $vote->vote;
+        }
+
+        return $score;
+    }
 }

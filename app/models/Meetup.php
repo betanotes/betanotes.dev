@@ -8,9 +8,10 @@ class Meetup extends Eloquent {
 	{
 		return $this->hasMany('Attendee');
 	}
+
 	public function votes()
     {
-        return $this->hasMany('Vote');
+        return $this->morphMany("Vote", "voteable");
     }
 
     public function userHasVoted()
@@ -23,14 +24,15 @@ class Meetup extends Eloquent {
         return false;
     }
     
-    public function voteUpCount()
+    public function getVoteScoreAttribute()
     {
-        return Vote::where('meetup_id', '=', $this->id)->where('vote', 1)->count();
-    }
+        $score = 0;
 
-    public function voteDownCount()
-    {
-        return Vote::where('meetup_id', '=', $this->id)->where('vote', 0)->count();
+        foreach ($this->votes as $vote) {
+            $score += $vote->vote;
+        }
+
+        return $score;
     }
 }
 ?>
