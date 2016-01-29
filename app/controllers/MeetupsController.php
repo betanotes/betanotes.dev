@@ -23,6 +23,8 @@ public function __construct()
 							'location' => $meetup->location,
 							'date' => $meetup->date,
 							'time' => $meetup->time,
+							'voteupcount' => $meetup->voteUpCount(),
+							'votedowncount' => $meetup->voteDownCount(),
 						);
 						array_push($allgoing, $meetupinfo);
 					}
@@ -181,7 +183,7 @@ public function __construct()
 		{
 			$commenttodelete = Meetcom::find($id);
 			$meetup = Meetup::find($commenttodelete->meetup_id);
-			if(Auth::user()->id != $commenttodelete->attendee_id || Auth::user()->id != $meetup->admin_id) {
+			if(Auth::user()->id != $commenttodelete->attendee_id || (Auth::user()->id != $commenttodelete->attendee_id && Auth::user()->id != $meetup->admin_id)) {
 				Session::flash('errorMessage', 'You are not authorized to delete this comment!');
 				return Redirect::action('MeetupsController@showmeetup', array($meetup->id));
 			}

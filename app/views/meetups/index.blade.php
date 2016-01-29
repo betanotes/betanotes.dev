@@ -23,6 +23,7 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         @foreach($allmeetups as $meetup)
                         <tr>
                             <td><span id="voteUpCounts"> {{ $meetup->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $meetup->voteDownCount() }}</span></td>
@@ -35,7 +36,7 @@
                         @endforeach
                         @foreach($allgoing as $moremeetup)
                         <tr>
-                            <td><span id="voteUpCounts"> {{ $meetup->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $meetup->voteDownCount() }}</span></td>
+                            <td><span id="voteUpCounts"> {{ $moremeetup['voteupcount'] }}</span> | <span id="voteDownCounts">-{{ $moremeetup['votedowncount'] }}</span></td>
                             <td class="hidden-sm hidden-xs"><a class="anchortitle" href="{{{action('MeetupsController@showmeetup', array($moremeetup['id']))}}}">{{{ Str::limit($moremeetup['title'], 15)}}}</a></td>
                             <td class="hidden-sm hidden-xs">{{{ Str::limit($moremeetup['location'], 20)}}}</td>
                             <td class="hidden-sm hidden-xs">{{{ Str::limit($moremeetup['date'], 15)}}} at {{{ Str::limit($moremeetup['time'], 15)}}}</td>
