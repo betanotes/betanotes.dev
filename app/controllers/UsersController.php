@@ -96,7 +96,8 @@ public function __construct()
 				Session::flash('successMessage', 'Hello, ' . Auth::user()->firstname . "!");
 				return Redirect::action('HomeController@dashboard');
 			} else {
-				// return Redirect::back();
+				Session::flash('errorMessage', 'Your email or password is incorrect!');
+				return Redirect::back();
 			}
 		}
 
@@ -128,15 +129,16 @@ public function __construct()
 				$usertoupdate->lastname = (Input::has('lastname') ? Input::get('lastname') : Auth::user()->lastname);
 				$usertoupdate->age = (Input::has('age') ? Input::get('age') : Auth::user()->age);
 				$usertoupdate->affiliation = (Input::has('affiliation') ? Input::get('affiliation') : Auth::user()->affiliation);
-				$usertoupdate->password = (Input::has('password') ? Input::get('password') : Auth::user()->password);
+				$usertoupdate->password = (Input::has('password') ? Hash::make(Input::get('password')) : Auth::user()->password);
+				$usertoupdate->description = (Input::has('description') ? Input::get('description') : Auth::user()->description);
 
 				$usertoupdate->image_url = (Input::has('image_url') ? Input::file('image_url') : Auth::user()->image_url);
-				if($usertoupdate->image_url == Input::file('image_url')) {
+				if($usertoupdate->image_url != Input::file('image_url') && Input::file('image_url') != null) {
 					$imagename = Input::file('image_url');
 					$originalname = $imagename->getClientOriginalName();
 					$imagepath = 'public/img/uploads/';
 					$imagename->move($imagepath, $originalname);
-					$newuser->image_url = $imagepath . $originalname;
+					$usertoupdate->image_url = $imagepath . $originalname;
 				}
 
 				$checkdbforemail = DB::table('users')->where('email', Input::get('email'))->pluck('email');
