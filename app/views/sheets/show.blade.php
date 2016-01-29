@@ -34,10 +34,16 @@
                     </div>
                     <div class="col-xs-12">
                         <h4>Votes:
-                            <span id="voteUpCounts"> {{ $sheet->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $sheet->voteDownCount() }}</span>
+                            @if ($sheet->votes()->count() > 0)
+                             {{{ $sheet->getVoteScoreAttribute() }}} 
+                            @else
+                            0
+                            @endif
                         </h4>
-                        <button  id="voteUp" class="btn btn-standard" data-sheet-id="{{ $sheet->id }}" data-vote="1"><span class="glyphicon glyphicon-triangle-top arrowBig" aria-hidden="true"></span></button>
-                        <button  id="voteDown" class="btn btn-standard" data-sheet-id="{{ $sheet->id }}" data-vote="0"><span class="glyphicon glyphicon-triangle-bottom arrowBig" aria-hidden="true"></span></button>
+
+                        <a href="{{{ action('SheetsController@voteUp', $sheet->id) }}}"  id="voteUp" class="btn btn-standard"><span class="glyphicon glyphicon-triangle-top arrowBig" aria-hidden="true"></span></a>
+                        
+                        <a href="{{{ action('SheetsController@voteDown', array($sheet->id)) }}}" id="voteDown" class="btn btn-standard"><span class="glyphicon glyphicon-triangle-bottom arrowBig" aria-hidden="true"></span></a>
                     </div>
 
                 </div>

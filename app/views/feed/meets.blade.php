@@ -31,7 +31,13 @@
                     <tbody>
                         @foreach($meetups as $meetup)
                             <tr>
-                                <td><span id="voteUpCounts"> {{ $meetup->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $meetup->voteDownCount() }}</span></td>
+                                <td>
+                            @if ($meetup->votes()->count() > 0)
+                                {{{ $meetup->getVoteScoreAttribute() }}} 
+                            @else
+                                0
+                            @endif
+                            </td>
                                 <td class="hidden-sm hidden-xs">{{{ $meetup->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
                                 <td class="hidden-sm hidden-xs"><a class="anchortitle" href="{{{ action('MeetupsController@showmeetup', $meetup->id) }}}">{{{ Str::limit($meetup->title, 40) }}}</a></td>
                                 <td class="hidden-md hidden-lg"><a class="anchortitle" href="{{{ action('MeetupsController@showmeetup', $meetup->id) }}}">{{{ Str::limit($meetup->title, 18) }}}</a></td>

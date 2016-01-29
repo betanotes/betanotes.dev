@@ -258,6 +258,29 @@ public function __construct()
 				return Redirect::back();
 			}
 		}
-		
+
+	public function voteUp($id)
+	{
+		return $this->castVote($id, 1);
+	}
+
+	public function voteDown($id)
+	{
+		return $this->castVote($id, -1);
+	}
+
+	protected function castVote($id, $value)
+	{
+		$vote = Vote::firstOrNew([
+			'user_id' => Auth::id(),
+			'voteable_id' => $id,
+			'voteable_type' => 'Meetup'
+		]);
+
+		$vote->vote = $value;
+		$vote->save();
+
+		return Redirect::back();
+	}	
 }
 ?>
