@@ -64,7 +64,7 @@
                 <img src="/img/blue_collaborate.gif" class="img-responsive img-inline" alt="Responsive image">
                 <p><em>Share &amp; Collaborate!</em></p>
             </div> <!-- end col-md-2 -->
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <img src="/img/blue_notey.gif" class="img-responsive img-inline" alt="Responsive image">
                 <p><em>Social Notes - YAY!</em></p>
             </div> <!-- end col-md-2 -->

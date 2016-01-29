@@ -126,4 +126,9 @@ $(document).ready(function() {
         }
     });
 
+    // Slides the how to play box into view.
+    $('.countholder').click(function() {
+        $('.countholder p').slideToggle();
+    });
+
 });

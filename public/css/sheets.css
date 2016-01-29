@@ -104,6 +104,28 @@ dd {
 .nomatch {
     box-shadow: inset 0 0 25px red;
 }
+.countholder {
+    position: fixed;
+    top: 47%;
+    left: 0px;
+    background-color: rgba(0,0,0,0.65);
+    color: #fff;
+    padding: 0 20px 15px;
+    text-align: center;
+    z-index: 5;
+    height: 122px;
+}
+.countholder p {
+    margin-top: 10px;
+    display: none;
+    position: absolute;
+    top: -10px;
+    left: 142px;
+    background-color: rgba(0,0,0,0.65);
+    height: 122px;
+    width: 320px;
+    padding: 10px;
+}
 /* End CSS for Sheets matching.blade.php. */
 /* ====================================================================== */
 /* Start CSS for Landing Page, main.blade.php. */
@@ -197,6 +219,9 @@ dd {
 }
 .mainlast span {
     color: #999fad;
+}
+.mainlast img {
+    max-height: 180px;
 }
 /* End CSS for Landing Page, main.blade.php. */
 /* Start CSS for Public Feed main page. */
