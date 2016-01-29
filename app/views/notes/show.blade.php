@@ -11,6 +11,7 @@
                        <img src="/img/note.gif" class="img-responsive img-inline img-margintop" alt="Responsive image">
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-xs-12 sheetcolbtns">
                         @if(Auth::user()->id == $note->user_id)
@@ -35,16 +36,16 @@
                     </div>
                     <div class="col-xs-12">
                         <h4>Votes:
-                            <span id="voteUpCounts"> {{ $note->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $note->voteDownCount() }}</span>
+                            @if ($note->votes()->count() > 0)
+                             {{{ $note->getVoteScoreAttribute() }}} 
+                            @else
+                            0
+                            @endif
                         </h4>
 
-                        <button  id="voteUp" class="btn btn-standard"
-                        data-note-id="{{ $note->id }}"
-                        data-vote="1"><span class="glyphicon glyphicon-triangle-top arrowBig" aria-hidden="true"></span></button>
+                        <a href="{{{ action('NotesController@voteUp', $note->id) }}}"  id="voteUp" class="btn btn-standard"><span class="glyphicon glyphicon-triangle-top arrowBig" aria-hidden="true"></span></a>
                         
-                        <button  id="voteDown" class="btn btn-standard"
-                        data-note-id="{{ $note->id }}"
-                        data-vote="0"><span class="glyphicon glyphicon-triangle-bottom arrowBig" aria-hidden="true"></span></button>
+                        <a href="{{{ action('NotesController@voteDown', array($note->id)) }}}" id="voteDown" class="btn btn-standard"><span class="glyphicon glyphicon-triangle-bottom arrowBig" aria-hidden="true"></span></a>
                     </div>
                 </div>
             </div> <!-- end col-md-4 -->

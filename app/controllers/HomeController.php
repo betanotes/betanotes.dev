@@ -62,33 +62,5 @@ class HomeController extends BaseController {
 	{
 		return View::make('/users/dashnav');
 	}
-
-	public function voteUpOrDown()
-	{
-		if(Input::has('note_id')){
-			$vote = Vote::firstOrNew([
-				'note_id' => Input::get('note_id'),
-				'user_id' => Auth::id()
-			]);
-
-			$vote->vote = Input::get('vote');
-			$vote->save();
-		}elseif(Input::has('sheet_id')){
-			$vote = Vote::firstOrNew([
-				'sheet_id' => Input::get('sheet_id'),
-				'user_id' => Auth::id()
-			]);
-
-			$vote->vote = Input::get('vote');
-			$vote->save();
-		}elseif(Input::has('meetup_id')){
-			$vote = Vote::firstOrNew([
-				'meetup_id' => Input::get('meetup_id'),
-				'user_id' => Auth::id()
-			]);
-
-			$vote->vote = Input::get('vote');
-			$vote->save();
-		}	
-    }
+	
 }

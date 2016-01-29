@@ -96,4 +96,6 @@ Route::get('/feed/notes', 'FeedController@showNotes');
 
 Route::get('/feed/socialstudy', 'FeedController@showMeetups');
 
-Route::post('/voteUpOrDown', 'HomeController@voteUpOrDown');
+Route::get('/notes/{id}/up', 'NotesController@voteUp');
+
+Route::get('/notes/{id}/down', 'NotesController@voteDown');
