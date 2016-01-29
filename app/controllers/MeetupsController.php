@@ -23,8 +23,7 @@ public function __construct()
 							'location' => $meetup->location,
 							'date' => $meetup->date,
 							'time' => $meetup->time,
-							'voteupcount' => $meetup->voteUpCount(),
-							'votedowncount' => $meetup->voteDownCount(),
+							'votes' => $meetup->votes()->count(),
 						);
 						array_push($allgoing, $meetupinfo);
 					}
