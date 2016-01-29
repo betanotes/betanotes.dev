@@ -20,7 +20,7 @@
                 <table class="table table-striped mytable" name="mytable">
                     <thead>
                         <tr>
-                            <th>votes <span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span></th>
+                            <th>votes</th>
                             <th class="hidden-sm hidden-xs">date created</th>
                             <th class="hidden-sm hidden-xs">title</th>
                             <th class="hidden-md hidden-lg">title</th>
