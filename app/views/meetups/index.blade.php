@@ -26,7 +26,13 @@
 
                         @foreach($allmeetups as $meetup)
                         <tr>
-                            <td><span id="voteUpCounts"> {{ $meetup->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $meetup->voteDownCount() }}</span></td>
+                            <td>
+                            @if ($meetup->votes()->count() > 0)
+                                {{{ $meetup->getVoteScoreAttribute() }}} 
+                            @else
+                                0
+                            @endif
+                            </td>
                             <td class="hidden-sm hidden-xs"><a class="anchortitle" href="{{{action('MeetupsController@showmeetup', array($meetup->id))}}}">{{{ Str::limit($meetup->title, 40) }}}</a></td>
                             <td class="hidden-md hidden-lg"><a class="anchortitle" href="{{{action('MeetupsController@showmeetup', array($meetup->id))}}}">{{{ Str::limit($meetup->title, 15) }}}</a></td>
                             <td class="hidden-sm hidden-xs">{{{ Str::limit($meetup->location, 20) }}}</td>

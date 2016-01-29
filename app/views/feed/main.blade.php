@@ -32,6 +32,13 @@
                     <tbody>
                         @foreach($sheets as $sheet)
                             <tr>
+                                <td>
+                                    @if ($sheet->votes()->count() > 0)
+                                        {{{ $sheet->getVoteScoreAttribute() }}} 
+                                    @else
+                                        0
+                                    @endif
+                                </td>
                                 <td class="hidden-sm hidden-xs">{{{ $sheet->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
                                 <td class="hidden-sm hidden-xs"><a class="anchortitle" href="{{{ action('SheetsController@show', $sheet->slug) }}}">{{{ Str::limit($sheet->title, 40) }}}</a> <small class="hidden-sm hidden-xs">(sheet)</small></td>
                                 <td class="hidden-md hidden-lg"><a class="anchortitle" href="{{{ action('SheetsController@show', $sheet->slug) }}}">{{{ Str::limit($sheet->title, 15) }}}</a> <small>(sheet)</small></td>
@@ -42,6 +49,13 @@
                         @endforeach
                         @foreach($notes as $note)
                             <tr>
+                                 <td>
+                                    @if ($note->votes()->count() > 0)
+                                        {{{ $note->getVoteScoreAttribute() }}} 
+                                    @else
+                                        0
+                                    @endif
+                                </td>
                                 <td class="hidden-sm hidden-xs">{{{ $note->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
                                 <td class="hidden-sm hidden-xs"><a class="anchortitle" href="{{{ action('NotesController@show', $note->slug) }}}">{{{ Str::limit($note->title, 40) }}}</a> <small class="hidden-sm hidden-xs">(note)</small></td>
                                 <td class="hidden-md hidden-lg"><a class="anchortitle" href="{{{ action('NotesController@show', $note->slug) }}}">{{{ Str::limit($note->title, 15) }}}</a> <small>(note)</small></td>
@@ -52,6 +66,13 @@
                         @endforeach
                         @foreach($meetups as $meetup)
                             <tr>
+                                 <td>
+                                    @if ($meetup->votes()->count() > 0)
+                                        {{{ $meetup->getVoteScoreAttribute() }}} 
+                                    @else
+                                        0
+                                    @endif
+                                </td>
                                 <td class="hidden-sm hidden-xs">{{{ $meetup->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
                                 <td class=" hidden-sm hidden-xs"><a class="anchortitle" href="{{{ action('MeetupsController@showmeetup', $meetup->id) }}}">{{{ Str::limit($meetup->title, 40) }}}</a> <small class="hidden-sm hidden-xs">(social study)</small></td>
                                 <td class=" hidden-md hidden-lg"><a class="anchortitle" href="{{{ action('MeetupsController@showmeetup', $meetup->id) }}}">{{{ Str::limit($meetup->title, 15) }}}</a> <small>(social study)</small></td>

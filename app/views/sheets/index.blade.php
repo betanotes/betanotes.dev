@@ -26,7 +26,13 @@
                     <tbody>
                         @foreach($sheets as $sheet)
                             <tr>
-                                <td><span id="voteUpCounts"> {{ $sheet->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $sheet->voteDownCount() }}</span></td>
+                                <td>
+                            @if ($sheet->votes()->count() > 0)
+                                {{{ $sheet->getVoteScoreAttribute() }}} 
+                            @else
+                                0
+                            @endif
+                            </td>
                                 <td class="hidden-sm hidden-xs">{{{ $sheet->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
                                 <td class="hidden-sm hidden-xs"><a class="anchortitle" href="{{{ action('SheetsController@show', $sheet->slug) }}}">{{{ Str::limit($sheet->title, 40) }}}</a></td>
                                 <td class="hidden-md hidden-lg"><a class="anchortitle" href="{{{ action('SheetsController@show', $sheet->slug) }}}">{{{ Str::limit($sheet->title, 15) }}}</a></td>

@@ -78,7 +78,13 @@
                     <tbody>
                         @foreach($yoursheets as $sheet)
                             <tr>
-                                <td><span id="voteUpCounts"> {{ $sheet->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $sheet->voteDownCount() }}</span></td>
+                                 <td>
+                                    @if ($sheet->votes()->count() > 0)
+                                        {{{ $sheet->getVoteScoreAttribute() }}} 
+                                    @else
+                                        0
+                                    @endif
+                                </td>
                                 <td class="row hidden-sm hidden-xs">{{{ $sheet->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
                                 <td class="hidden-sm hidden-xs"><a class="anchortitle" href="{{{ action('SheetsController@show', $sheet->slug) }}}">{{{ Str::limit($sheet->title, 40) }}}</a> <small>(sheet)</small></td>
                                 <td class="hidden-md hidden-lg"><a class="anchortitle" href="{{{ action('SheetsController@show', $sheet->slug) }}}">{{{ Str::limit($sheet->title, 15) }}}</a> <small>(sheet)</small></td>
@@ -87,7 +93,13 @@
                         @endforeach
                         @foreach($yournotes as $note)
                             <tr>
-                                <td><span id="voteUpCounts"> {{ $note->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $note->voteDownCount() }}</span></td>
+                                 <td>
+                                    @if ($note->votes()->count() > 0)
+                                        {{{ $note->getVoteScoreAttribute() }}} 
+                                    @else
+                                        0
+                                    @endif
+                                </td>
                                 <td class="row hidden-sm hidden-xs">{{{ $note->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
                                 <td class="row hidden-sm hidden-xs"><a class="anchortitle" href="{{{ action('NotesController@show', $note->slug) }}}">{{{ Str::limit($note->title, 40) }}}</a> <small>(note)</small></td>
                                 <td class="row hidden-md hidden-lg"><a class="anchortitle" href="{{{ action('NotesController@show', $note->slug) }}}">{{{ Str::limit($note->title, 15) }}}</a> <small>(note)</small></td>
@@ -96,7 +108,13 @@
                         @endforeach
                         @foreach($yourmeetups as $meetup)
                             <tr>
-                                <td><span id="voteUpCounts"> {{ $meetup->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $meetup->voteDownCount() }}</span></td>
+                                 <td>
+                                    @if ($meetup->votes()->count() > 0)
+                                        {{{ $meetup->getVoteScoreAttribute() }}} 
+                                    @else
+                                        0
+                                    @endif
+                                </td>
                                 <td class="row hidden-sm hidden-xs">{{{ $meetup->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
                                 <td class="hidden-sm hidden-xs"><a class="anchortitle" href="{{{ action('MeetupsController@showmeetup', $meetup->id) }}}">{{{ Str::limit($meetup->title, 40) }}}</a> <small>(social study)</small></td>
                                 <td class="hidden-md hidden-lg"><a class="anchortitle" href="{{{ action('MeetupsController@showmeetup', $meetup->id) }}}">{{{ Str::limit($meetup->title, 15) }}}</a> <small>(social study)</small></td>

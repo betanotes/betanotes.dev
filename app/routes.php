@@ -99,3 +99,11 @@ Route::get('/feed/socialstudy', 'FeedController@showMeetups');
 Route::get('/notes/{id}/up', 'NotesController@voteUp');
 
 Route::get('/notes/{id}/down', 'NotesController@voteDown');
+
+Route::get('/sheets/{id}/up', 'SheetsController@voteUp');
+
+Route::get('/sheets/{id}/down', 'SheetsController@voteDown');
+
+Route::get('/socialstudy/{id}/up', 'MeetupsController@voteUp');
+
+Route::get('/socialstudy/{id}/down', 'MeetupsController');

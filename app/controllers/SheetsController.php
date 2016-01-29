@@ -244,5 +244,27 @@ class SheetsController extends \BaseController {
         return Redirect::route('sheets.index');
     }
 
+    public function voteUp($id)
+    {
+        return $this->castVote($id, 1);
+    }
 
+    public function voteDown($id)
+    {
+        return $this->castVote($id, -1);
+    }
+
+    protected function castVote($id, $value)
+    {
+        $vote = Vote::firstOrNew([
+            'user_id' => Auth::id(),
+            'voteable_id' => $id,
+            'voteable_type' => 'Sheet'
+        ]);
+
+        $vote->vote = $value;
+        $vote->save();
+
+        return Redirect::back();
+    }
 }

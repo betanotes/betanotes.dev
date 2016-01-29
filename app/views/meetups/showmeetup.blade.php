@@ -24,7 +24,13 @@
                     <a href="{{{action('MeetupsController@index')}}}"><button class="btn btn-back longbutton">Back to Your Groups</button></a>
                 </div>
                 <div class="col-xs-12">
-                    <h4>Votes: <span id="voteUpCounts"> {{ $meetup->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $meetup->voteDownCount() }}</span></h4>
+                    <h4>Votes:
+                            @if ($meetup->votes()->count() > 0)
+                             {{{ $meetup->getVoteScoreAttribute() }}} 
+                            @else
+                            0
+                            @endif
+                        </h4>
 
                     <button  id="voteUp" class="btn btn-standard" data-meetup-id="{{ $meetup->id }}" data-vote="1"> <span class="glyphicon glyphicon-triangle-top arrowBig" aria-hidden="true"></button>
                 

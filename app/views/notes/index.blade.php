@@ -25,6 +25,13 @@
                 <tbody>
                     @foreach($notes as $note)
                         <tr>
+                        	<td>
+                            @if ($note->votes()->count() > 0)
+                                {{{ $note->getVoteScoreAttribute() }}} 
+                            @else
+                                0
+                            @endif
+                            </td>
                             <td class="hidden-sm hidden-xs">{{{ $note->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
                             <td class="hidden-sm hidden-xs"><a class="anchortitle" href="{{ action('NotesController@show', ($note->slug)) }}">{{{ Str::limit($note->title, 40) }}}</a></td>
                             <td class="hidden-md hidden-lg"><a class="anchortitle" href="{{ action('NotesController@show', ($note->slug)) }}">{{{ Str::limit($note->title, 15) }}}</a></td>
