@@ -32,7 +32,7 @@
                     <tbody>
                         @foreach($sheets as $sheet)
                             <tr>
-                                <td><span id="voteUpCounts"> {{ $sheet->voteUpCount() }}</span> | <span id="voteDownCounts">-{{ $sheet->voteDownCount() }}</span></td>
+                                <td><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span><span id="voteUpCounts"> {{ $sheet->voteUpCount() }}</span> | <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span><span id="voteDownCounts">-{{ $sheet->voteDownCount() }}</span></td>
                                 <td class="hidden-sm hidden-xs">{{{ $sheet->created_at->setTimezone('America/Chicago')->format('n-j-Y') }}}</td>
                                 <td class="hidden-sm hidden-xs"><a class="anchortitle" href="{{{ action('SheetsController@show', $sheet->slug) }}}">{{{ Str::limit($sheet->title, 40) }}}</a> <small class="hidden-sm hidden-xs">(sheet)</small></td>
                                 <td class="hidden-md hidden-lg"><a class="anchortitle" href="{{{ action('SheetsController@show', $sheet->slug) }}}">{{{ Str::limit($sheet->title, 15) }}}</a> <small>(sheet)</small></td>
