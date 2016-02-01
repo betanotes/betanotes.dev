@@ -80,9 +80,11 @@ public function __construct()
 		{
 			$comment = Notecom::find($commentid);
 			$note = Note::find($id);
-			if(Auth::user()->id != $comment->collaborator_id || Auth::user()->id != $note->user_id) {
-				Session::flash('errorMessage', 'You are not authorized to edit this comment!');
-				return Redirect::action('NotesController@show', array($id));
+			if(Auth::user()->id != $comment->collaborator_id) {
+				if(Auth::user()->id != $note->user_id) {	
+					Session::flash('errorMessage', 'You are not authorized to edit this comment!');
+					return Redirect::action('NotesController@show', array($id));
+				}
 			}
 			return View::make('/collaboration/editcommentnote')->with('comment', $comment)->with('note', $note);
 		}
@@ -179,9 +181,11 @@ public function __construct()
 		{
 			$comment = Sheetcom::find($commentid);
 			$sheet = Sheet::find($id);
-			if(Auth::user()->id != $comment->collaborator_id || Auth::user()->id != $sheet->user_id) {
-				Session::flash('errorMessage', 'You are not authorized to edit this comment!');
-				return Redirect::action('SheetsController@show', array($id));
+			if(Auth::user()->id != $comment->collaborator_id) {
+				if(Auth::user()->id != $sheet->user_id) {	
+					Session::flash('errorMessage', 'You are not authorized to edit this comment!');
+					return Redirect::action('SheetsController@show', array($id));
+				}
 			}
 			return View::make('/collaboration/editcommentsheet')->with('comment', $comment)->with('sheet', $sheet);
 		}
