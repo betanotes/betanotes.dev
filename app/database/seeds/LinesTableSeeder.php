@@ -5,62 +5,62 @@ class LinesTableSeeder extends Seeder {
     public function run()
     {
         $line1 = new Line();
-        $line1->clue = 'Mercury'; 
-        $line1->response = 'Mercúrio';
+        $line1->clue = 'Carthage'; 
+        $line1->response = 'an ancient city on the northern coast of Africa, famous for fighting against Rome in Punic Wars; the sequel was better.';
         $line1->sheet_id = 1;
         $line1->save();
 
         $line2 = new Line();
-        $line2->clue = 'Venus'; 
-        $line2->response = 'Vênus';
+        $line2->clue = 'Constantinople'; 
+        $line2->response = 'city established as new eastern capital of Roman Empire by emperor Constantine in AD 330; By coincidence Instanbul was once Constantinople.';
         $line2->sheet_id = 1;
         $line2->save();
 
         $line3 = new Line();
-        $line3->clue = 'Earth'; 
-        $line3->response = 'Terra';
+        $line3->clue = 'Pompeii'; 
+        $line3->response = 'ancient city in southwestern Italy that was buried by the eruption of Mount Vesuvius; Jon Snow would survive this disaster only to... well, you know the wall.';
         $line3->sheet_id = 1;
         $line3->save();
 
         $line4 = new Line();
-        $line4->clue = 'Mars'; 
-        $line4->response = 'Marte';
+        $line4->clue = 'Londinium'; 
+        $line4->response = 'Roman settlement founded in AD 43 on the site of what would be London, abandoned in 5th century; its Roman Legion would spark Arthurian legends.. maybe.';
         $line4->sheet_id = 1;
         $line4->save();
 
         $line5 = new Line();
-        $line5->clue = 'Jupiter'; 
-        $line5->response = 'Júpiter';
+        $line5->clue = 'Rome'; 
+        $line5->response = 'founded by Romulus and Remus, from Kingdom to Republic to Empire to birthplace of Italian cuisine.. hmmm.. pizza.';
         $line5->sheet_id = 1;
         $line5->save();
 
         $line6 = new Line();
-        $line6->clue = 'Delaware'; 
-        $line6->response = 'Dover';
+        $line6->clue = 'papyrus'; 
+        $line6->response = 'a water-loving plant best known for being made into paper by the Egyptians; font used in Avatar.';
         $line6->sheet_id = 2;
         $line6->save();
 
         $line7 = new Line();
-        $line7->clue = 'Florida'; 
-        $line7->response = 'Tallahassee';
+        $line7->clue = 'hieroglyphics'; 
+        $line7->response = 'system of writing made up of thousands of picture symbols created by the ancient Egyptians';
         $line7->sheet_id = 2;
         $line7->save();
 
         $line8 = new Line();
-        $line8->clue = 'Iowa'; 
-        $line8->response = 'Des Moines';
+        $line8->clue = 'embalming'; 
+        $line8->response = 'process of preserving a person\'s (usually the pharaoh) body after death; involved pulling the brain out the nose; also used by mummy\'s to reconstitute themselves in modern day to excact their revenge.';
         $line8->sheet_id = 2;
         $line8->save();
 
         $line9 = new Line();
-        $line9->clue = 'Kansas'; 
-        $line9->response = 'Topeka';
+        $line9->clue = 'sarcophagus'; 
+        $line9->response = 'stone coffin for mummified bodies; not at all creepy.';
         $line9->sheet_id = 2;
         $line9->save();
 
         $line10 = new Line();
-        $line10->clue = 'Texas'; 
-        $line10->response = 'Austin';
+        $line10->clue = 'pyramid'; 
+        $line10->response = 'large structures built of brick or stone with four sides as burial sites or tombs for the pharaohs; there are between 113 and 138 identified pyramids; one was destroyed by the Transformers.';
         $line10->sheet_id = 2;
         $line10->save();
 
@@ -243,5 +243,173 @@ class LinesTableSeeder extends Seeder {
         $line40->response = 'A member of a community other than one of the great civilizations, the great civilizations were Greek, Roman, or Christian; their greatest ambassador was Conan';
         $line40->sheet_id = 7;
         $line40->save();
+
+        $line41 = new Line();
+        $line41->clue = 'la biblioteca'; 
+        $line41->response = 'library';
+        $line41->sheet_id = 5;
+        $line41->save();
+
+        $line42 = new Line();
+        $line42->clue = 'la escuela'; 
+        $line42->response = 'school';
+        $line42->sheet_id = 5;
+        $line42->save();
+
+        $line43 = new Line();
+        $line43->clue = 'la tienda'; 
+        $line43->response = 'shop';
+        $line43->sheet_id = 5;
+        $line43->save();
+
+        $line44 = new Line();
+        $line44->clue = 'el estadio'; 
+        $line44->response = 'stadium';
+        $line44->sheet_id = 5;
+        $line44->save();
+
+        $line45 = new Line();
+        $line45->clue = 'Spain'; 
+        $line45->response = 'Madrid';
+        $line45->sheet_id = 4;
+        $line45->save();
+
+        $line46 = new Line();
+        $line46->clue = 'Romania'; 
+        $line46->response = 'Bucharest';
+        $line46->sheet_id = 4;
+        $line46->save();
+
+        $line47 = new Line();
+        $line47->clue = 'Latvia'; 
+        $line47->response = 'Riga';
+        $line47->sheet_id = 4;
+        $line47->save();
+
+        $line48 = new Line();
+        $line48->clue = 'Norway'; 
+        $line48->response = 'Oslo';
+        $line48->sheet_id = 4;
+        $line48->save();
+
+        $line49 = new Line();
+        $line49->clue = 'Portugal'; 
+        $line49->response = 'Lisbon';
+        $line49->sheet_id = 4;
+        $line49->save();
+
+        $line50 = new Line();
+        $line50->clue = 'Alaska'; 
+        $line50->response = 'Willow ptarmigan';
+        $line50->sheet_id = 3;
+        $line50->save();
+
+        $line51 = new Line();
+        $line51->clue = 'Colorado'; 
+        $line51->response = 'Lark bunting';
+        $line51->sheet_id = 3;
+        $line51->save();
+
+        $line52 = new Line();
+        $line52->clue = 'Idaho'; 
+        $line52->response = 'Mountain bluebird';
+        $line52->sheet_id = 3;
+        $line52->save();
+
+        $line53 = new Line();
+        $line53->clue = 'Minnesota'; 
+        $line53->response = 'Common loon';
+        $line53->sheet_id = 3;
+        $line53->save();
+
+        $line54 = new Line();
+        $line54->clue = 'Texas';
+        $line54->response = 'Northern mockingbird';
+        $line54->sheet_id = 3;
+        $line54->save();
+
+        $line55 = new Line();
+        $line55->clue = 'Alabama'; 
+        $line55->response = 'Northern flicker';
+        $line55->sheet_id = 3;
+        $line55->save();
+
+        $line51 = new Line();
+        $line51->clue = 'New York'; 
+        $line51->response = 'Eastern bluebird';
+        $line51->sheet_id = 3;
+        $line51->save();
+
+        $line52 = new Line();
+        $line52->clue = 'California'; 
+        $line52->response = 'California quail';
+        $line52->sheet_id = 3;
+        $line52->save();
+
+        $line53 = new Line();
+        $line53->clue = 'North Carolina'; 
+        $line53->response = 'Northern cardinal';
+        $line53->sheet_id = 3;
+        $line53->save();
+
+        $line54 = new Line();
+        $line54->clue = 'Wyoming';
+        $line54->response = 'Western meadowlark';
+        $line54->sheet_id = 3;
+        $line54->save();
+
+        $line55 = new Line();
+        $line55->clue = 'canopic jars'; 
+        $line55->response = 'stone or pottery jars used to hold the internal organs of mummys';
+        $line55->sheet_id = 2;
+        $line55->save();
+
+        $line56 = new Line();
+        $line56->clue = 'scarab'; 
+        $line56->response = 'a desert beetle that symbolized the renewal of life to Egyptians';
+        $line56->sheet_id = 2;
+        $line56->save();
+
+        $line57 = new Line();
+        $line57->clue = 'obelisk'; 
+        $line57->response = 'a tall, tapered, rectangular pillar with a pyramidal top';
+        $line57->sheet_id = 2;
+        $line57->save();
+
+        $line58 = new Line();
+        $line58->clue = 'dynasty'; 
+        $line58->response = 'a sequence or series of rulers from a single family or group; not to be confused with Dallas.';
+        $line58->sheet_id = 2;
+        $line58->save();
+
+        $line59 = new Line();
+        $line59->clue = 'Nile River'; 
+        $line59->response = 'the longest river in the world, flows north to a large delta and ends in the Mediterranean Sea.';
+        $line59->sheet_id = 2;
+        $line59->save();
+
+        $line11 = new Line();
+        $line11->clue = 'aqueduct'; 
+        $line11->response = 'a man-made channel for bringing water to Roman towns, sometimes and impressively so on raised arches.';
+        $line11->sheet_id = 7;
+        $line11->save();
+
+        $line12 = new Line();
+        $line12->clue = 'auxilia'; 
+        $line12->response = 'army units made up of conquered armies and friendly tribes, a soldier served for 25 years and at the end received citizenship for their service. I wonder how many survived the whole 25 years...';
+        $line12->sheet_id = 7;
+        $line12->save();
+
+        $line13 = new Line();
+        $line13->clue = 'legion'; 
+        $line13->response = 'a division of the Roman army, usually about 4000-6000 men called legionaries. Oddly not where legionaries disease comes from.';
+        $line13->sheet_id = 7;
+        $line13->save();
+
+        $line14 = new Line();
+        $line14->clue = 'plebeian'; 
+        $line14->response = 'ordinary peasant farmers and craftsmen, the lower class of Rome. Usually tread upon and dirty, oh so dirty.';
+        $line14->sheet_id = 7;
+        $line14->save();
     }
 }

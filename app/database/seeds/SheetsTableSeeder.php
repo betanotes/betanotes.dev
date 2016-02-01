@@ -7,13 +7,13 @@ class SheetsTableSeeder extends Seeder {
         $user = User::firstOrFail();
 
         $sheet1 = new Sheet();
-        $sheet1->title = 'The Planets in Portuguese'; 
+        $sheet1->title = 'Ancient Roman Cities'; 
         $sheet1->public_or_private = 'private';
         $sheet1->user_id = $user->id;
         $sheet1->save();
 
         $sheet2 = new Sheet();
-        $sheet2->title = 'State Capitals';
+        $sheet2->title = 'Ancient Egypt Vocab';
         $sheet2->public_or_private = 'public';
         $sheet2->user_id = $user->id;
         $sheet2->save();
