@@ -48,5 +48,50 @@ class MeetupsTableSeeder extends Seeder {
 		$meetup5->location = "John Jay High School, Room 104";
 		$meetup5->admin_id = 2;
 		$meetup5->save();
+
+		$meetup6 = new Meetup();
+		$meetup6->title = "Study for Mrs. French's test";
+		$meetup6->description = "Lets get together and study for this test!";
+		$meetup6->time = "2:00 pm";
+		$meetup6->date = "March 18, 2016";
+		$meetup6->location = "Pizza shop";
+		$meetup6->admin_id = 3;
+		$meetup6->save();
+
+		$meetup7 = new Meetup();
+		$meetup7->title = "Codeup entry exam study group";
+		$meetup7->description = "We all want to get into codeup, so lets go study!";
+		$meetup7->time = "3:00 pm";
+		$meetup7->date = "March 23, 2016";
+		$meetup7->location = "7th floor of Geekdom";
+		$meetup7->admin_id = 3;
+		$meetup7->save();
+
+		$meetup8 = new Meetup();
+		$meetup8->title = "Agricultural Leadership Final Study Group";
+		$meetup8->description = "We've come this far! Let's do it!";
+		$meetup8->time = "8:00 am";
+		$meetup8->date = "February 7, 2016";
+		$meetup8->location = "Coffee Station";
+		$meetup8->admin_id = 4;
+		$meetup8->save();
+
+		$meetup9 = new Meetup();
+		$meetup9->title = "Social Notes Variety Study Event";
+		$meetup9->description = "Whatever you have to study for, bring it, and lets all study together!";
+		$meetup9->time = "5:00 pm";
+		$meetup9->date = "February 10, 2016";
+		$meetup9->location = "Social Notes HQ, San Antonio";
+		$meetup9->admin_id = 5;
+		$meetup9->save();
+
+		$meetup10 = new Meetup();
+		$meetup10->title = "Heroes of Bebop - MUSC 2100 - Study Group";
+		$meetup10->description = "From Charlie Parker to Dizzy Gillespie, we'll study about them for this big test!";
+		$meetup10->time = "1:00 pm";
+		$meetup10->date = "March 23, 2016";
+		$meetup10->location = "Charles A. Vancouver Memorial Library";
+		$meetup10->admin_id = 5;
+		$meetup10->save();
 	}
 }
