@@ -1,10 +1,21 @@
 .marker{
 	background-color: yellow;
 }
-
 .arrowBig{
 	font-size: 20px;
 }
 .numberDivider {
 	border-right: 2px solid black;
+}
+.aboutUs{
+	margin-top: 25px;
+	margin-bottom: 25px;
+	color:#f68735;
+}
+.aboutPage{
+	float:left;
+	padding:8%;
+}
+.nameColor{
+	color: #3F547F;
 }

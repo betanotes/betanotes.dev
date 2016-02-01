@@ -18,7 +18,7 @@ class HomeController extends BaseController {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->beforeFilter('auth', array('except' => array('showWelcome')));
+		$this->beforeFilter('auth', array('except' => array('showWelcome', 'about')));
 	}
 
 	public function showWelcome()
@@ -63,4 +63,8 @@ class HomeController extends BaseController {
 		return View::make('/users/dashnav');
 	}
 	
+	public function about()
+	{
+		return View::make('about');
+	}
 }
