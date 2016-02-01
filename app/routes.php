@@ -19,6 +19,8 @@ Route::DELETE('/users/edit', 'UsersController@destroy');
 
 Route::get('/navbar', 'HomeController@navbar');
 
+Route::get('/about', 'HomeController@about');
+
 // Sheets
 
 Route::resource('sheets', 'SheetsController');
