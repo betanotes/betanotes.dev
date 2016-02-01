@@ -4,27 +4,27 @@ class NotesTableSeeder extends Seeder {
 
     public function run()
     {
-        $user = User::firstOrFail();
+        // $user = User::firstOrFail();
 
         $notes1 = new Note();
         $notes1->title = 'How to Begin Birding'; 
         $notes1->public_or_private = 'private';
         $notes1->body = 'Get Excited and Read Up. Gear Up. Get Outside. Some form of binoculars and that field guide you bought earlier are plenty to get started.  As you get better, you may want to invest in a nice camera or a spotting scope (for the really far-off birds), but they’re by no means required.';
-        $notes1->user_id = $user->id;
+        $notes1->user_id = 1;
         $notes1->save();
 
         $notes2 = new Note();
         $notes2->title = 'Migratory Birds of the Central Flyway';
         $notes2->public_or_private = 'public';
         $notes2->body = 'The Central Flyway comprises more than half the landmass of the continental United States, before extending into Central and South America. Audubon works to protect threatened ecosystems, such as riparian habitat in the Colorado River basin and vast sagebrush habitats, on behalf of such iconic bird species as the Yellow-billed Cuckoo and the Greater Sage-Grouse.';
-        $notes2->user_id = $user->id;
+        $notes2->user_id = 2;
         $notes2->save();
 
         $notes3 = new Note();
         $notes3->title = 'Winter Birds';
         $notes3->public_or_private = 'private';
         $notes3->body = 'Create a songbird border of native trees and shrubs to shelter your yard from the wind. Make a brush pile in the corner of the yard to shelter the birds from predators and storms and to provide night roosting places. Rake leaves up under trees and shrubs—and leave them there. Turn part of your lawn into a mini-meadow by letting it grow up in grass and weeds. (Mow it once a year, in late summer.)';
-        $notes3->user_id = $user->id;
+        $notes3->user_id = 3;
         $notes3->save();
 
         $notes4 = new Note();
@@ -181,7 +181,7 @@ class NotesTableSeeder extends Seeder {
             • Thin, dark line through the eye
             • Song varies as this bird “mimics”sounds heard; is very repetitive 
             • Open ground with shrubby vegetation is preferred';
-        $notes4->user_id = $user->id;
+        $notes4->user_id = 2;
         $notes4->save();
 
         $notes5 = new Note();
@@ -221,7 +221,7 @@ class NotesTableSeeder extends Seeder {
 
             Brown creeper has occurred as a vagrant to Bermuda and Central America\'s mountains in
             Guatemala, Honduras and the northern cordillera of El Salvador.';
-        $notes5->user_id = $user->id;
+        $notes5->user_id = 2;
         $notes5->save();
 
         $notes6 = new Note();
@@ -246,7 +246,7 @@ class NotesTableSeeder extends Seeder {
             
             The sexes are similar, and juveniles are brownish with darker wings, and pale pinkish legs,
             while chicks are covered in dense white down.';
-        $notes6->user_id = $user->id;
+        $notes6->user_id = 4;
         $notes6->save();
 
         $notes7 = new Note();
@@ -277,7 +277,7 @@ class NotesTableSeeder extends Seeder {
             their close relationship to the Gallinago snipes, the woodcocks are a fairly young group of
             birds, even considering that the Charadriiformes themselves are an ancient lineage.
             Gallinago and Scolopax diverged probably around the Late Miocene some 10-5 million years ago.';
-        $notes7->user_id = $user->id;
+        $notes7->user_id = 1;
         $notes7->save();
 
         $notes8 = new Note();
@@ -317,7 +317,7 @@ class NotesTableSeeder extends Seeder {
             defend their territory year-round. These birds are permanent residents and often join small
             mixed flocks in winter. In rare cases, many birds may flock together to rest in a log or 
             tree; some may even suffocate because so many birds are crowded inside of one cavity.';
-        $notes8->user_id = $user->id;
+        $notes8->user_id = 1;
         $notes8->save();
 
         $notes9 = new Note();
@@ -363,7 +363,7 @@ class NotesTableSeeder extends Seeder {
             Great Britain.
             In the United States, yellow-bellied sapsuckers are listed and protected under the Migratory
             Bird Treaty Act.Taking, killing, or possessing this species is illegal without a permit.';
-        $notes9->user_id = $user->id;
+        $notes9->user_id = 4;
         $notes9->save();
 
         $notes10 = new Note();
@@ -432,7 +432,7 @@ class NotesTableSeeder extends Seeder {
             In the interest of accurately documenting the last records of a species that is probably
             extinct, we reconstruct the final Imperial Woodpecker records from unpublished
             correspondence and interviews.';
-        $notes10->user_id = $user->id;
+        $notes10->user_id = 3;
         $notes10->save();
 
         $notes11 = new Note();
@@ -570,7 +570,7 @@ class NotesTableSeeder extends Seeder {
             corroborated with any direct evidence.[24] Seabirds fly low over water but gain altitude
             when crossing land, and the reverse pattern is seen in landbirds.[25][26] However most bird
             migration is in the range of 150 to 600 m (490 to 1,970 ft).';
-        $notes11->user_id = $user->id;
+        $notes11->user_id = 2;
         $notes11->save();
     }
 }
