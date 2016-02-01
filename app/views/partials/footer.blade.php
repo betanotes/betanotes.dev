@@ -6,7 +6,7 @@
         		<a href="https://github.com/ZeshanNSegal">Z</a>
         		<a href="https://github.com/anthony87burns">T</a>
         		<a href="https://github.com/Rwilkins1">R</a></span> | 
-        	<span><a href="{{{ action('HomeController@about') }}}">About</a></span> |
+        	<span class="footerword"><a href="{{{ action('HomeController@about') }}}">About</a></span> |
         	<span class="footerword">Careers</span> | 
         	<span class="footerword">Legal</span> | 
         	<span class="footerword">Terms of Use</span> | 

@@ -9,13 +9,25 @@
 }
 .aboutUs{
 	margin-top: 25px;
-	margin-bottom: 25px;
+	margin-bottom: 75px;
 	color:#f68735;
-}
-.aboutPage{
-	float:left;
-	padding:8%;
 }
 .nameColor{
 	color: #3F547F;
+	text-decoration: none;
+}
+.nameColor:hover {
+	color: #f68735;
+	text-decoration: none;
+	font-weight: bold;
+	font-style: italic;
+}
+.forimages {
+	width: 280px;
+	height: 340px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+.reagan {
+	margin-top: -54px;
 }
