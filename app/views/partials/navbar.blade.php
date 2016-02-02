@@ -65,16 +65,16 @@
         <div class="row">
 
             <div class="col-md-12 text-center dashboardnavbar">
-                <a href="{{{action('HomeController@dashboard')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/dashboard") {?>style="background-color: #f68735"<?php }?>>
+                <a href="{{{action('HomeController@dashboard')}}}"><div class="col-md-3"<?php if(Request::url() == "http://socialnotes.xyz/dashboard") {?>style="background-color: #f68735"<?php }?>>
                     Your Dashboard
                 </div></a>
-                <a href="{{{action('NotesController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/notes") {?>style="background-color: #f68735"<?php }?>>
+                <a href="{{{action('NotesController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://socialnotes.xyz/notes") {?>style="background-color: #f68735"<?php }?>>
                     Your Notes
                 </div></a>
-                <a href="{{{action('SheetsController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/sheets") {?>style="background-color: #f68735"<?php }?>>
+                <a href="{{{action('SheetsController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://socialnotes.xyz/sheets") {?>style="background-color: #f68735"<?php }?>>
                     Your Study Sheets
                 </div></a>
-                <a href="{{{action('MeetupsController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://betanotes.dev/socialstudy") {?>style="background-color: #f68735"<?php }?>>
+                <a href="{{{action('MeetupsController@index')}}}"><div class="col-md-3"<?php if(Request::url() == "http://socialnotes.xyz/socialstudy") {?>style="background-color: #f68735"<?php }?>>
                     Your Social Study Groups
                 </div></a>
             </div> {{-- end col-md-12 --}}
