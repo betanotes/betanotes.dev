@@ -142,16 +142,16 @@ dd {
     margin: 0 0 15px 0;
 }
 .mainnotey {
-    height: 425px;
-    width: 370px;
+    max-height: 425px;
+    max-width: 370px;
     margin: 50px auto 50px;
-    background: url(/img/notey_big.gif);
+    /*background: url(/img/notey_big2.gif);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    position: relative;
+    position: relative;*/
 }
-.noteyspan {
+/*.noteyspan {
     font-size: 22px;
     font-style: italic;
     height: 117px;
@@ -160,7 +160,7 @@ dd {
     top: 30px;
     left: 149px;
     padding: 11px 10px;
-}
+}*/
 .mainmiddle {
     background-color: #fff;
     /*height: 650px;*/
