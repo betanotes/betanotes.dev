@@ -11,7 +11,8 @@
             </div> <!-- end col-md-5 -->
             <div class="col-md-5">
                 <div class="mainnotey">
-                    <span class="noteyspan">Take, store, share... your notes everywhere!</span>
+                    <img src="/img/notey_big2.gif" class="img-responsive img-inline">
+                    {{-- <span class="noteyspan">Take, store, share... your notes everywhere!</span> --}}
                 </div>
             </div> <!-- end col-md-5 -->
         </div> <!-- end row maintop -->
